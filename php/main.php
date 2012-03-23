@@ -19,8 +19,10 @@
 	$fbuser['info']			= null;
 
 	try {
-    
-	    include_once "./php/facebook-sdk/facebook.php";
+    	
+		echo("<pre>__FILE__ " . __FILE__ . "</pre>");
+		echo("<pre>__DIR__ " . __DIR__ . "</pre>");
+	    require "php/facebook-sdk/facebook.php";
     
 	} catch(Exception $o) {
         
