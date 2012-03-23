@@ -7,6 +7,7 @@
 	<title>This is Ágora</title>
 	<link rel="stylesheet/less" type="text/css" href="css/base.less">
 	<script type="text/javascript" src="js/less-1.3.0.min.js"></script>
+	<link rel="icon" type="image/png" href="images/favicon.ico">
 </head>
 <body>
 	<div class="center">
