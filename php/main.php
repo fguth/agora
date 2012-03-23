@@ -23,6 +23,8 @@
 		echo("<pre>__FILE__ " . __FILE__ . "</pre>");
 		echo("<pre>__DIR__ " . __DIR__ . "</pre>");
 	    require "php/facebook-sdk/facebook.php";
+		
+		main();
     
 	} catch(Exception $o) {
         
