@@ -18,6 +18,7 @@
 require './src/facebook.php';
 
 // Create our Application instance (replace this with your appId and secret).
+// Create Application instance
 $facebook = new Facebook(array(
   'appId'  => '202465246524252',
   'secret' => '3150c34907ad4e82e727405f32f4f863',
@@ -53,6 +54,7 @@ if ($user) {
 $naitik = $facebook->api('/naitik');
 
 ?>
+
 <!doctype html>
 <html xmlns:fb="http://www.facebook.com/2008/fbml">
   <head>
@@ -94,9 +96,40 @@ $naitik = $facebook->api('/naitik');
     <?php else: ?>
       <strong><em>You are not Connected.</em></strong>
     <?php endif ?>
+    <head>
+    	<title>Ágora - Facebook Connect</title>
+    </head>
+    
+    <body>
+    
+        <h1>Ágora - Facebook Connect</h1>
+        
+		<?php if ($user): ?>
+        
+	        <h3><a href="<?php echo $logoutUrl; ?>">Logout</a></h3>
+        
+        <?php else: ?>
+        
+    	    <h3><a href="<?php echo $loginUrl; ?>">Login with Facebook</a></h3>
+        
+        <?php endif ?>
+        
+        <?php if ($user): ?>
+        	
+        	<h3>Facebook User Profile Data</h3>
+        	<pre><?php print_r($user_profile); ?></pre>
+        
+        <?php else: ?>
+        
+        	<strong><em>You are not Connected.</em></strong>
+        
+        <?php endif ?>
+        
+    </body>
 
     <h3>Public profile of Naitik</h3>
     <img src="https://graph.facebook.com/naitik/picture">
     <?php echo $naitik['name']; ?>
   </body>
+</html>
 </html>
