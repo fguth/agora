@@ -1,0 +1,18 @@
+# IGNORE
+# -------------
+
+*.diff
+*.err
+*.orig
+*.log
+*.rej
+*.swo
+*.swp
+*.vi
+*~
+
+# OS & EDITOR FOLDERS
+# ----------------------------------
+
+.DS_Store
+thumbs.db
