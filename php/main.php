@@ -20,7 +20,7 @@
 
 	try {
     
-	    include_once "./facebook-sdk/facebook.php";
+	    include_once "./php/facebook-sdk/facebook.php";
     
 	} catch(Exception $o) {
         
