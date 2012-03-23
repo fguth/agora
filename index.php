@@ -2,9 +2,9 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>This is SPARTA</title>
-	<link rel="stylesheet/less" type="text/css" href="style/base.less">
-	<script type="text/javascript" src="script/less-1.3.0.min.js"></script>
+	<title>This is Ágora</title>
+	<link rel="stylesheet/less" type="text/css" href="css/base.less">
+	<script type="text/javascript" src="js/less-1.3.0.min.js"></script>
 </head>
 <body>
 	<div class="center">
