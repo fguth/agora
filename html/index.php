@@ -13,6 +13,7 @@
 			<div id="user-info">
 				<img src="" />
 				<p>Nome do usuário</p>
+				<a href="">Sair</a>
 			</div>
 		</div>
 		<ul id="candidates">
