@@ -8,7 +8,7 @@
 <body>
 	<div class="center">
 		<div id="header">
-			<h1>Ágora</h1>
+			<h1><img src="images/logo-agora.png" alt="Ágora" /></h1>
 			<a id="login" href="">Conectar-se</a>
 			<div id="user-info">
 				<img src="" />
