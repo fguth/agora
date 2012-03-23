@@ -13,7 +13,18 @@
 	<div class="center">
 		<div id="header">
 			<h1><img src="images/logo-agora.png" alt="Ágora" /></h1>
-			<?php echo login(); ?>
+			<?php
+				
+				$output = "<a id='login' href='" . $fbapp['loginUrl'] . "'>Conectar-se</a>"; 
+				
+				if($fbuser['user']){
+				
+					$output = "<div id='user-info'><img src='' /><p>Nome do usuário</p><a href='" . $fbapp['loginUrl'] . "'>Sair</a></div>";
+				}
+				
+				echo $output; 
+			 
+			?>
 		</div>
 		<ul id="candidates">
 			<h2>Candidatos</h2>
