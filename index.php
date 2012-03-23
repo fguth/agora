@@ -1,3 +1,5 @@
+<?php include_once "./php/main.php"; ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,12 +12,7 @@
 	<div class="center">
 		<div id="header">
 			<h1><img src="images/logo-agora.png" alt="Ágora" /></h1>
-			<a id="login" href="">Conectar-se</a>
-			<div id="user-info">
-				<img src="" />
-				<p>Nome do usuário</p>
-				<a href="">Sair</a>
-			</div>
+			<?php echo login(); ?>
 		</div>
 		<ul id="candidates">
 			<h2>Candidatos</h2>
