@@ -1,43 +1,91 @@
 <?php
-/*
- * @author: Evandro Eisinger 
- */
- 
+  
   require("facebook-sdk/facebook.php");
   
-  $config = array(
-    'appId' => "202465246524252",
-    'secret' => "3150c34907ad4e82e727405f32f4f863",
+  define("APPID", "202465246524252");
+  define("SECRET", "3150c34907ad4e82e727405f32f4f863");
+  define("URL", $_SERVER['HTTP_HOST']);
+  
+  $fb_config = array(
+    'appId' => APPID,
+    'secret' => SECRET,
+    'fbconnect' => 1
   );
 
-  $facebook = new Facebook($config);
-  $user_id = $facebook->getUser();
+  $fb   		= new Facebook($fb_config);
+  $auth			= false;
+  $user 		= null;
+  $user_data 	= null;
+  $login_url    = null;
+  $logout_url   = null;
+  	  
+  check_auth($fb);
   
-   if($user_id) {
+  function check_auth() {
+  	
+	global $fb, $auth, $user, $user_data, $login_url, $logout_url;
 
-      // We have a user ID, so probably a logged in user.
-      // If not, we'll get an exception, which we handle below.
-      try {
+  	$_user = $fb->getUser();
+  	
+  	if($_user) {
+  		
+  		echo('Está logado.');
+  		
+  		try {
+			
+			$user 	   = $_user;
+  			$user_data = $fb->api('/me','GET');
+  			$auth 	   = true;
+  			$params = array( 'next' => 'https://www.myapp.com/after_logout' );
 
-        $user_profile = $facebook->api('/me','GET');
-        echo "Name: " . $user_profile['name'];
+			$logout_url = $fb->getLogoutUrl(); 
+  		
+		} catch (FacebookApiException $e) {
+			
+			$user 	   = null;
+  			$user_data = null;
+  			$auth 	   = false;
+  			$login_url = null; 
+  			$logout_url = null;
+  		
+			d($e);
+				
+		}
+  		
+  	} else {
+  	
+  		echo('Não está logado.');
+  	
+    	$login_url = $fb->getLoginUrl();
+  			
+  	}
+  	
+  }
+  
+  function check_login() {
+  
+  	global $auth, $user_data, $login_url, $logout_url;
+  							
+	$output = "<a id='login' href='" . $login_url . "' target='self'>Conectar-se</a>";
+  	
+  	if($auth)
+  	{	
+		$output 	 = "<div id='user-info'>";
+		$output 	.= "<img src='https://graph.facebook.com/". $user_data['username'] . "/picture' />";
+		$output 	.= "<p>". $user_data['name'] . "</p><a href='" . $logout_url . "'>Sair</a>";
+		$output 	.= "</div>";
+  	}
+		
+	print $output;
 
-      } catch(FacebookApiException $e) {
-        // If the user is logged out, you can have a 
-        // user ID even though the access token is invalid.
-        // In this case, we'll get an exception, so we'll
-        // just ask the user to login again here.
-        $login_url = $facebook->getLoginUrl(); 
-        echo 'Please <a href="' . $login_url . '">login.</a>';
-        error_log($e->getType());
-        error_log($e->getMessage());
-      }   
-    } else {
-
-      // No user, print a link for the user to login
-      $login_url = $facebook->getLoginUrl();
-      echo 'Please <a href="' . $login_url . '">login.</a>';
-
-    }
+  }
+  
+  function d($d) {
+  	
+  	echo '<pre>';
+    print_r($d);
+    echo '</pre>';
+  
+  }
   
 ?>

@@ -13,7 +13,7 @@
 	<div class="center">
 		<div id="header">
 			<h1><img src="images/logo-agora.png" alt="Ágora" /></h1>
-			
+			<?php check_login(); ?>
 		</div>
 		<ul id="candidates">
 			<h2>Candidatos</h2>
