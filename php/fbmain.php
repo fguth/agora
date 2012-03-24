@@ -6,7 +6,7 @@
 	//facebook application configuration
     $fbconfig['appid' ]     = "202465246524252";
     $fbconfig['secret']     = "3150c34907ad4e82e727405f32f4f863";
-    $fbconfig['baseurl']    = "http://agora.vc/index.php";
+    $fbconfig['baseurl']    = "http://sitio3figueiras.com.br/agora/index.php";
 
     //
     if (isset($_GET['request_ids'])){
@@ -16,7 +16,7 @@
     
     $user            =   null; //facebook user uid
     try{
-        include_once "facebook.php";
+        include_once "facebook-sdk/facebook.php";
     }
     catch(Exception $o){
         error_log($o);
