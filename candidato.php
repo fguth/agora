@@ -14,10 +14,10 @@ require("php/direct-access.php");
 	<link rel="icon" type="image/png" href="images/favicon.ico">
 	
 	<meta property="og:title" content="Bruno Stein" />
-	<meta property="og:type" content="politician" />
-	<meta property="og:url"	content="http://<?php print_r($_SERVER['SERVER_NAME']); print_r($_SERVER['REDIRECT_URL']); ?>" />
-	<meta property="og:image"	content="https://graph.facebook.com/brunohstein/picture?type=large" />
-	<meta property="og:site_name"	content="Ágora" />
+	<meta property="og:type" content="agora-master:candidato">
+	<meta property="og:url" content="http://<?php print_r($_SERVER['SERVER_NAME']); print_r($_SERVER['REDIRECT_URL']); ?>" />
+	<meta property="og:image" content="https://graph.facebook.com/brunohstein/picture?type=large" />
+	<meta property="og:site_name" content="Ágora" />
 	<meta property="og:description" content="Bruno Stein está concorrendo para o cargo de prefeito da cidade de Dois Irmãos." />
 	
 </head>
