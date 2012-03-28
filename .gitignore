@@ -1,0 +1,22 @@
+# IGNORE
+# -------------
+
+*.diff
+*.err
+*.orig
+*.log
+*.rej
+*.swo
+*.swp
+*.vi
+*~
+
+.htaccess
+config.js
+
+# OS & EDITOR FOLDERS
+# ----------------------------------
+
+.DS_Store
+thumbs.db
+desktop.ini
