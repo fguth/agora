@@ -1,4 +1,3 @@
-
 /**
 * Developed by Evandro Eisinger & Gibran Malheiros
 * http://agora.vc
@@ -17,11 +16,11 @@
 			// FACEBOOK INITIALIZE
 			
 			FB.init({
-			  appId      : '202465246524252',
-			  channelUrl : 'http://localhost/Agora/php/channel.php',
-			  status     : true,
-			  cookie     : true,
-			  xfbml      : true
+			  appId      : CONFIG.get('APP_ID'),
+			  channelUrl : CONFIG.get('CHANNEL_URL'),
+			  status     : CONFIG.get('STATUS'),
+			  cookie     : CONFIG.get('COOKIE'),
+			  xfbml      : CONFIG.get('XFBML')
 			});
 		
 			// PAGE INITIALIZE	
@@ -93,13 +92,6 @@
 			}
 			 
 		 }
-			
-			/**
-			 * page
-			 * * AUTH
-			 * * * CHECK
-			 */
-			 
 			
 			/**
 			 * page

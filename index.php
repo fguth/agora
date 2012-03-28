@@ -1,6 +1,5 @@
-<?php
-header("content-type: text/html; charset=UTF-8", true);
-?>
+<?php header("content-type: text/html; charset=UTF-8", true); ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +27,7 @@ header("content-type: text/html; charset=UTF-8", true);
 			<h2>Candidatos</h2>
 			<li>
 				<div class="thumb">
-					<img src="https://graph.facebook.com/brunohstein/picture?type=large" />
+					<img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc4/368710_1664574483_389674048_n.jpg" />
 				</div>
 				<h3>Bruno Stein</h3>
 				<a class="support" href="">Apoiar</a>
@@ -36,7 +35,7 @@ header("content-type: text/html; charset=UTF-8", true);
 			</li>
 			<li>
 				<div class="thumb">
-					<img src="https://graph.facebook.com/evandroeisinger21/picture?type=large" />
+					<img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc4/275259_100000507365811_494642663_n.jpg" />
 				</div>
 				<h3>Evandro Eisinger</h3>
 				<a class="support" href="">Apoiar</a>
@@ -44,7 +43,7 @@ header("content-type: text/html; charset=UTF-8", true);
 			</li>
 			<li>
 				<div class="thumb">
-					<img src="https://graph.facebook.com/fguth/picture?type=large" />
+					<img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc4/273869_100000435792178_1121551184_n.jpg" />
 				</div>
 				<h3>Filipe Guth</h3>
 				<a class="support" href="">Apoiar</a>
@@ -52,7 +51,7 @@ header("content-type: text/html; charset=UTF-8", true);
 			</li>
 			<li>
 				<div class="thumb">
-					<img src="https://graph.facebook.com/gibatronic/picture?type=large" />
+					<img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc4/41771_725758823_6562_n.jpg" />
 				</div>
 				<h3>Gibran Malheiros</h3>
 				<a class="support" href="">Apoiar</a>
@@ -64,15 +63,9 @@ header("content-type: text/html; charset=UTF-8", true);
     
 </body>
 
-
 <script type="text/javascript" src="js/less-1.3.0.min.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="js/config.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
-
-<script>
-	
-
-	
-</script>
 
 </html>
