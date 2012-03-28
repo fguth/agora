@@ -1,6 +1,4 @@
 <?php
-require(".sistema/php/sistema.php");
-
 header("content-type: text/html; charset=UTF-8", true);
 ?>
 <!DOCTYPE html>
