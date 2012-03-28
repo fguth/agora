@@ -8,8 +8,7 @@ require("php/direct-access.php");
 	<head>
 		<title>Ágora</title>
 		
-		<!--<base href="http://127.0.0.1/agora.vc/" /> -->
-        <base href="http://development.agora.vc/" />
+        <base href="<?php print_r($_SERVER["HTTP_REFERER"]); ?>" />
         
 	</head>
 	<body>
