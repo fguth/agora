@@ -55,6 +55,7 @@ require("php/direct-access.php");
 
 <script type="text/javascript" src="js/less-1.3.0.min.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="js/config.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
 
 </html>
