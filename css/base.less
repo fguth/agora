@@ -16,7 +16,8 @@ body {
 		padding: 40px 0 20px;
 		overflow: auto;
 		#login {
-			display: block;
+			display: none;
+			cursor: pointer;
 			padding: 15px 30px;
 			float: right;
 			background: #3b5998;
@@ -39,8 +40,8 @@ body {
 			text-transform: uppercase;
 		}
 		#user-info {
+			display: none;
 			float: right;
-			width: 175px;
 			img {
 				width: 50px;
 				height: 50px;
@@ -53,9 +54,9 @@ body {
 				font-size: 14px;
 				color: #ccc;
 			}
-			a {
+			#logout {
+				cursor:pointer;
 				font-size: 11px;
-				float: right;
 				color: #ccc;
 				display: block;
 				text-decoration: none;
