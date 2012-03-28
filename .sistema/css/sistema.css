@@ -1,0 +1,227 @@
+a, abbr, address, area, article, aside, audio, b, base, bdo, blockquote, body, br, button, canvas, caption, cite, code, col, colgroup, command, datalist, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, head, header, hgroup, hr, html, i, iframe, img, input, ins, keygen, kbd, label, legend, li, link, map, mark, menu, meta, meter, nav, noscript, object, ol, optgroup, option, output, p, param, pre, progress, q, rp, rt, ruby, s, samp, script, section, select, small, source, span, strong, style, sub, summary, sup, table, tbody, td, textarea, tfoot, th, thead, time, title, tr, ul, var, video, wbr {
+	color: rgba(51, 51, 51, 1);
+	cursor: default;
+	font-family: Verdana;
+	font-size: 12px;
+	margin: 0px;
+	padding: 0px;
+	-webkit-text-size-adjust: none;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+a {
+	cursor: pointer;
+}
+
+body {
+	color: rgba(255, 255, 255, 1);
+	margin: 20px;
+}
+
+hr {
+	border: 0px none;
+	clear: both;
+	padding: 20px 0px 20px 0px;
+	width: 100%;
+	height: 0px;
+}
+
+hr.portatil {
+	display: none !important;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0px;
+	table-layout: fixed;
+}
+
+/**
+ * CABE‚ALHO
+ */
+
+table#cabecalho {
+	position: fixed;
+	left: 20px;
+	top: 16px;
+	z-index: 15;
+}
+
+table#cabecalho.portatil {
+	position: static !important;
+	margin: -4px 0px 0px 0px;
+}
+
+/**
+ * CABE‚ALHO
+ * > êCONE
+ */
+
+table#cabecalho > tbody > tr > td.icone {
+	padding: 4px 0px 0px 0px;
+	text-align: right;
+	vertical-align: top;
+}
+
+/**
+ * CABE‚ALHO
+ * > TêTULO
+ */
+
+table#cabecalho > tbody > tr > td.titulo {
+	border-bottom: 2px solid transparent;
+	font-size: 14px;
+	text-align: left;
+	text-decoration: none;
+	text-transform: uppercase;
+	vertical-align: top;
+}
+
+table#cabecalho > tbody > tr > td.titulo > a {
+	font-size: 14px;
+}
+
+table#cabecalho > tbody > tr > td.titulo > a:link, table#cabecalho > tbody > tr > td.titulo > a:visited {
+	border-bottom: 2px solid transparent;
+	text-decoration: none;
+}
+
+table#cabecalho > tbody > tr > td.titulo > a:active, table#cabecalho > tbody > tr > td.titulo > a:hover {
+	border-bottom: 2px solid rgba(150, 196, 60, 1);
+}
+
+/**
+ * CABE‚ALHO
+ * > CAMINHO
+ */
+
+table#cabecalho > tbody > tr > td.caminho {
+	padding: 4px 0px 0px 0px;
+	text-align: left;
+	vertical-align: top;
+}
+
+table#cabecalho > tbody > tr > td.caminho > a:link, table#cabecalho > tbody > tr > td.caminho > a:visited {
+	border-bottom: 2px solid transparent;
+	text-decoration: none;
+}
+
+table#cabecalho > tbody > tr > td.caminho > a:active, table#cabecalho > tbody > tr > td.caminho > a:hover {
+	border-bottom: 2px solid rgba(63, 175, 222, 1);
+}
+
+table#cabecalho > tbody > tr > td.caminho > span.barra {
+	color: rgba(153, 153, 153);
+	padding: 0px 5px 0px 5px;
+}
+
+table#cabecalho > tbody > tr > td.caminho > span.barra:first-child {
+	padding: 0px 5px 0px 0px;
+}
+
+/**
+ * CAMADA
+ */
+
+div#camada {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	background: rgba(255, 255, 255, 0.9);
+	border: 2px solid rgba(255, 255, 255, 1);
+	width: 100%;
+	height: 66px;
+	z-index: 10;
+}
+
+div#camada.portatil {
+	display: none !important;
+}
+
+/**
+ * LISTA
+ */
+
+table#lista {
+	/* margin: 56px 0px 0px 11px; */
+	margin: 16px 0px 0px 11px;
+}
+
+table#lista.portatil {
+	margin: 26px 0px 0px 11px !important;
+}
+
+table#lista > tbody > tr > td > a {
+	
+}
+
+table#lista > tbody > tr > td > a:link, table#lista > tbody > tr > td > a:visited {
+	border-bottom: 2px solid transparent;
+	text-decoration: none;
+}
+
+table#lista > tbody > tr > td > a:active, table#lista > tbody > tr > td > a:hover {
+	border-bottom: 2px solid rgba(150, 196, 60, 1);
+}
+
+table#lista > tbody > tr > td.carregando {
+	color: rgba(0, 0, 0, 0.4);
+	font-size: 10px;
+	padding: 0px 0px 0px 5px;
+	text-transform: uppercase;
+}
+
+table#lista > tbody > tr > td.icone > img {
+	text-align: right;
+	vertical-align: middle;
+	width: 16px;
+	height: 16px;
+}
+
+table#lista > tbody > tr > td.icone > img.progresso {
+	opacity: 0.4
+}
+
+table#lista > tbody > tr > td.nome {
+	padding: 0px 0px 0px 5px;
+	text-align: left;
+	vertical-align: middle;
+}
+
+table#lista > tbody > tr > td.indice > a {
+	color: rgba(0, 0, 0, 1);
+}
+
+table#lista > tbody > tr > td.vazio {
+	color: rgba(150, 196, 60, 1);
+	font-size: 10px;
+	text-transform: uppercase;
+}
+
+/**
+ * OP‚ÍES
+ */
+
+img#opcoes {
+	position: fixed;
+	top: 20px;
+	right: 20px;
+	cursor: pointer;
+	z-index: 20;
+}
+
+/**
+ * PROGRESSO
+ */
+
+div#progresso {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	visibility: hidden;
+	background-color: rgba(255, 255, 255, 0.9);
+	background-image: url(../img/progresso-barra.gif);
+	background-position: center center;
+	background-repeat: no-repeat;
+	z-index: 5;
+}
