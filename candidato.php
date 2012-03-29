@@ -13,6 +13,7 @@ require("php/direct-access.php");
 	<link rel="stylesheet/less" type="text/css" href="css/base.less">
 	<link rel="icon" type="image/png" href="images/favicon.ico">
 	
+	<meta property="fb:app_id" content="202465246524252" /> 
 	<meta property="og:title" content="Bruno Stein" />
 	<meta property="og:type" content="agora-master:candidato">
 	<meta property="og:url" content="http://<?php print_r($_SERVER['SERVER_NAME']); print_r($_SERVER['REDIRECT_URL']); ?>" />
