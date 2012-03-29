@@ -40,7 +40,7 @@
 			</li>
 			<li>
 				<div class="thumb">
-					<img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc4/275259_100000507365811_494642663_n.jpg" />
+					<img src="https://graph.facebook.com/evandroeisinger21/picture?type=large" />
 				</div>
 				<h3>Evandro Eisinger</h3>
 				<div id="2" class="support">Apoiar</div>
@@ -48,7 +48,7 @@
 			</li>
 			<li>
 				<div class="thumb">
-					<img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc4/273869_100000435792178_1121551184_n.jpg" />
+					<img src="https://graph.facebook.com/fguth/picture?type=large" />
 				</div>
 				<h3>Filipe Guth</h3>
 				<div id="3" class="support">Apoiar</div>
@@ -56,7 +56,7 @@
 			</li>
 			<li>
 				<div class="thumb">
-					<img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc4/41771_725758823_6562_n.jpg" />
+					<img src="https://graph.facebook.com/gibatronic/picture?type=large" />
 				</div>
 				<h3>Gibran Malheiros</h3>
 				<div id="4" class="support">Apoiar</div>
