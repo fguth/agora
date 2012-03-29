@@ -1,6 +1,7 @@
 <?php header("content-type: text/html; charset=UTF-8", true); ?>
 
 <!DOCTYPE html>
+
 <html>
 <head>
 	<meta charset="utf-8">
@@ -12,24 +13,28 @@
 <body>
 
 	<div id="fb-root"></div>
+	
 	<div class="center">
+		
 		<div id="header">
-            <h1><img src="images/logo-agora.png" alt="Ágora" /></h1>
-            <div id="login">Conectar-se</div>
-            <div id="user-info">
-                <img src="" id="user-picture";/>
-                <p id="user-name">Carregando</p>
-                <div id="logout">Sair</div>
-            </div>
+			<h1><img src="images/logo-agora.png" alt="Ágora" /></h1>
+			<div id="login">Conectar-se</div>
+			<div id="user-info">
+				<img src="" id="user-picture";/>
+				<p id="user-name">Carregando</p>
+				<div id="logout">Sair</div>
+			</div>
 		</div>
         
 		<ul id="candidates">
 			<h2>Candidatos</h2>
 			<li>
 				<div class="thumb">
-					<img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc4/368710_1664574483_389674048_n.jpg" />
+					<a href="rs/dois-irmaos/prefeito/bruno-stein">
+						<img src="https://graph.facebook.com/brunohstein/picture?type=large" />
+					</a>
 				</div>
-				<h3>Bruno Stein</h3>
+				<h3><a href="rs/dois-irmaos/prefeito/bruno-stein">Bruno Stein</a></h3>
 				<div id="1" class="support">Apoiar</div>
 				<div class="counter">88</div>
 			</li>
