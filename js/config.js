@@ -11,7 +11,8 @@ var CONFIG = (function() {
 	 	'CHANNEL_URL'	: 'http://development.agora.vc/php/channel.php',
 		'STATUS'		: true,
 		'COOKIE'		: true,
-		'XFBML'			: true
+		'XFBML'			: true,
+		'AJAX_URL'		: 'http://development.agora.vc/php/system.php'
 		
 	};
 	

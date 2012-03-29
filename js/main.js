@@ -55,6 +55,8 @@
 		
 		 	// ELEMENTS INITIALIZE
 			
+			$(page.elements.support).bind('click', page.support);
+			
 		 }
 		 
 	 		/**
@@ -68,8 +70,117 @@
 			 page.elements.user_info  		= "#user-info";
 			 page.elements.user_name    	= "#user-name";
 			 page.elements.user_picture 	= "#user-picture";
-			 		 
-			 page.elements.support 			= "#support";
+			 
+			 page.elements.cadidates		= "#candidates";
+			 page.elements.support 			= ".support";
+			 
+		
+		/**
+		 * page
+		 * * CANDIDATES
+		 */
+		 
+		 page.candidates = function() {
+		
+		 	// CANDIDATES INITIALIZE
+			
+		    /** 
+			 * Start cadidates load
+			 * * Need to implement
+			 */
+			
+		 }
+		 
+	 		/**
+			 * page
+			 * * CANDIDATES
+			 * * * PROCESS
+			 */
+			 
+			 page.candidates.process = function() {
+				
+		 	 }
+			 
+			 /**
+			 * page
+			 * * CANDIDATES
+			 * * * PROCESS
+			 */
+			 
+			 page.candidates.error = function() {
+				
+		 	 }
+		 	 
+			 
+		/**
+		 * page
+		 * * SUPPORT
+		 */
+		 
+		 page.support = function(e) {
+			
+			// SUPPORT INITIALIZE
+			
+			var _target 	= e.target;
+			var _candidate 	= e.target.id;
+			
+			if(page.auth.status) {
+			
+				console.log("Start Ajax - Need to implement: Data Base Issue and Server Side Issue;");
+				
+			/*
+				$.ajax({
+					data: {
+						acao: SUPPORT,
+						candidate : _candidate
+					},
+					dataType: "json",
+					error: page.support.error,
+					success: page.support.process,
+					type: "post",
+					url: CONFIG.get('AJAX_URL')
+				});
+			*/		
+				
+			} else {
+
+				FB.login();
+				
+			}
+			
+		 }
+		 
+	 		/**
+			 * page
+			 * * SUPPORT
+			 * * * PROCESS
+			 */
+			 
+			 page.support.process = function(data, status, xhr) {
+			
+				if(data.sucess) {
+					
+					console.log(data);
+					
+				} else {
+				
+					console.log(data.error);	
+				
+				}
+				
+			 }
+			 
+			 /**
+			 * page
+			 * * SUPPORT
+			 * * * ERROR
+			 */
+			 
+			 page.support.error = function(xhr, status, error) {
+			
+				console.log(String(error).toLowerCase());
+			
+			}
 		
 		/**
 		 * page
@@ -77,7 +188,9 @@
 		 */
 		 
 		 page.auth = function(response){
-			 
+			
+			// AUTH INITIALIZE
+			
 			$(page.elements.login).fadeOut();
 			$(page.elements.user_info).fadeOut();
 			 
@@ -96,10 +209,20 @@
 			/**
 			 * page
 			 * * AUTH
+			 * * * STATUS
+			 */
+			 
+			 page.auth.status = false;
+			
+			/**
+			 * page
+			 * * AUTH
 			 * * * ALLOWED
 			 */
 			 
 			 page.auth.allowed = function(){
+				 
+				page.auth.status = true;
 				
 				FB.api('/me', function(response) {
 				
@@ -122,6 +245,8 @@
 			 */
 			 
 			 page.auth.refused = function(){
+				
+				page.auth.status = false;
 				
 				$(page.elements.login).fadeIn(function(){
 					
