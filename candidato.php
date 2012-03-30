@@ -21,15 +21,7 @@ require("php/direct-access.php");
 
 $candidato = $_SERVER['REDIRECT_URL'];
 $candidato = explode("/", $candidato);
-if ($candidato[4] == "bruno-stein") {
-	include("bruno.php");
-} elseif ($candidato[4] == "evandro-eisinger") {
-	include("evandro.php");
-} elseif ($candidato[4] == "filipe-guth") {
-	include("filipe.php");
-} elseif ($candidato[4] == "gibran-malheiros") {
-	include("gibran.php");
-}
+include($candidato[4].".php");
 
 ?>
 
