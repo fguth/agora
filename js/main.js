@@ -117,69 +117,82 @@
 		 * * SUPPORT
 		 */
 		 
+		/**
+		 * page
+		 * * SUPPORT
+		 */
+
 		 page.support = function(e) {
-			
+
 			// SUPPORT INITIALIZE
-			
+
 			var _target 	= e.target;
-			var _candidate 	= e.target.id;
+			var _candidate 	= $(this).siblings("h3").children("a").attr("href");
 			
 			if(page.auth.status) {
-			
-				console.log("Start Ajax - Need to implement: Data Base Issue and Server Side Issue;");
-				
-			/*
-				$.ajax({
-					data: {
-						acao: SUPPORT,
-						candidate : _candidate
-					},
-					dataType: "json",
-					error: page.support.error,
-					success: page.support.process,
-					type: "post",
-					url: CONFIG.get('AJAX_URL')
-				});
-			*/		
-				
+
+				FB.api(
+					'/me/agora-master:apoiar?candidato=http://' + document.location.host + "/" + _candidate,
+					'post',
+					
+					function(response) {
+
+						if (!response || response.error) {
+
+							$(_target).text(response.error.message);
+							$(_target).css({"background-color":"red", "color" : "white"});
+							$(_target).unbind('click');
+
+						} else {
+							
+						   $(_target).text('Apoiado: ' + response.id);
+						   $(_target).css({"background-color":"#2cc008", "color" : "white"});
+						   $(_target).unbind('click');
+						
+						}
+
+
+					 }
+				);
+
 			} else {
 
-				FB.login();
-				
+				FB.login(function(response) {}, {scope: CONFIG.get('PERMISSIONS')});
+
 			}
-			
+
 		 }
-		 
+		
 	 		/**
 			 * page
 			 * * SUPPORT
 			 * * * PROCESS
 			 */
-			 
-			 page.support.process = function(data, status, xhr) {
-			
+
+			 page.support.process = function(response) {
+
 				if(data.sucess) {
-					
+
 					console.log(data);
-					
+
 				} else {
-				
+
 					console.log(data.error);	
-				
+
 				}
-				
+
 			 }
-			 
+
 			 /**
 			 * page
 			 * * SUPPORT
 			 * * * ERROR
 			 */
-			 
-			 page.support.error = function(xhr, status, error) {
-			
+
+			page.support.error = function(response) {
+
 				console.log(String(error).toLowerCase());
-			
+
 			}
 		
 		/**
@@ -251,7 +264,11 @@
 				$(page.elements.login).fadeIn(function(){
 					
 					$(page.elements.logout).unbind('click');
-					$(this).bind('click',function(){ FB.login(); });	
+					$(this).bind('click',function(){ 
+					
+						FB.login(function(response) {}, {scope: CONFIG.get('PERMISSIONS')});
+						
+					});	
 					
 				}); 
 				

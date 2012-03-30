@@ -1,3 +1,5 @@
+	<head prefix="og: http://ogp.me/ns# agora-master: 
+	                  http://ogp.me/ns/apps/agora-master#">
 	<meta property="fb:app_id" content="202465246524252" /> 
 	<meta property="og:title" content="Evandro Eisinger" />
 	<meta property="og:type" content="agora-master:candidato">

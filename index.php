@@ -10,6 +10,11 @@
 	<title>This is Ágora</title>
 	<link rel="stylesheet" type="text/css" href="css/prototype.css">
 	<link rel="icon" type="image/png" href="images/favicon.ico" />
+	<head prefix="og: http://ogp.me/ns# agora-master: 
+	                  http://ogp.me/ns/apps/agora-master#">
+	<meta property="fb:app_id" content="202465246524252" /> 
+	<meta property="og:title" content="Ágora" />
+	<meta property="og:type" content="agora-master">
 	
 </head>
 

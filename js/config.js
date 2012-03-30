@@ -12,7 +12,8 @@ var CONFIG = (function() {
 		'STATUS'		: true,
 		'COOKIE'		: true,
 		'XFBML'			: true,
-		'AJAX_URL'		: 'http://development.agora.vc/php/system.php'
+		'AJAX_URL'		: 'http://development.agora.vc/php/system.php',
+		'PERMISSIONS'	: 'email,user_about_me,user_activities,user_birthday,user_education_history,user_hometown,user_interests,user_location,user_relationships,user_religion_politics,user_website,user_work_history,publish_stream,publish_actions'
 		
 	};
 	

@@ -1,5 +1,7 @@
+	<head prefix="og: http://ogp.me/ns# agora-master: 
+	                  http://ogp.me/ns/apps/agora-master#">
 	<meta property="fb:app_id" content="202465246524252" /> 
-	<meta property="og:title" content="Filipe Guth />
+	<meta property="og:title" content="Filipe Guth" />
 	<meta property="og:type" content="agora-master:candidato">
 	<meta property="og:url" content="http://<?php print_r($_SERVER['SERVER_NAME']); print_r($_SERVER['REDIRECT_URL']); ?>" />
 	<meta property="og:image" content="https://graph.facebook.com/fguth/picture?type=large" />
