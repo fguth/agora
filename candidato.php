@@ -3,15 +3,17 @@ require("php/system.php");
 require("php/direct-access.php");
 ?>
 
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 
 <html>
+
 <head>
-	<meta charset="utf-8">
+
+	<meta charset="utf-8" />
 	<title>This is Ágora</title>
-	<base href="<?php print_r($_SERVER["HTTP_REFERER"]); ?>" />
-	<link rel="stylesheet/less" type="text/css" href="css/base.less">
-	<link rel="icon" type="image/png" href="images/favicon.ico">
+	<base href="http://<?php print_r($_SERVER["HTTP_HOST"]); ?>" />
+	<link rel="stylesheet" type="text/css" href="css/prototype.css" />
+	<link rel="icon" type="image/png" href="images/favicon.ico" />
 	
 	<meta property="fb:app_id" content="202465246524252" /> 
 	<meta property="og:title" content="Bruno Stein" />
@@ -54,7 +56,6 @@ require("php/direct-access.php");
 	
 </body>
 
-<script type="text/javascript" src="js/less-1.3.0.min.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="js/config.js"></script>
 <script type="text/javascript" src="js/main.js"></script>

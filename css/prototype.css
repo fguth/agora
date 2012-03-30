@@ -12,17 +12,19 @@ body {
 a {
 	text-decoration: none;
 	color: #000;
-	&:hover {
+}
+	a:hover {
 		text-decoration: underline;
 	}
-}
 
 .center {
 	width: 600px;
 	margin: 0 auto;
+}
 	#header {
 		padding: 40px 0 20px;
 		overflow: auto;
+	}
 		#login {
 			display: none;
 			cursor: pointer;
@@ -36,12 +38,12 @@ a {
 			color: #eee;
 			text-transform: uppercase;
 			text-decoration: none;
-			&:hover {
+		}
+			#login:hover {
 				color: #fff;
 				border: 1px solid #000;
 			}
-		}
-		h1 {
+		#header h1 {
 			float: left;
 			font-size: 40px;
 			color: #333;
@@ -50,7 +52,8 @@ a {
 		#user-info {
 			display: none;
 			float: right;
-			img {
+		}
+			#user-info img {
 				width: 50px;
 				height: 50px;
 				float: left;
@@ -70,46 +73,46 @@ a {
 				text-decoration: none;
 				margin: 4px 0 0;
 			}
-		}
-	}
 	ul {
 		padding: 40px 0;
 		overflow: auto;
-		h2 {
+	}
+		ul h2 {
 			margin: 0 0 15px;
 			font-size: 22px;
 			color: #ccc;
 			font-weight: normal;
 			text-transform: uppercase;
 		}
-		li {
+		ul li {
 			display: block;
 			width: 100%;
 			float: left;
 			padding: 20px 0;
 			border-top: 1px solid #ccc;
-			.thumb {
+		}
+			ul li .thumb {
 				width: 150px;
 				height: 150px;
 				overflow: hidden;
 				float: left;
 				margin: 0 20px 0 0;
 				border: 1px solid #dfdfdf;
-				&:hover {
+			}
+				ul li .thumb:hover {
 					border: 4px solid #dfdfdf;
 					width:144px;
 					height:144px;
 					cursor:pointer;
-					img {
+				}
+					ul li .thumb:hover img {
 						margin:-3px;
 					}
-				}
-				img {
+				ul li .thumb img {
 					min-width:150px;
 					min-height:150px;
 				}
-			}
-			h3 {
+			ul h3 {
 				font-size: 18px;
 			}
 			.support {
@@ -126,17 +129,14 @@ a {
 				color: #bbb;
 				text-transform: uppercase;
 				text-decoration: none;
-				&:hover {
+			}
+				.support:hover {
 					color: #999;
 					border: 1px solid #ccc;
 				}
-			}
 			.counter {
 				float: right;
 				font-size: 80px;
 				color: #ccc;
 				margin: 10px 0 0;
 			}
-		}
-	}
-}

@@ -1,13 +1,16 @@
 <?php header("content-type: text/html; charset=UTF-8", true); ?>
 
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 
 <html>
+
 <head>
-	<meta charset="utf-8">
+
+	<meta charset="utf-8" />
 	<title>This is Ágora</title>
-	<link rel="stylesheet/less" type="text/css" href="css/base.less">
-	<link rel="icon" type="image/png" href="images/favicon.ico">
+	<link rel="stylesheet" type="text/css" href="css/prototype.css">
+	<link rel="icon" type="image/png" href="images/favicon.ico" />
+	
 </head>
 
 <body>
@@ -68,7 +71,6 @@
     
 </body>
 
-<script type="text/javascript" src="js/less-1.3.0.min.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="js/config.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
