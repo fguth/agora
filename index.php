@@ -43,25 +43,31 @@
 			</li>
 			<li>
 				<div class="thumb">
-					<img src="https://graph.facebook.com/evandroeisinger21/picture?type=large" />
+					<a href="rs/dois-irmaos/prefeito/evandro-eisinger">
+						<img src="https://graph.facebook.com/evandroeisinger21/picture?type=large" />
+					</a>
 				</div>
-				<h3>Evandro Eisinger</h3>
+				<h3><a href="rs/dois-irmaos/prefeito/evandro-eisinger">Evandro Eisinger</a></h3>
 				<div id="2" class="support">Apoiar</div>
 				<div class="counter">88</div>
 			</li>
 			<li>
 				<div class="thumb">
-					<img src="https://graph.facebook.com/fguth/picture?type=large" />
+					<a href="rs/dois-irmaos/prefeito/filipe-guth">
+						<img src="https://graph.facebook.com/fguth/picture?type=large" />
+					</a>
 				</div>
-				<h3>Filipe Guth</h3>
+				<h3><a href="rs/dois-irmaos/prefeito/filipe-guth">Filipe Guth</a></h3>
 				<div id="3" class="support">Apoiar</div>
 				<div class="counter">88</div>
 			</li>
 			<li>
 				<div class="thumb">
-					<img src="https://graph.facebook.com/gibatronic/picture?type=large" />
+					<a href="rs/dois-irmaos/prefeito/gibran-malheiros">
+						<img src="https://graph.facebook.com/gibatronic/picture?type=large" />
+					</a>
 				</div>
-				<h3>Gibran Malheiros</h3>
+				<h3><a href="rs/dois-irmaos/prefeito/gibran-malheiros">Gibran Malheiros</a></h3>
 				<div id="4" class="support">Apoiar</div>
 				<div class="counter">88</div>
 			</li>
