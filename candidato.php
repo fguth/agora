@@ -21,7 +21,8 @@ require("php/direct-access.php");
 
 $candidato = $_SERVER['REDIRECT_URL'];
 $candidato = explode("/", $candidato);
-include($candidato[4].".php");
+$file = $candidato[4].".php";
+if (file_exists($file)) { include($file); } else { header("location:/404"); }
 
 ?>
 

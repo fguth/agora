@@ -15,7 +15,7 @@
 	<div class="center">
 	
 		<div id="header">
-			<h1><a href="<?php print_r($_SERVER["HTTP_REFERER"]); ?>"><img src="images/logo-agora.png" alt="Ágora" /></a></h1>
+			<h1><a href="http://<?php print_r($_SERVER["HTTP_HOST"]); ?>"><img src="images/logo-agora.png" alt="Ágora" /></a></h1>
 			<div id="login">Conectar-se</div>
 			<div id="user-info">
 				<img src="" id="user-picture";/>
