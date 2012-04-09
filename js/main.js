@@ -110,13 +110,7 @@
 			 page.candidates.error = function() {
 				
 		 	 }
-		 	 
-			 
-		/**
-		 * page
-		 * * SUPPORT
-		 */
-		 
+		
 		/**
 		 * page
 		 * * SUPPORT
@@ -126,28 +120,29 @@
 
 			// SUPPORT INITIALIZE
 
-			var _target 	= e.target;
-			var _candidate 	= $(this).siblings("h3").children("a").attr("href");
+			var target 	= e.target;
+			var candidate 	= $(this).siblings("h3").children("a").attr("href");
 			
 			if(page.auth.status) {
-
+				
+				//After support server-side process be done. Put this FP.api into page.support.process sucess data.
 				FB.api(
-					'/me/agora-master:apoiar?candidato=http://' + document.location.host + "/" + _candidate,
+					'/me/agora-master:apoiar?candidato=http://' + document.location.host + "/" + candidate,
 					'post',
 					
 					function(response) {
 
 						if (!response || response.error) {
 
-							$(_target).text(response.error.message);
-							$(_target).css({"background-color":"red", "color" : "white"});
-							$(_target).unbind('click');
+							$(target).text(response.error.message);
+							$(target).css({"background-color":"red", "color" : "white"});
+							$(target).unbind('click');
 
 						} else {
 							
-						   $(_target).text('Apoiado: ' + response.id);
-						   $(_target).css({"background-color":"#2cc008", "color" : "white"});
-						   $(_target).unbind('click');
+						   $(target).text('Apoiado: ' + response.id);
+						   $(target).css({"background-color":"#2cc008", "color" : "white"});
+						   $(target).unbind('click');
 						
 						}
 
@@ -245,6 +240,9 @@
 					$(page.elements.user_name).text(response.name);
 					$(page.elements.user_picture).attr('src','https://graph.facebook.com/' + response.username + '/picture');
 					
+					//Verify the user in our database
+					page.user(response);
+					
 				});
 				
 				$(page.elements.user_info).fadeIn(); 
@@ -273,6 +271,59 @@
 				}); 
 				
 			 }
+			
+			/**
+			 * page
+			 * * USER
+			 */
+
+			 page.user = function(user) { 
+				
+			 	$.ajax({
+					data: {
+						action: CONFIG.get('CHECK_USER'),
+						user: user
+					},
+					dataType: "json",
+					error: page.user.error,
+					success: page.user.process,
+					type: "post",
+					url: CONFIG.get('AJAX_URL')
+				});
+				 
+			 }
+
+		 		/**
+				 * page
+				 * * USER
+				 * * * PROCESS
+				 */
+
+				 page.user.process = function(response) {
+
+					if(response.sucess) {
+
+						console.log(response);
+
+					} else {
+
+						console.log(response.mensage);	
+
+					}
+
+				 }
+
+				 /**
+				 * page
+				 * * USER
+				 * * * ERROR
+				 */
+
+				page.user.error = function(response) {
+
+					console.log(String(response.error).toLowerCase());
+
+				}
 			
 		$(page);
 
