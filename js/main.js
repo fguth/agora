@@ -201,10 +201,12 @@
 			
 			$(page.elements.login).fadeOut();
 			$(page.elements.user_info).fadeOut();
+			
+			page.auth.token = null;
 			 
 			if (response.authResponse) {
-			
-				page.auth.allowed();
+				
+				page.auth.allowed(response.authResponse.accessToken);
 			
 			} else {
 			
@@ -225,29 +227,42 @@
 			/**
 			 * page
 			 * * AUTH
+			 * * * TOKEN
+			 */
+			
+			page.auth.token = null;
+			
+			/**
+			 * page
+			 * * AUTH
 			 * * * ALLOWED
 			 */
 			 
-			 page.auth.allowed = function(){
-				 
-				page.auth.status = true;
+			page.auth.allowed = function(acessToken){
 				
-				FB.api('/me', function(response) {
+				if(acessToken) {
 				
-					$(page.elements.login).unbind('click');
-					$(page.elements.logout).bind('click',function(){ FB.logout(); });	  
-					
-					$(page.elements.user_name).text(response.name);
-					$(page.elements.user_picture).attr('src','https://graph.facebook.com/' + response.username + '/picture');
-					
-					//Verify the user in our database
-					page.user(response);
-					
-				});
+					page.auth.token  = acessToken;
+					page.auth.status = true;
+
+					FB.api('/me', function(response) {
+
+						$(page.elements.login).unbind('click');
+						$(page.elements.logout).bind('click',function(){ FB.logout(); });	  
+
+						$(page.elements.user_name).text(response.name);
+						$(page.elements.user_picture).attr('src','https://graph.facebook.com/' + response.username + '/picture');
+
+						//Verify the user in our database
+						page.user(response);
+
+					});
+
+					$(page.elements.user_info).fadeIn();
 				
-				$(page.elements.user_info).fadeIn(); 
-				
-			 }
+				}
+
+			}
 			 
 			 /**
 			 * page
@@ -281,8 +296,9 @@
 				
 			 	$.ajax({
 					data: {
-						action: CONFIG.get('CHECK_USER'),
-						user: user
+						action	: CONFIG.get('CHECK_USER'),
+						user	: user,
+						token	: page.auth.token
 					},
 					dataType: "json",
 					error: page.user.error,
