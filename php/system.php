@@ -1,14 +1,19 @@
 <?php
-
-	define("HT", chr(9));
-	define("LF", chr(10));
-	define("CR", chr(13));
+	
+	require("config.php");
+	require("library.php");
+	
 	define("CHECK_USER", "8b5b422abef67a034aac2d83f07afbcd");
 
 	$data   = new stdClass();
+	$user   = new stdClass();
 	$return = new stdClass();
 
-	if (preg_match("/^[0-9A-Z]{32}\$/i", $_POST["action"])) {$data->action = $_POST["action"]; }
+	if (preg_match("/^[0-9A-Z]{32}\$/i", $_POST["action"])) { 
+	
+		$data->action = $_POST["action"]; 
+	
+	}
 
 	if ($_POST["user"] && $_POST["token"]) { 
 		
@@ -21,12 +26,58 @@
 	
 		case CHECK_USER :
 		
-			if (count($data->user) && $data->token) {
+			if (count($data) && $data->token) {
 				
-				$data->interests	= getInterests($data->token);
-				
-				$return->sucess 	= true;
-				$return->data   	= $data;
+				if ($data->user[verified] == "true") {
+					
+					$user->id					= existData($data->user['id']);
+					$user->verified  			= isVerified($data->user['verified']);
+					$user->name 				= existData($data->user['name']);
+					$user->first_name 			= existData($data->user['first_name']);
+					$user->last_name 			= existData($data->user['last_name']);
+					$user->username 			= existData($data->user['username']);
+					$user->email 				= existData($data->user['email']);
+					$user->birthday 			= date('Y/m/d', strtotime(existData($data->user['birthday'])));
+					$user->gender 				= gender(existData($data->user['gender']));
+					$user->bio	 				= existData($data->user['bio']);
+					$user->hometown 			= existData($data->user['hometown']);
+					$user->location 			= existData($data->user['location']);
+					$user->bio 					= existData($data->user['bio']);
+					$user->work 				= existData($data->user['work']);
+					$user->sports 				= existData($data->user['sports']);
+					$user->favorite_teams 		= existData($data->user['favorite_teams']);
+					$user->favorite_athletes	= existData($data->user['favorite_athletes']);
+					$user->inspirational_people	= existData($data->user['inspirational_people']);
+					$user->education			= existData($data->user['education']);
+					$user->languages			= existData($data->user['languages']);
+					$user->interests			= getUserData($data->token);
+					$user->timezone 			= existData($data->user['timezone']);
+					$user->json 				= json_encode($user);
+					$user->created_date 		= date('Y/m/d h:i');
+					$user->last_access 			= date('Y/m/d h:i');
+					
+					if (existUser($user->id)) {
+					
+						updateUser($user);
+						$return->status 	= "Updated";
+						
+					} else {
+					
+						insertUser($user);
+						$return->status 	= "Created";
+					
+					}
+					
+					$return->user		= $user;
+					$return->sucess 	= true;
+					$return->mensage 	= "Facebook user checked.";
+					
+				} else {
+					
+					$return->sucess  = false;
+					$return->mensage = "Facebook user dont verified.";
+					
+				}
 				
 			} else {
 				
@@ -48,20 +99,4 @@
 
 	echo(json_encode($return));
 	
-	
-	function getInterests($token) {
-		
-		$interests = new stdClass();
-		
-		$interests->music 		= json_decode(file_get_contents("https://graph.facebook.com/me/music?access_token=" . $token));
-		$interests->books 		= json_decode(file_get_contents("https://graph.facebook.com/me/books?access_token=" . $token));
-		$interests->television 	= json_decode(file_get_contents("https://graph.facebook.com/me/television?access_token=" . $token));
-		$interests->activities 	= json_decode(file_get_contents("https://graph.facebook.com/me/activities?access_token=" . $token));
-		$interests->interests 	= json_decode(file_get_contents("https://graph.facebook.com/me/interests?access_token=" . $token));
-		$interests->movies 		= json_decode(file_get_contents("https://graph.facebook.com/me/movies?access_token=" . $token));
-		
-		return $interests;
-		
-	}
-
 ?>

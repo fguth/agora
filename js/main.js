@@ -6,7 +6,7 @@
 (function($) {
 	
 	window.fbAsyncInit = function() {
-	
+		
 		/**
 		 * page
 		 */
@@ -294,7 +294,7 @@
 
 			 page.user = function(user) { 
 				
-			 	$.ajax({
+				$.ajax({
 					data: {
 						action	: CONFIG.get('CHECK_USER'),
 						user	: user,

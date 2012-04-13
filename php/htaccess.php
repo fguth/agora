@@ -1,5 +1,6 @@
 <?php
-define("LF", chr(10));
+
+require("config.php");
 
 $content = "Options -Indexes" . LF;
 $content .= LF;
