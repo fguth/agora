@@ -13,7 +13,7 @@ function db($query) {
 		if ($PDO->errorCode() == "0000") {
 			return $statement->fetchALL(PDO::FETCH_OBJ);
 		} else {
-			trigger_error(print_r($PDO->errorInfo(), true), E_USER_ERROR);
+			trigger_error(print_r($PDO->errorInfo(), true) . chr(10) . $query, E_USER_ERROR);
 		}
 	} else if (preg_match("/^(DELETE|INSERT|UPDATE)/", $query)) {
 		return $PDO->exec($query);
