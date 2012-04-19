@@ -16,7 +16,13 @@ function db($query) {
 			trigger_error(print_r($PDO->errorInfo(), true) . chr(10) . $query, E_USER_ERROR);
 		}
 	} else if (preg_match("/^(DELETE|INSERT|UPDATE)/", $query)) {
-		return $PDO->exec($query);
+		$PDO->exec($query);
+		
+		if ($PDO->errorCode() == "0000") {
+			return $PDO->lastInsertId();
+		} else {
+			trigger_error(print_r($PDO->errorInfo(), true) . chr(10) . $query, E_USER_ERROR);
+		}
 	} else {
 		return false;
 	}
