@@ -1,6 +1,5 @@
 <?php
 require("config.php");
-require("error-handler.php");
 require("library.php");
 ?>
 

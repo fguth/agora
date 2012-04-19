@@ -1,18 +1,23 @@
 <?php
+/**
+ * SIMPLE FUNCTION TO MANIPULATE DATABASE DATA
+ */
 
-	function db($query) {
-		$PDO = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASS, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
-		$query = trim($query);
-	
-		if (preg_match("/^SELECT/", $query)) {
-			$statement = $PDO->query($query);
+function db($query) {
+	$PDO = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASS, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+	$query = trim($query);
+
+	if (preg_match("/^SELECT/", $query)) {
+		$statement = $PDO->query($query);
 		
+		if ($PDO->errorCode() == "0000") {
 			return $statement->fetchALL(PDO::FETCH_OBJ);
-		} else if (preg_match("/^(DELETE|INSERT|UPDATE)/", $query)) {
-			return $PDO->exec($query);
 		} else {
-			return false;
+			trigger_error(print_r($PDO->errorInfo(), true), E_USER_ERROR);
 		}
+	} else if (preg_match("/^(DELETE|INSERT|UPDATE)/", $query)) {
+		return $PDO->exec($query);
+	} else {
+		return false;
 	}
-
-?>
+}

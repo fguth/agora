@@ -34,4 +34,4 @@ function errorHandler($type, $text, $file, $line) {
 }
 
 error_reporting(E_ALL ^ E_NOTICE);
-set_error_handler("errorHandler");
+set_error_handler("errorHandler", E_ALL);
