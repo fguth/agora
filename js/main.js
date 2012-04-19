@@ -127,7 +127,7 @@
 				
 				//After support server-side process be done. Put this FP.api into page.support.process sucess data.
 				FB.api(
-					'/me/agora-master:apoiar?candidato=http://' + document.location.host + "/" + candidate,
+					'/me/' + CONFIG.get('APP_NAME') + ':' + CONFIG.get('APP_ACTION') + '?' + CONFIG.get('APP_OBJECT') + '=http://' + document.location.host + "/" + candidate,
 					'post',
 					
 					function(response) {
@@ -351,6 +351,6 @@
  var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
  if (d.getElementById(id)) {return;}
  js = d.createElement('script'); js.id = id; js.async = true;
- js.src = "//connect.facebook.net/en_US/all.js";
+ js.src = "//connect.facebook.net/pt_BR/all.js";
  ref.parentNode.insertBefore(js, ref);
 }(document));

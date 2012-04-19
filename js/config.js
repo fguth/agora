@@ -10,8 +10,11 @@ var CONFIG = (function() {
 	var production = {
 		
 		'APP_ID'		: '202465246524252',
+		'APP_NAME'		: 'agora-master',
+		'APP_ACTION'	: 'apoiar',
+		'APP_OBJECT'	: 'candidato',
 		'CHANNEL_URL'	: 'http://development.agora.vc/php/channel.php',
-	 	'STATUS'		: true,
+		'STATUS'		: true,
 		'COOKIE'		: true,
 		'XFBML'			: true,
 		'AJAX_URL'		: 'http://development.agora.vc/php/system.php',
@@ -23,6 +26,9 @@ var CONFIG = (function() {
 	var development = {
 		
 		'APP_ID'		: '196526257128071',
+		'APP_NAME'		: 'agora-local',
+		'APP_ACTION'	: 'apoiar',
+		'APP_OBJECT'	: 'candidato',
 		'CHANNEL_URL'	: 'http://local.agora.vc/php/channel.php',
 		'STATUS'		: true,
 		'COOKIE'		: true,
