@@ -1,4 +1,7 @@
-<?php header("content-type: text/html; charset=UTF-8", true); ?>
+<?php 
+header("content-type: text/html; charset=UTF-8", true); 
+require("php/config.php");
+?>
 
 <!DOCTYPE HTML>
 
@@ -10,11 +13,11 @@
 	<title>This is Ágora</title>
 	<link rel="stylesheet" type="text/css" href="css/prototype.css">
 	<link rel="icon" type="image/png" href="images/favicon.ico" />
-	<head prefix="og: http://ogp.me/ns# agora-master: 
-	                  http://ogp.me/ns/apps/agora-master#">
-	<meta property="fb:app_id" content="202465246524252" /> 
+	<head prefix="og: http://ogp.me/ns# <?php echo APP_NAME; ?>: 
+	                  http://ogp.me/ns/apps/<?php echo APP_NAME; ?>#">
+	<meta property="fb:app_id" content="<?php echo APP_ID; ?>" /> 
 	<meta property="og:title" content="Ágora" />
-	<meta property="og:type" content="agora-master">
+	<meta property="og:type" content="<?php echo APP_NAME; ?>">
 	
 </head>
 
