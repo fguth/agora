@@ -2,11 +2,11 @@
 	                  http://ogp.me/ns/apps/agora-master#">
 	<meta property="fb:app_id" content="202465246524252" /> 
 	<meta property="og:title" content="Bruno Stein" />
-	<meta property="og:type" content="agora-master:candidato">
+	<meta property="og:type" content="agora-local:candidato">
 	<meta property="og:url" content="http://<?php print_r($_SERVER['SERVER_NAME']); print_r($_SERVER['REDIRECT_URL']); ?>" />
 	<meta property="og:image" content="https://graph.facebook.com/brunohstein/picture?type=large" />
-	<meta property="og:site_name" content="Ágora" />
-	<meta property="og:description" content="Bruno Stein está concorrendo para o cargo de prefeito da cidade de Dois Irmãos." />
+	<meta property="og:site_name" content="ï¿½gora" />
+	<meta property="og:description" content="Bruno Stein estï¿½ concorrendo para o cargo de prefeito da cidade de Dois Irmï¿½os." />
 	
 </head>
 
@@ -17,7 +17,7 @@
 	<div class="center">
 	
 		<div id="header">
-			<h1><a href="http://<?php print_r($_SERVER["HTTP_HOST"]); ?>"><img src="images/logo-agora.png" alt="Ágora" /></a></h1>
+			<h1><a href="http://<?php print_r($_SERVER["HTTP_HOST"]); ?>"><img src="images/logo-agora.png" alt="ï¿½gora" /></a></h1>
 			<div id="login">Conectar-se</div>
 			<div id="user-info">
 				<img src="" id="user-picture";/>

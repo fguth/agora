@@ -1,4 +1,3 @@
 <?php
-require("library.php");
+require("error-handler.php");
 
-print_r(db("SELECT id FROM states"));

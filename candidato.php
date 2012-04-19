@@ -1,6 +1,5 @@
 <?php
 
-require("php/system.php");
 require("php/direct-access.php");
 
 ?>
