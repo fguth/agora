@@ -1,8 +1,9 @@
-	<head prefix="og: http://ogp.me/ns# agora-master: 
-	                  http://ogp.me/ns/apps/agora-master#">
-	<meta property="fb:app_id" content="202465246524252" /> 
+<?php require("php/config.php"); ?>
+	<head prefix="og: http://ogp.me/ns# <?php echo APP_NAME; ?>: 
+	                  http://ogp.me/ns/apps/<?php echo APP_NAME; ?>#">
+	<meta property="fb:app_id" content="<?php echo APP_ID; ?>" /> 
 	<meta property="og:title" content="Gibran Malheiros" />
-	<meta property="og:type" content="agora-master:candidato">
+	<meta property="og:type" content="<?php echo APP_NAME; ?>:<?php echo APP_OBJECT; ?>">
 	<meta property="og:url" content="http://<?php print_r($_SERVER['SERVER_NAME']); print_r($_SERVER['REDIRECT_URL']); ?>" />
 	<meta property="og:image" content="https://graph.facebook.com/gibatronic/picture?type=large" />
 	<meta property="og:site_name" content="Ágora" />
@@ -29,10 +30,12 @@
 		<ul id="candidates">
 			<li>
 				<div class="thumb">
-					<img src="https://graph.facebook.com/gibatronic/picture?type=large" />
+					<a href="rs/dois-irmaos/prefeito/gibran-malheiros">
+						<img src="https://graph.facebook.com/gibatronic/picture?type=large" />
+					</a>
 				</div>
-				<h3>Gibran Malheiros</h3>
-				<a class="support" href="">Apoiar</a>
+				<h3><a href="rs/dois-irmaos/prefeito/gibran-malheiros">Gibran Malheiros</a></h3>
+				<div id="4" class="support">Apoiar</div>
 				<div class="counter">88</div>
 			</li>
 		</ul>

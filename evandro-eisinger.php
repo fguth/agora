@@ -1,3 +1,4 @@
+<?php require("php/config.php"); ?>	
 	<head prefix="og: http://ogp.me/ns# <?php echo APP_NAME; ?>: 
 	                  http://ogp.me/ns/apps/<?php echo APP_NAME; ?>#">
 	<meta property="fb:app_id" content="<?php echo APP_ID; ?>" /> 
@@ -29,10 +30,12 @@
 		<ul id="candidates">
 			<li>
 				<div class="thumb">
-					<img src="https://graph.facebook.com/evandroeisinger21/picture?type=large" />
+					<a href="rs/dois-irmaos/prefeito/evandro-eisinger">
+						<img src="https://graph.facebook.com/evandroeisinger21/picture?type=large" />
+					</a>
 				</div>
-				<h3>Evandro Eisinger</h3>
-				<a class="support" href="">Apoiar</a>
+				<h3><a href="rs/dois-irmaos/prefeito/evandro-eisinger">Evandro Eisinger</a></h3>
+				<div id="2" class="support">Apoiar</div>
 				<div class="counter">88</div>
 			</li>
 		</ul>

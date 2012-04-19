@@ -1,7 +1,8 @@
+<?php require("php/config.php"); ?>	
 	<head prefix="og: http://ogp.me/ns# <?php echo APP_NAME; ?>: 
 	                  http://ogp.me/ns/apps/<?php echo APP_NAME; ?>#">
 	<meta property="fb:app_id" content="<?php echo APP_ID; ?>" /> 
-	<meta property="og:title" content="Evandro Eisinger" />
+	<meta property="og:title" content="Filipe Guth" />
 	<meta property="og:type" content="<?php echo APP_NAME; ?>:<?php echo APP_OBJECT; ?>">
 	<meta property="og:url" content="http://<?php print_r($_SERVER['SERVER_NAME']); print_r($_SERVER['REDIRECT_URL']); ?>" />
 	<meta property="og:image" content="https://graph.facebook.com/fguth/picture?type=large" />
@@ -29,10 +30,12 @@
 		<ul id="candidates">
 			<li>
 				<div class="thumb">
-					<img src="https://graph.facebook.com/fguth/picture?type=large" />
+					<a href="rs/dois-irmaos/prefeito/filipe-guth">
+						<img src="https://graph.facebook.com/fguth/picture?type=large" />
+					</a>
 				</div>
-				<h3>Filipe Guth</h3>
-				<a class="support" href="">Apoiar</a>
+				<h3><a href="rs/dois-irmaos/prefeito/filipe-guth">Filipe Guth</a></h3>
+				<div id="3" class="support">Apoiar</div>
 				<div class="counter">88</div>
 			</li>
 		</ul>
