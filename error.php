@@ -1,5 +1,8 @@
 <?php
 require("php/direct-access.php");
+
+$_SERVER["REDIRECT_STATUS"] = 500;
+$_SERVER["REDIRECT_STATUS_ERROR"] = $error;
 ?>
 
 <!DOCTYPE HTML>
@@ -24,17 +27,35 @@ require("php/direct-access.php");
 			}
 			
 			div#content {
-				background-image: url("images/4XX.gif");
-				background-position: center middle;
-				background-repeat: repeat;
+				position: relative;
 				text-align: center;
 				height: 100%;
+			}
+			
+			div#content > pre {
+				position: absolute;
+				left: 20%;
+				bottom: 0px;
+				background: #FFFFFF;
+				border-radius: 4px 4px 0px 0px;
+				display: block;
+				padding: 10px;
+				text-align: left;
+				width: 60%;
 			}
 		</style>
 	</head>
 	<body>
 		<div id="content">
 			<img src="images/4XX.gif" height="100%" />
+			
+<?php
+if ($_SERVER["REDIRECT_STATUS_ERROR"]) {
+	echo("<pre>");
+	print_r($_SERVER["REDIRECT_STATUS_ERROR"]->text);
+	echo("</pre>");
+}
+?>
 		</div>
 	</body>
 </html>
