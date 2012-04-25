@@ -1,4 +1,9 @@
-<?php require("php/config.php"); ?>
+<?php 
+
+header("content-type: text/html; charset=UTF-8", true);
+require("php/config.php"); 
+
+?>
 
 <!DOCTYPE HTML>
 

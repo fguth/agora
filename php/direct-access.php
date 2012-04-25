@@ -11,4 +11,6 @@ if (empty($_SERVER["REDIRECT_STATUS"]) && basename($_SERVER["SCRIPT_NAME"]) == b
 	require("error.php");
 	
 	exit();
+} else {
+	header("content-type: text/html; charset=UTF-8", true);
 }

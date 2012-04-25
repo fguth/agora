@@ -1,7 +1,5 @@
 <?php
 
-header("content-type: text/html; charset=UTF-8", true); 
-
 define("HT", chr(9));
 define("LF", chr(10));
 define("CR", chr(13));
