@@ -1,7 +1,8 @@
 <?php
-require("php/system.php");
 require("php/direct-access.php");
+require("php/config.php");
 ?>
+
 <!DOCTYPE HTML>
 
 <html>
