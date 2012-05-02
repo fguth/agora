@@ -1,17 +1,17 @@
 <?php
 /**
- * SIMPLE FUNCTION TO MANIPULATE DATABASE DATA
+ * SIMPLE MYSQL DATABASE FUNCTION TO QUICKLY SELECT, DELETE, INSERT OR UPDATE
  * 
  * @param string $query
  * 
- * @return array|boolean|integer
+ * @return boolean|integer|object[]
  */
 
 function db($query) {
 	$PDO = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASS, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
 	$query = trim($query);
 
-	if (preg_match("/^SELECT/", $query)) {
+	if (preg_match("/^\s*SELECT/", $query)) {
 		$statement = $PDO->query($query);
 		
 		if ($PDO->errorCode() == "0000") {
@@ -19,11 +19,15 @@ function db($query) {
 		} else {
 			trigger_error(print_r($PDO->errorInfo(), true) . chr(10) . $query, E_USER_ERROR);
 		}
-	} else if (preg_match("/^(DELETE|INSERT|UPDATE)/", $query)) {
+	} else if (preg_match("/^\s*(DELETE|INSERT|UPDATE)/", $query)) {
 		$PDO->exec($query);
 		
 		if ($PDO->errorCode() == "0000") {
-			return $PDO->lastInsertId();
+			if (preg_match("/^\s*INSERT/", $query)) {
+				return $PDO->lastInsertId();
+			} else {
+				return true;
+			}
 		} else {
 			trigger_error(print_r($PDO->errorInfo(), true) . chr(10) . $query, E_USER_ERROR);
 		}
