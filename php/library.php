@@ -1,6 +1,10 @@
 <?php
 /**
  * SIMPLE FUNCTION TO MANIPULATE DATABASE DATA
+ * 
+ * @param string $query
+ * 
+ * @return array|boolean|integer
  */
 
 function db($query) {
@@ -26,4 +30,23 @@ function db($query) {
 	} else {
 		return false;
 	}
+}
+
+/**
+ * CONVERT ANY SHIT TO A SEARCH ENGINE FRIENDLY NAME
+ * 
+ * @param string $name
+ * 
+ * @return string
+ * 
+ * @example
+ * sef("Bob's Place") will output bobs-place
+ */
+
+function sef($name) {
+	$name = mb_strtolower($name, "UTF-8");
+	$name = str_replace(array(" ", "à", "á", "â", "ã", "ä", "å", "ç", "è", "é", "ê", "ë", "ì", "í", "î", "ï", "ñ", "ò", "ó", "ô", "õ", "ö", "ù", "ú", "û", "ü", "ý"), array("-", "a", "a", "a", "a", "a", "a", "c", "e", "e", "e", "e", "i", "i", "i", "i", "n", "o", "o", "o", "o", "o", "u", "u", "u", "u", "y"), $name);
+	$name = preg_replace("/[^a-z-]/", "", $name);
+	
+	return $name;
 }
