@@ -6,6 +6,7 @@
 .header {
 	height:80px;
 	margin:30px 0 0;
+	background:#2C5567;
 	background-image: linear-gradient(bottom, #1b4253 0%, #224D60 50%, #2C5567 51%, #224D60 100%);
 	background-image: -o-linear-gradient(bottom, #1b4253 0%, #224D60 50%, #2C5567 51%, #224D60 100%);
 	background-image: -moz-linear-gradient(bottom, #1b4253 0%, #224D60 50%, #2C5567 51%, #224D60 100%);
@@ -30,6 +31,7 @@
 		width:200px;
 		height:100%;
 		display:inline-block;
+		background:#345F72;
 		background-image: linear-gradient(bottom, #1b4254 0%, #2A576B 50%, #345F72 51%, #2A576B 100%);
 		background-image: -o-linear-gradient(bottom, #1b4254 0%, #2A576B 50%, #345F72 51%, #2A576B 100%);
 		background-image: -moz-linear-gradient(bottom, #1b4254 0%, #2A576B 50%, #345F72 51%, #2A576B 100%);
@@ -81,11 +83,23 @@
 			border-color:rgba(255,255,255,0.2);
 			border-radius:0 10px 0 0;
 			overflow:hidden;
+			background-clip:padding-box;
+			background-color:#fff;
 			height:110px;
 			padding:0 40px;
-			background:#fff;
-			background-clip:padding-box;
 		}
+			.main__content__header__container {
+				height:110px;
+				clear:both;
+				background:#fff;
+				background:rgba(255,255,255,.95);
+				width:742px;
+			}
+				.main__content__header__container.is-fixed {
+			    position:fixed;
+			    top:0;
+			    z-index:10;
+				}
 		.main__content__body {
 			border-width:0 5px 5px;
 			border-style:solid;
@@ -93,7 +107,7 @@
 			border-color:rgba(255,255,255,0.2);
 			border-radius:0 0 10px 10px;
 			overflow:hidden;
-			padding:23px 40px;
+			padding:0 40px;
 			background:#fff;
 			background-clip:padding-box;
 			margin:0 0 0 -5px;
@@ -109,7 +123,9 @@
 			.candidateslist {
 				position:relative;
 				list-style:none;
-				padding:0;
+				padding:39px 0 23px;
+				margin:0;
+				overflow:auto;
 			}
 				.candidateslist__row {
 					margin-bottom:20px;

@@ -81,16 +81,28 @@
 			// context tabs
 			$('.fbcomments').hide();
 			$('.contexttabs__discussion').click(function(){
-				$('.main__content__body > *').slideUp();
-				$('.fbcomments').slideDown();
+				$('.main__content__body > *').hide();
+				$('.fbcomments').show();
 				$(this).toggleClass('is-active');
 				$('.contexttabs__candidates').toggleClass('is-active');
 			});
 			$('.contexttabs__candidates').click(function(){
-				$('.main__content__body > *').slideUp(1000);
-				$('.candidateslist').slideDown(1000);
+				$('.main__content__body > *').hide();
+				$('.candidateslist').show();
 				$(this).toggleClass('is-active');
 				$('.contexttabs__discussion').toggleClass('is-active');
+			});
+			
+			// header fixed while scrolling
+			$(window).scroll(function(){
+				scroll = $(this).scrollTop();
+				position = $('.main__content__header').position();
+				
+				console.log("Scroll: " + scroll);
+				console.log("Position: " + position.top);
+				
+				//scroll > position.top ? $('.main__content__header__container,.contexttabs').addClass('is-fixed') : $('.main__content__header__container,.contexttabs').removeClass('is-fixed');
+				
 			});
 			
 			//support buttons
