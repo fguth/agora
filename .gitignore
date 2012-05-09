@@ -11,9 +11,6 @@
 *.vi
 *~
 
-.htaccess
-config.js
-
 # OS & EDITOR FOLDERS
 # ----------------------------------
 
