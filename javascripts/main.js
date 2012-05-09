@@ -73,24 +73,21 @@
 				$(this).val() == "" ? $(this).val("Filtrar") : $(this).val();
 			});
 			
-			// introduction
-			$('.introduction__close').click(function(){
-				$(this).parent().fadeOut(1000);
+			// context tabs
+			page.elements.$comments.hide();
+			
+			page.elements.$tab_discussion.click(function(){
+				page.elements.$main_content.hide();
+				page.elements.$comments.show();
+				$(this).toggleClass('is-active');
+				page.elements.$tab_candidates.toggleClass('is-active');
 			});
 			
-			// context tabs
-			$('.fbcomments').hide();
-			$('.contexttabs__discussion').click(function(){
-				$('.main__content__body > *').hide();
-				$('.fbcomments').show();
+			page.elements.$tab_candidates.click(function(){
+				page.elements.$main_content.hide();
+				page.elements.$comments.show();
 				$(this).toggleClass('is-active');
-				$('.contexttabs__candidates').toggleClass('is-active');
-			});
-			$('.contexttabs__candidates').click(function(){
-				$('.main__content__body > *').hide();
-				$('.candidateslist').show();
-				$(this).toggleClass('is-active');
-				$('.contexttabs__discussion').toggleClass('is-active');
+				page.elements.$tab_discussion.toggleClass('is-active');
 			});
 			
 			// header fixed while scrolling
@@ -105,6 +102,15 @@
 				
 			});
 			
+			function getCurrBlockIndex(scrollTop) {
+				var currBlockIndex = 0, i;
+				for (i=0; i<blocks.length; i++) {
+					// check if block is in view
+					if (blocks[i].top <= scrollTop - scrollorama.settings.offset) { currBlockIndex = i; }
+				}
+				return currBlockIndex;
+			}
+			
 			//support buttons
 			page.support.handlers();
 			page.unsupport.handlers();
@@ -116,14 +122,18 @@
 			 * * ELEMENTS
 			 */
 			
-			 page.elements.$login   			= $(".fbconnect",".header__login");
-			 page.elements.$logout  			= $(".userinfo__logout",".header__login");
+			 page.elements.$login   		= $(".fbconnect",".header__login");
+			 page.elements.$logout  		= $(".userinfo__logout",".header__login");
 			 page.elements.$user_info  		= $(".userinfo",".header__login");
 			 page.elements.$user_name    	= $(".userinfo__name",".header__login");
 			 page.elements.$user_picture 	= $(".userinfo__photo",".header__login");
-			 page.elements.$support				= $(".support__button",".main__content__body");
-			 page.elements.$unsupport			= $(".unsupport__button",".main__content__body");
-			 
+			 page.elements.$support			= $(".support__button",".main__content__body");
+			 page.elements.$unsupport		= $(".unsupport__button",".main__content__body");
+			 page.elements.$comments		= $(".fbcomments",".main__content__body");
+			 page.elements.$tab_discussion	= $(".contexttabs__discussion",".main__content__body");
+			 page.elements.$tab_candidates	= $(".contexttabs__candidates",".main__content__body");
+			 page.elements.$main_content	= $(".main__content",".main");
+			
 		/**
 		 * page
 		 * * ANIMATION
