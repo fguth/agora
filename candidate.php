@@ -2,23 +2,23 @@
 
 <!DOCTYPE html>
 
-<html lang="pt-br" xmlns:fb="http://ogp.me/ns/fb#">
+<html lang="pt-br">
 
 	<head>
 		
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<meta name="description" content="Ágora é uma plataforma para discussão política. Indique sua intenção de voto e debata propostas para as Eleições 2012." />
+		<meta name="description" content="Gibran Malheiros está concorrendo para o cargo de prefeito da cidade de Dois Irmãos." />
 		<title>Ágora - Eleições 2012</title>
 		<link rel="stylesheet" href="stylesheets/application.css" />
 		<head prefix="og: http://ogp.me/ns# <?php echo APP_NAME; ?>: 
 		                  http://ogp.me/ns/apps/<?php echo APP_NAME; ?>#">
 		<meta property="fb:app_id" content="<?php echo APP_ID; ?>" /> 
-		<meta property="og:title" content="Ágora - Eleições 2012" />
-		<meta property="og:type" content="<?php echo APP_NAME; ?>:<?php echo APP_PROJECT_OBJECT; ?>">
+		<meta property="og:title" content="Gibran Malheiros" />
+		<meta property="og:type" content="<?php echo APP_NAME; ?>:<?php echo APP_CANDIDATE_OBJECT; ?>">
 		<meta property="og:url" content="http://<?php print_r($_SERVER['SERVER_NAME']); print_r($_SERVER['REDIRECT_URL']); ?>" />
-		<meta property="og:image" content="https://fbcdn-sphotos-a.akamaihd.net/hphotos-ak-ash3/523977_279169475490552_274490955958404_623177_1354285026_n.jpg" />
+		<meta property="og:image" content="https://graph.facebook.com/gibatronic/picture?type=large" />
 		<meta property="og:site_name" content="Ágora" />
-		<meta property="og:description" content="Ágora é uma plataforma para discussão política. Indique sua intenção de voto e debata propostas para as Eleições 2012." />
+		<meta property="og:description" content="Gibran Malheiros está concorrendo para o cargo de prefeito da cidade de Dois Irmãos." />
 		
 	</head>
 	
@@ -54,8 +54,9 @@
 					</a>
 					
 					<div class="userinfo">
-						<img src="#" alt="" class="userinfo__photo" /><p class="userinfo__name">
-						</p><a href="javascript:void(0);" class="userinfo__logout">Sair</a>
+						<img src="#" alt="User name" class="userinfo__photo" />
+						<p class="userinfo__name">User name</p>
+						<a href="javascript:void(0);" class="userinfo__logout">Sair</a>
 					</div>
 					
 				</div>
@@ -81,7 +82,6 @@
 						<p class="introduction__tip__title">Interaja</p>
 						<p class="introduction__tip__description">Compartilhe sua intenção de voto com os amigos.</p>
 					</div>
-					<a href="javascript:void(0)" title="Fechar dicas" class="introduction__close tooltip"><p>x</p></a>
 				</div>
 				
 			</div><!-- End Middle -->
@@ -91,12 +91,12 @@
 				<div class="main__nav">
 					<ul class="contexttabs">
 						<li class="contexttabs__item">
-							<a href="javascript:void(0);" title="Ver candidatos" class="contexttabs__link is-active tooltip contexttabs__candidates">
+							<a href="#" title="Ver candidatos" class="contexttabs__link is-active tooltip">
 								<img src="images/icon-candidates.png" alt="Ver candidatos" />
 							</a>
 						</li>
 						<li class="contexttabs__item">
-							<a href="javascript:void(0);" title="Ver discussão" class="contexttabs__link tooltip contexttabs__discussion">
+							<a href="#" title="Ver discussão" class="contexttabs__link tooltip">
 								<img src="images/icon-discussion.png" alt="Ver discussão" />
 								<span class="contexttabs__link__news">+</span>
 							</a>
@@ -119,41 +119,22 @@
 						</div>
 					</div>
 					<div class="main__content__body">
-						
 						<ul class="candidateslist">
 							<div class="candidateslist__row">
 								
 								<li class="candidateslist__item">
-									<a href="http://development.agora.vc/candidate.php" class="candidatecard">
+									<a href="http://candidato-url" class="candidatecard">
 										<img src="#" alt="Candidate photo" class="candidatecard__photo" />
 										<p class="candidatecard__name">Candidate name</p>
 									</a>
-									<div class="support" id="123123123">
+									<div class="support">
 										<div class="support__counter">
 											<span class="support__counter__number">88</span>
 										</div>
-										<a href="javascript:void(0);" class="support__button">
+										<a href="javascript:void(0);" id="123123123" class="support__button">
 											<img src="images/icon-support.png" alt="Apoiar candidato" class="support__button__icon" /><span class="support__button__text">Apoiar</span>
 										</a>
-										<a href="javascript:void(0);" class="unsupport__button is-hidden">
-											<span class="unsupport__button__text">Desfazer</span>
-										</a>
-									</div>
-								</li>
-								
-								<li class="candidateslist__item">
-									<a href="http://development.agora.vc/candidate.php" class="candidatecard">
-										<img src="#" alt="Candidate photo" class="candidatecard__photo" />
-										<p class="candidatecard__name">Candidate name</p>
-									</a>
-									<div class="support" id="321321321">
-										<div class="support__counter">
-											<span class="support__counter__number">88</span>
-										</div>
-										<a href="javascript:void(0);" class="support__button is-hidden">
-											<img src="images/icon-support.png" alt="Apoiar candidato" class="support__button__icon" /><span class="support__button__text">Apoiar</span>
-										</a>
-										<a href="javascript:void(0);" class="unsupport__button">
+										<a href="javascript:void(0);" id="123123123" class="unsupport__button is-hidden">
 											<span class="unsupport__button__text">Desfazer</span>
 										</a>
 									</div>
@@ -161,11 +142,6 @@
 
 							</div>
 						</ul>
-						
-						<div class="fbcomments">
-							<fb:comments href="<?php print_r($_SERVER["REQUEST_URI"]); ?>" num_posts="5" width="740"></fb:comments>
-						</div>
-						
 					</div>
 				</div>
 				
@@ -180,5 +156,14 @@
 	<script type="text/javascript" src="javascripts/library/tooltipsy.min.js"></script>
 	<script type="text/javascript" src="javascripts/config.js"></script>
 	<script type="text/javascript" src="javascripts/main.js"></script>
+	
+	<script type="text/javascript">
+		$('.tooltip').tooltipsy({
+			delay:0,
+			show:function(e, $el){
+				$el.slideDown(150);
+			}
+		});
+	</script>
 	
 </html>

@@ -7,6 +7,7 @@ class User {
 	 */
 	
 	public $data;
+	public $id;
 	public $token; 
 	
 	/**
@@ -45,6 +46,14 @@ class User {
 		$this->data->json 					= json_encode($this);
 		$this->data->created_date 			= date('Y/m/d h:i');
 		$this->data->last_access 			= date('Y/m/d h:i');
+	}
+	
+	public function id($id = false) {
+		if ($id) {
+			$this->id = $id;
+		} else {
+			return $this->id;
+		}
 	}
 	
 	public function token($token = false) {
@@ -96,8 +105,12 @@ class User {
 		");
 	}
 	
-	public function exist() {
-		return count(db("SELECT id FROM users WHERE id = " . $this->data->id)) ? true : false;
+	public function exist($id = false) {
+		if ($id) {
+			return count(db("SELECT id FROM users WHERE id = " . $id)) ? true : false;
+		} else {
+			return count(db("SELECT id FROM users WHERE id = " . $this->data->id)) ? true : false;
+		}
 	}
 	
 	public function verify() {
