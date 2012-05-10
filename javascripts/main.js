@@ -77,15 +77,17 @@
 			page.elements.$comments.hide();
 			
 			page.elements.$tab_discussion.click(function(){
-				page.elements.$main_content.hide();
+				page.elements.$main_header.hide();
+				page.elements.$candidates_list.hide();
 				page.elements.$comments.show();
 				$(this).toggleClass('is-active');
 				page.elements.$tab_candidates.toggleClass('is-active');
 			});
 			
 			page.elements.$tab_candidates.click(function(){
-				page.elements.$main_content.hide();
-				page.elements.$comments.show();
+				page.elements.$main_header.show();
+				page.elements.$candidates_list.show();
+				page.elements.$comments.hide();
 				$(this).toggleClass('is-active');
 				page.elements.$tab_discussion.toggleClass('is-active');
 			});
@@ -95,25 +97,15 @@
 				scroll = $(this).scrollTop();
 				position = $('.main__content__header').position();
 				
-				console.log("Scroll: " + scroll);
-				console.log("Position: " + position.top);
-				
 				//scroll > position.top ? $('.main__content__header__container,.contexttabs').addClass('is-fixed') : $('.main__content__header__container,.contexttabs').removeClass('is-fixed');
 				
 			});
 			
-			function getCurrBlockIndex(scrollTop) {
-				var currBlockIndex = 0, i;
-				for (i=0; i<blocks.length; i++) {
-					// check if block is in view
-					if (blocks[i].top <= scrollTop - scrollorama.settings.offset) { currBlockIndex = i; }
-				}
-				return currBlockIndex;
-			}
 			
 			//support buttons
 			page.support.handlers();
 			page.unsupport.handlers();
+			page.animation.cascadeEffect(page.elements.$main_header);
 			
 		 }
 			
@@ -129,10 +121,13 @@
 			 page.elements.$user_picture 	= $(".userinfo__photo",".header__login");
 			 page.elements.$support			= $(".support__button",".main__content__body");
 			 page.elements.$unsupport		= $(".unsupport__button",".main__content__body");
-			 page.elements.$comments		= $(".fbcomments",".main__content__body");
-			 page.elements.$tab_discussion	= $(".contexttabs__discussion",".main__content__body");
-			 page.elements.$tab_candidates	= $(".contexttabs__candidates",".main__content__body");
-			 page.elements.$main_content	= $(".main__content",".main");
+			 page.elements.$comments		= $(".fbcomments");
+			 page.elements.$tabs			= $(".contexttabs");
+			 page.elements.$tab_discussion	= $(".contexttabs__discussion");
+			 page.elements.$tab_candidates	= $(".contexttabs__candidates");
+			 page.elements.$main_content	= $(".main__content__body")
+			 page.elements.$main_header		= $(".main__content__header__container");
+			 page.elements.$candidates_list = $(".candidateslist")
 			
 		/**
 		 * page
@@ -159,6 +154,37 @@
 				    support_button.addClass("is-hidden");
 				    unsupport_button.removeClass("is-hidden");
 				}
+				
+			}
+			
+			page.animation.cascadeEffect = function(block) {
+				
+				var blocks = [];
+				
+				for (i=0; i<block.length; i++) {
+					blocks.push(block.eq(i));
+				}
+				
+				var limit  = blocks[0].position().top;
+				
+				$(window).scroll(function(){
+					var scroll = $(this).scrollTop();
+					for (i=0; i<blocks.length; i++) {
+						if(limit < scroll) {
+							if (scroll > blocks[i].position().top) {
+								block.removeClass('is-fixed');
+								page.elements.$tabs.addClass('is-fixed');
+								blocks[i].addClass('is-fixed');
+							}
+						} else {
+							block.removeClass('is-fixed');
+							page.elements.$tabs.removeClass('is-fixed');
+						}
+					}
+					
+				});
+				
+				//scroll > position.top ? $('.main__content__header__container,.contexttabs').addClass('is-fixed') : $('.main__content__header__container,.contexttabs').removeClass('is-fixed');
 				
 			}
 		

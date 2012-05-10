@@ -88,6 +88,11 @@
 			height:110px;
 			padding:0 40px;
 		}
+			.main__content__header__post {
+				height:110px;
+				clear:both;
+				width:742px;
+			}
 			.main__content__header__container {
 				height:110px;
 				clear:both;
