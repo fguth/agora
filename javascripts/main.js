@@ -105,7 +105,7 @@
 			//support buttons
 			page.support.handlers();
 			page.unsupport.handlers();
-			page.animation.cascadeEffect(page.elements.$main_header);
+			//page.animation.cascadeEffect(page.elements.$main_header);
 			
 		 }
 			
@@ -121,7 +121,7 @@
 			 page.elements.$user_picture 	= $(".userinfo__photo",".header__login");
 			 page.elements.$support			= $(".support__button",".main__content__body");
 			 page.elements.$unsupport		= $(".unsupport__button",".main__content__body");
-			 page.elements.$comments		= $(".fbcomments");
+			 page.elements.$comments		= $(".discussion");
 			 page.elements.$tabs			= $(".contexttabs");
 			 page.elements.$tab_discussion	= $(".contexttabs__discussion");
 			 page.elements.$tab_candidates	= $(".contexttabs__candidates");

@@ -76,76 +76,11 @@
 		width:827px;
 		display:inline-block;
 	}
-		.main__content__header {
-			border-width:5px 5px 0 0;
+		.main__content__wrapper {
+			border-width:5px 5px 5px 5px;
 			border-style:solid;
 			border-color:#afb3b9;
 			border-color:rgba(255,255,255,0.2);
-			border-radius:0 10px 0 0;
+			border-radius:0 10px 10px 10px;
 			overflow:hidden;
-			background-clip:padding-box;
-			background-color:#fff;
-			height:110px;
-			padding:0 40px;
 		}
-			.main__content__header__post {
-				height:110px;
-				clear:both;
-				width:742px;
-			}
-			.main__content__header__container {
-				height:110px;
-				clear:both;
-				background:#fff;
-				background:rgba(255,255,255,.95);
-				width:742px;
-			}
-				.main__content__header__container.is-fixed {
-			    position:fixed;
-			    top:0;
-			    z-index:10;
-				}
-		.main__content__body {
-			border-width:0 5px 5px;
-			border-style:solid;
-			border-color:#afb3b9;
-			border-color:rgba(255,255,255,0.2);
-			border-radius:0 0 10px 10px;
-			overflow:hidden;
-			padding:0 40px;
-			background:#fff;
-			background-clip:padding-box;
-			margin:0 0 0 -5px;
-		}
-			.main__content__header__contextinfo {
-				padding:38px 0 39px;
-				border-bottom:1px solid #dadfe3;
-				position:relative;
-			}
-				.main__content__header__contextinfo .breadcrumb {
-					margin:0 35px 0 0;
-				}
-			.candidateslist {
-				position:relative;
-				list-style:none;
-				padding:39px 0 23px;
-				margin:0;
-				overflow:auto;
-			}
-				.candidateslist__row {
-					margin-bottom:20px;
-					float:left;
-				}
-					.candidateslist__row + .candidateslist__row {
-						padding-top:20px;
-						border-top:1px solid #e6e9ec;
-					}
-					.candidateslist__item {
-						float:left;
-					}
-						.candidateslist__item + .candidateslist__item {
-							margin-left:32px;
-						}
-						.candidateslist__item .support {
-							margin:10px 0 0;
-						}

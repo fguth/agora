@@ -206,7 +206,40 @@
 			.contexttabs__link:hover .contexttabs__link__news {
 				box-shadow:0 2px 0 #f16666 inset, -1px 1px 2px #222;
 			}
-		
+
+.candidateslist {
+	position:relative;
+	margin:0;
+	background:#fff;
+}
+	.candidateslist__header {
+		position:relative;
+		background:#fff;
+		padding:40px 40px 10px;
+		margin:0;
+	}
+		.candidateslist__header > .currentsupport {
+			margin:0 0 0 30px;
+		}
+		.candidateslist__header > .listfilter {
+			position:absolute;
+			right:40px;
+		}
+	.candidateslist__item {
+		position:relative;
+		background:#fff;
+		display:inline-block;
+		padding:0 14px;
+		width:161px;
+		margin:0;
+	}
+		.candidateslist__item.is-first-of-row {
+			padding-left:39px;
+		}
+		.candidateslist__item > .support {
+			margin:13px 0 0;
+		}
+
 .breadcrumb {
 	position:relative;
 	display:inline-block;
@@ -249,8 +282,7 @@
 	}
 	
 .listfilter {
-	position:absolute;
-	right:0;
+	position:relative;
 	display:inline-block;
 }
 	.listfilter__filterfield {
@@ -508,3 +540,36 @@
 			float:left;
 			text-shadow:0 1px 0px #07161d;
 		}
+		
+.row-division {
+	position:relative;
+	background:#fff;
+	clear:both;
+	display:block;
+	padding:20px 40px;
+	margin:0;
+}
+	.row-division hr {
+		color:#DADFE3;
+		background:#DADFE3;
+		border:0;
+		height:1px;
+	}
+		
+.discussion {
+	position:relative;
+	margin:0;
+	background:#fff;
+}
+	.discussion__header {
+		position:relative;
+		background:#fff;
+		padding:40px 40px 10px;
+		margin:0;
+	}
+		.discussion__header > .currentsupport {
+			margin:0 0 0 30px;
+		}
+	.fbcomments {
+		padding:0 40px 20px;
+	}
