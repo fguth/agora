@@ -80,16 +80,16 @@
 				page.elements.$main_header.hide();
 				page.elements.$candidates_list.hide();
 				page.elements.$comments.show();
-				$(this).toggleClass('is-active');
-				page.elements.$tab_candidates.toggleClass('is-active');
+				$(this).addClass('is-active');
+				page.elements.$tab_candidates.removeClass('is-active');
 			});
 			
 			page.elements.$tab_candidates.click(function(){
 				page.elements.$main_header.show();
 				page.elements.$candidates_list.show();
 				page.elements.$comments.hide();
-				$(this).toggleClass('is-active');
-				page.elements.$tab_discussion.toggleClass('is-active');
+				$(this).addClass('is-active');
+				page.elements.$tab_discussion.removeClass('is-active');
 			});
 			
 			// header fixed while scrolling
@@ -114,19 +114,19 @@
 			 * * ELEMENTS
 			 */
 			
-			 page.elements.$login   		= $(".fbconnect",".header__login");
-			 page.elements.$logout  		= $(".userinfo__logout",".header__login");
-			 page.elements.$user_info  		= $(".userinfo",".header__login");
-			 page.elements.$user_name    	= $(".userinfo__name",".header__login");
-			 page.elements.$user_picture 	= $(".userinfo__photo",".header__login");
-			 page.elements.$support			= $(".support__button",".main__content__body");
-			 page.elements.$unsupport		= $(".unsupport__button",".main__content__body");
-			 page.elements.$comments		= $(".discussion");
-			 page.elements.$tabs			= $(".contexttabs");
+			 page.elements.$login   				= $(".fbconnect",".header__login");
+			 page.elements.$logout  				= $(".userinfo__logout",".header__login");
+			 page.elements.$user_info  			= $(".userinfo",".header__login");
+			 page.elements.$user_name  	  	= $(".userinfo__name",".header__login");
+			 page.elements.$user_picture 		= $(".userinfo__photo",".header__login");
+			 page.elements.$support					= $(".support__button",".main__content__body");
+			 page.elements.$unsupport				= $(".unsupport__button",".main__content__body");
+			 page.elements.$comments				= $(".discussion");
+			 page.elements.$tabs						= $(".contexttabs");
 			 page.elements.$tab_discussion	= $(".contexttabs__discussion");
 			 page.elements.$tab_candidates	= $(".contexttabs__candidates");
-			 page.elements.$main_content	= $(".main__content__body")
-			 page.elements.$main_header		= $(".main__content__header__container");
+			 page.elements.$main_content		= $(".main__content__body")
+			 page.elements.$main_header			= $(".main__content__header__container");
 			 page.elements.$candidates_list = $(".candidateslist")
 			
 		/**
