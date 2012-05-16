@@ -221,6 +221,9 @@
 			position:absolute;
 			right:40px;
 		}
+		.candidateslist__header + .row-division {
+			padding-bottom:35px;
+		}
 	.candidateslist__item {
 		position:relative;
 		background:#fff;
@@ -231,6 +234,9 @@
 	}
 		.candidateslist__item.is-first-of-row {
 			padding-left:39px;
+		}
+		.candidateslist__item.is-last-of-list {
+			margin-bottom:15px;
 		}
 		.candidateslist__item > .support {
 			margin:13px 0 0;
@@ -545,6 +551,10 @@
 	padding:20px 40px;
 	margin:0;
 }
+	.row-division + .candidateslist__header,
+	.row-division + .discussion__header {
+		padding-top:10px;
+	}
 	.row-division hr {
 		color:#DADFE3;
 		background:#DADFE3;
@@ -565,6 +575,9 @@
 	}
 		.discussion__header > .currentsupport {
 			margin:0 0 0 30px;
+		}
+		.discussion__header + .row-division {
+			padding-bottom:35px;
 		}
 	.fbcomments {
 		padding:0 40px 20px;

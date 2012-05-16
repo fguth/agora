@@ -536,7 +536,7 @@ table {
 	background:#0b242e;
 	border-radius:3px;
 	padding:6px 10px 5px;
-	margin:0 0 10px;
+	margin:0 0 1px;
 	position:relative;
 }
 	.tooltipsy:after {

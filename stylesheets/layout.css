@@ -71,6 +71,7 @@
 	overflow:auto;
 }
 	.main__nav {
+		border-color:#b6b3b3;
     border-color:rgba(255, 255, 255, 0.2);
     border-radius:10px 0 0 10px;
     border-style:solid;
