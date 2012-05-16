@@ -29,7 +29,7 @@
 			<div class="header">
 			
 				<div class="header__logo">
-					<h1><a href="#">
+					<h1><a href="http://<?php print_r($_SERVER['HTTP_HOST']); ?>">
 						<img src="images/logo-agora.png" alt="Ágora" />
 					</a></h1>
 				</div>
@@ -272,11 +272,7 @@
 									</a>
 								</div>
 							</dd>
-							
-							<dd class="row-division">
-								<hr />
-							</dd>
-							
+
 							<dt class="candidateslist__header">
 								<div class="candidateslist__header__wrapper">
 									<div class="candidateslist__header__content">
