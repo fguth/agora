@@ -108,18 +108,94 @@
 						<dl class="candidateslist">
 							
 							<dt class="candidateslist__header">
-								<div class="breadcrumb">
-									<h2>Prefeito</h2>
+								<div class="candidateslist__header__wrapper">
+									<div class="candidateslist__header__content">
+										<div class="breadcrumb">
+											<h2>Xota</h2>
+										</div>
+										<div class="currentsupport">
+											<img src="#" alt="Candidate photo" class="currentsupport__candidatephoto" />
+											<p class="currentsupport__label">Você apoia <a href="#" class="currentsupport__candidatename">Candidate name</a></p>
+										</div>
+										<form class="listfilter">
+											<input type="text" name="filterfield" value="Filtrar" class="listfilter__filterfield" />
+											<img src="images/icon-bloom.png" alt="Filtrar" class="listfilter__icon" />
+										</form>
+									</div>
 								</div>
-								<div class="currentsupport">
-									<img src="#" alt="Candidate photo" class="currentsupport__candidatephoto" />
-									<p class="currentsupport__label">Você apoia <a href="#" class="currentsupport__candidatename">Candidate name</a></p>
-								</div>
-								<form class="listfilter">
-									<input type="text" name="filterfield" value="Filtrar" class="listfilter__filterfield" />
-									<img src="images/icon-bloom.png" alt="Filtrar" class="listfilter__icon" />
-								</form>
 							</dt>
+							
+							<dd class="candidateslist__item is-first-of-row">
+								<a href="http://development.agora.vc/candidate.php" class="candidatecard">
+									<img src="#" alt="Candidate photo" class="candidatecard__photo" />
+									<p class="candidatecard__name">Candidate name</p>
+								</a>
+								<div class="support" id="123123123">
+									<div class="support__counter">
+										<span class="support__counter__number">88</span>
+									</div>
+									<a href="javascript:void(0);" class="support__button">
+										<img src="images/icon-support.png" alt="Apoiar candidato" class="support__button__icon" /><span class="support__button__text">Apoiar</span>
+									</a>
+									<a href="javascript:void(0);" class="unsupport__button is-hidden">
+										<span class="unsupport__button__text">Desfazer</span>
+									</a>
+								</div>
+							</dd>
+							
+							<dd class="candidateslist__item">
+								<a href="http://development.agora.vc/candidate.php" class="candidatecard">
+									<img src="#" alt="Candidate photo" class="candidatecard__photo" />
+									<p class="candidatecard__name">Candidate name</p>
+								</a>
+								<div class="support" id="123123123">
+									<div class="support__counter">
+										<span class="support__counter__number">88</span>
+									</div>
+									<a href="javascript:void(0);" class="support__button">
+										<img src="images/icon-support.png" alt="Apoiar candidato" class="support__button__icon" /><span class="support__button__text">Apoiar</span>
+									</a>
+									<a href="javascript:void(0);" class="unsupport__button is-hidden">
+										<span class="unsupport__button__text">Desfazer</span>
+									</a>
+								</div>
+							</dd>
+							
+							<dd class="candidateslist__item">
+								<a href="http://development.agora.vc/candidate.php" class="candidatecard">
+									<img src="#" alt="Candidate photo" class="candidatecard__photo" />
+									<p class="candidatecard__name">Candidate name</p>
+								</a>
+								<div class="support" id="123123123">
+									<div class="support__counter">
+										<span class="support__counter__number">88</span>
+									</div>
+									<a href="javascript:void(0);" class="support__button">
+										<img src="images/icon-support.png" alt="Apoiar candidato" class="support__button__icon" /><span class="support__button__text">Apoiar</span>
+									</a>
+									<a href="javascript:void(0);" class="unsupport__button is-hidden">
+										<span class="unsupport__button__text">Desfazer</span>
+									</a>
+								</div>
+							</dd>
+							
+							<dd class="candidateslist__item">
+								<a href="http://development.agora.vc/candidate.php" class="candidatecard">
+									<img src="#" alt="Candidate photo" class="candidatecard__photo" />
+									<p class="candidatecard__name">Candidate name</p>
+								</a>
+								<div class="support" id="123123123">
+									<div class="support__counter">
+										<span class="support__counter__number">88</span>
+									</div>
+									<a href="javascript:void(0);" class="support__button">
+										<img src="images/icon-support.png" alt="Apoiar candidato" class="support__button__icon" /><span class="support__button__text">Apoiar</span>
+									</a>
+									<a href="javascript:void(0);" class="unsupport__button is-hidden">
+										<span class="unsupport__button__text">Desfazer</span>
+									</a>
+								</div>
+							</dd>
 							
 							<dd class="row-division">
 								<hr />
@@ -179,7 +255,7 @@
 								</div>
 							</dd>
 							
-							<dd class="candidateslist__item is-last-of-list">
+							<dd class="candidateslist__item">
 								<a href="http://development.agora.vc/candidate.php" class="candidatecard">
 									<img src="#" alt="Candidate photo" class="candidatecard__photo" />
 									<p class="candidatecard__name">Candidate name</p>
@@ -196,27 +272,192 @@
 									</a>
 								</div>
 							</dd>
-
+							
 							<dd class="row-division">
 								<hr />
 							</dd>
 							
 							<dt class="candidateslist__header">
-								<div class="breadcrumb">
-									<h2>Prefeito</h2>
+								<div class="candidateslist__header__wrapper">
+									<div class="candidateslist__header__content">
+										<div class="breadcrumb">
+											<h2>Gostoso</h2>
+										</div>
+										<div class="currentsupport">
+											<img src="#" alt="Candidate photo" class="currentsupport__candidatephoto" />
+											<p class="currentsupport__label">Você apoia <a href="#" class="currentsupport__candidatename">Candidate name</a></p>
+										</div>
+										<form class="listfilter">
+											<input type="text" name="filterfield" value="Filtrar" class="listfilter__filterfield" />
+											<img src="images/icon-bloom.png" alt="Filtrar" class="listfilter__icon" />
+										</form>
+									</div>
 								</div>
-								<div class="currentsupport">
-									<img src="#" alt="Candidate photo" class="currentsupport__candidatephoto" />
-									<p class="currentsupport__label">Você apoia <a href="#" class="currentsupport__candidatename">Candidate name</a></p>
-								</div>
-								<form class="listfilter">
-									<input type="text" name="filterfield" value="Filtrar" class="listfilter__filterfield" />
-									<img src="images/icon-bloom.png" alt="Filtrar" class="listfilter__icon" />
-								</form>
 							</dt>
-										
+							
+							<dd class="candidateslist__item is-first-of-row">
+								<a href="http://development.agora.vc/candidate.php" class="candidatecard">
+									<img src="#" alt="Candidate photo" class="candidatecard__photo" />
+									<p class="candidatecard__name">Candidate name</p>
+								</a>
+								<div class="support" id="123123123">
+									<div class="support__counter">
+										<span class="support__counter__number">88</span>
+									</div>
+									<a href="javascript:void(0);" class="support__button">
+										<img src="images/icon-support.png" alt="Apoiar candidato" class="support__button__icon" /><span class="support__button__text">Apoiar</span>
+									</a>
+									<a href="javascript:void(0);" class="unsupport__button is-hidden">
+										<span class="unsupport__button__text">Desfazer</span>
+									</a>
+								</div>
+							</dd>
+							
+							<dd class="candidateslist__item">
+								<a href="http://development.agora.vc/candidate.php" class="candidatecard">
+									<img src="#" alt="Candidate photo" class="candidatecard__photo" />
+									<p class="candidatecard__name">Candidate name</p>
+								</a>
+								<div class="support" id="123123123">
+									<div class="support__counter">
+										<span class="support__counter__number">88</span>
+									</div>
+									<a href="javascript:void(0);" class="support__button">
+										<img src="images/icon-support.png" alt="Apoiar candidato" class="support__button__icon" /><span class="support__button__text">Apoiar</span>
+									</a>
+									<a href="javascript:void(0);" class="unsupport__button is-hidden">
+										<span class="unsupport__button__text">Desfazer</span>
+									</a>
+								</div>
+							</dd>
+							
+							<dd class="candidateslist__item">
+								<a href="http://development.agora.vc/candidate.php" class="candidatecard">
+									<img src="#" alt="Candidate photo" class="candidatecard__photo" />
+									<p class="candidatecard__name">Candidate name</p>
+								</a>
+								<div class="support" id="123123123">
+									<div class="support__counter">
+										<span class="support__counter__number">88</span>
+									</div>
+									<a href="javascript:void(0);" class="support__button">
+										<img src="images/icon-support.png" alt="Apoiar candidato" class="support__button__icon" /><span class="support__button__text">Apoiar</span>
+									</a>
+									<a href="javascript:void(0);" class="unsupport__button is-hidden">
+										<span class="unsupport__button__text">Desfazer</span>
+									</a>
+								</div>
+							</dd>
+							
+							<dd class="candidateslist__item">
+								<a href="http://development.agora.vc/candidate.php" class="candidatecard">
+									<img src="#" alt="Candidate photo" class="candidatecard__photo" />
+									<p class="candidatecard__name">Candidate name</p>
+								</a>
+								<div class="support" id="123123123">
+									<div class="support__counter">
+										<span class="support__counter__number">88</span>
+									</div>
+									<a href="javascript:void(0);" class="support__button">
+										<img src="images/icon-support.png" alt="Apoiar candidato" class="support__button__icon" /><span class="support__button__text">Apoiar</span>
+									</a>
+									<a href="javascript:void(0);" class="unsupport__button is-hidden">
+										<span class="unsupport__button__text">Desfazer</span>
+									</a>
+								</div>
+							</dd>
 							<dd class="row-division">
 								<hr />
+							</dd>
+							
+							<dt class="candidateslist__header">
+								<div class="candidateslist__header__wrapper">
+									<div class="candidateslist__header__content">
+										<div class="breadcrumb">
+											<h2>Prefeito</h2>
+										</div>
+										<div class="currentsupport">
+											<img src="#" alt="Candidate photo" class="currentsupport__candidatephoto" />
+											<p class="currentsupport__label">Você apoia <a href="#" class="currentsupport__candidatename">Candidate name</a></p>
+										</div>
+										<form class="listfilter">
+											<input type="text" name="filterfield" value="Filtrar" class="listfilter__filterfield" />
+											<img src="images/icon-bloom.png" alt="Filtrar" class="listfilter__icon" />
+										</form>
+									</div>
+								</div>
+							</dt>
+							
+							<dd class="candidateslist__item is-first-of-row">
+								<a href="http://development.agora.vc/candidate.php" class="candidatecard">
+									<img src="#" alt="Candidate photo" class="candidatecard__photo" />
+									<p class="candidatecard__name">Candidate name</p>
+								</a>
+								<div class="support" id="123123123">
+									<div class="support__counter">
+										<span class="support__counter__number">88</span>
+									</div>
+									<a href="javascript:void(0);" class="support__button">
+										<img src="images/icon-support.png" alt="Apoiar candidato" class="support__button__icon" /><span class="support__button__text">Apoiar</span>
+									</a>
+									<a href="javascript:void(0);" class="unsupport__button is-hidden">
+										<span class="unsupport__button__text">Desfazer</span>
+									</a>
+								</div>
+							</dd>
+							
+							<dd class="candidateslist__item">
+								<a href="http://development.agora.vc/candidate.php" class="candidatecard">
+									<img src="#" alt="Candidate photo" class="candidatecard__photo" />
+									<p class="candidatecard__name">Candidate name</p>
+								</a>
+								<div class="support" id="123123123">
+									<div class="support__counter">
+										<span class="support__counter__number">88</span>
+									</div>
+									<a href="javascript:void(0);" class="support__button">
+										<img src="images/icon-support.png" alt="Apoiar candidato" class="support__button__icon" /><span class="support__button__text">Apoiar</span>
+									</a>
+									<a href="javascript:void(0);" class="unsupport__button is-hidden">
+										<span class="unsupport__button__text">Desfazer</span>
+									</a>
+								</div>
+							</dd>
+							
+							<dd class="candidateslist__item">
+								<a href="http://development.agora.vc/candidate.php" class="candidatecard">
+									<img src="#" alt="Candidate photo" class="candidatecard__photo" />
+									<p class="candidatecard__name">Candidate name</p>
+								</a>
+								<div class="support" id="123123123">
+									<div class="support__counter">
+										<span class="support__counter__number">88</span>
+									</div>
+									<a href="javascript:void(0);" class="support__button">
+										<img src="images/icon-support.png" alt="Apoiar candidato" class="support__button__icon" /><span class="support__button__text">Apoiar</span>
+									</a>
+									<a href="javascript:void(0);" class="unsupport__button is-hidden">
+										<span class="unsupport__button__text">Desfazer</span>
+									</a>
+								</div>
+							</dd>
+							
+							<dd class="candidateslist__item">
+								<a href="http://development.agora.vc/candidate.php" class="candidatecard">
+									<img src="#" alt="Candidate photo" class="candidatecard__photo" />
+									<p class="candidatecard__name">Candidate name</p>
+								</a>
+								<div class="support" id="123123123">
+									<div class="support__counter">
+										<span class="support__counter__number">88</span>
+									</div>
+									<a href="javascript:void(0);" class="support__button">
+										<img src="images/icon-support.png" alt="Apoiar candidato" class="support__button__icon" /><span class="support__button__text">Apoiar</span>
+									</a>
+									<a href="javascript:void(0);" class="unsupport__button is-hidden">
+										<span class="unsupport__button__text">Desfazer</span>
+									</a>
+								</div>
 							</dd>
 										
 						</dl>
@@ -225,7 +466,11 @@
 							
 							<div class="discussion__header">
 								<div class="breadcrumb">
-									<h2>Prefeito</h2>
+									<h2>São Paulo</h2>
+								</div>
+								<div class="currentsupport">
+									<img src="#" alt="Candidate photo" class="currentsupport__candidatephoto" />
+									<p class="currentsupport__label">Você apoia <a href="#" class="currentsupport__candidatename">Candidate name</a></p>
 								</div>
 								<div class="currentsupport">
 									<img src="#" alt="Candidate photo" class="currentsupport__candidatephoto" />
@@ -256,6 +501,7 @@
 	<script type="text/javascript" src="javascripts/library/jquery-1.7.2.min.js"></script>
 	<script type="text/javascript" src="javascripts/library/jquery.backstretch.min.js"></script>
 	<script type="text/javascript" src="javascripts/library/tooltipsy.min.js"></script>
+	<script type="text/javascript" src="javascripts/library/jquery.list.min.js"></script>
 	<script type="text/javascript" src="javascripts/config.js"></script>
 	<script type="text/javascript" src="javascripts/main.js"></script>
 	

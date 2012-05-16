@@ -82,6 +82,10 @@
     width:63px;
 		z-index:1;
 	}
+	.main__nav.is-fixed {
+		position:fixed;
+		top:-5px;
+	}
 	.main__content {
 		width:832px;
 		display:inline-block;

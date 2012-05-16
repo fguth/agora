@@ -143,10 +143,6 @@
   position:relative;
   width:73px;
 }
-	.contexttabs.is-fixed {
-		position:fixed;
-		top:-5px;
-	}
 	.contexttabs__item {
 		position:relative;
 	}
@@ -209,28 +205,50 @@
 	background:#fff;
 }
 	.candidateslist__header {
-		position:relative;
-		background:#fff;
-		padding:40px 40px 10px;
-		margin:0;
+		background: none repeat scroll 0 0 #FFFFFF;
+	    height: 110px;
+	    margin: 0;
+	    position: relative;
+	    width: 822px;
 	}
-		.candidateslist__header > .currentsupport {
-			margin:0 0 0 30px;
+		.candidateslist__header__wrapper { 
+			background: none repeat scroll 0 0 #FFFFFF;
+			background: rgba(255,255,255,.98);
+		    height: 110px;
+		    margin: 0;
+		    width: 822px;
+			position:relative;
+			z-index:200;
 		}
-		.candidateslist__header > .listfilter {
-			position:absolute;
-			right:40px;
-		}
-		.candidateslist__header + .row-division {
-			padding-bottom:35px;
-		}
+			.candidateslist__header__wrapper.is-fixed { 
+				position:fixed;
+				z-index:100;
+				top:0;
+			}
+			.candidateslist__header__content { 
+			    margin: 0;
+			    margin: 0 40px 0 40px;
+			    padding: 40px 0 0;
+			    height: 69px;
+			    border-bottom: solid 1px #DADFE3;
+			}
+			.candidateslist__header__content > .currentsupport {
+				margin:0 0 0 30px;
+			}
+			.candidateslist__header__content > .listfilter {
+				position:absolute;
+				right:42px;
+			}
+			.candidateslist__header__content + .row-division {
+				padding-bottom:35px;
+			}
 	.candidateslist__item {
-		position:relative;
-		background:#fff;
-		display:inline-block;
-		padding:0 14px;
-		width:161px;
-		margin:0;
+		background: none repeat scroll 0 0 #FFFFFF;
+	    display: inline-block;
+	    margin: 0;
+	    padding: 30px 14px 20px;
+	    position: relative;
+	    width: 161px;
 	}
 		.candidateslist__item.is-first-of-row {
 			padding-left:39px;
@@ -544,14 +562,14 @@
 		}
 		
 .row-division {
-	position:relative;
-	background:#fff;
-	clear:both;
-	display:block;
-	padding:20px 40px;
-	margin:0;
+	background: none repeat scroll 0 0 #FFFFFF;
+    clear: both;
+    display: block;
+    margin: 0;
+    padding: 0px 40px;
+    position: relative;
+    height: 1px;
 }
-	.row-division + .candidateslist__header,
 	.row-division + .discussion__header {
 		padding-top:10px;
 	}

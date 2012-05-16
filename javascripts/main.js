@@ -55,57 +55,43 @@
 			$.backstretch("images/bg-site.jpg");
 			
 			// tooltips
-			$('.tooltip').tooltipsy({
-				delay:0,
-				show:function(e, $el){
-					$el.slideDown(150);
-				}
-			});
+			page.elements.$tooltips.tooltipsy({delay:0});
 			
 			// filter input animation
-			$(".listfilter__filterfield").focusin(function(){
+			page.elements.$filterfield.focusin(function(){
 				$(this).animate({width: "160px"}, 500);
 				$(this).val() == "Filtrar" ? $(this).val("") : $(this).val();
 			});
 			
-			$(".listfilter__filterfield").focusout(function(){
+			page.elements.$filterfield.focusout(function(){
 				$(this).animate({width: "80px"}, 500);
 				$(this).val() == "" ? $(this).val("Filtrar") : $(this).val();
 			});
 			
-			// context tabs
+			// comments
 			page.elements.$comments.hide();
 			
-			page.elements.$tab_discussion.click(function(){
-				page.elements.$main_header.hide();
+			// tabs
+			page.elements.$nav_discussion.click(function(){
 				page.elements.$candidates_list.hide();
 				page.elements.$comments.show();
 				$(this).addClass('is-active');
-				page.elements.$tab_candidates.removeClass('is-active');
+				page.elements.$nav_candidates.removeClass('is-active');
 			});
 			
-			page.elements.$tab_candidates.click(function(){
-				page.elements.$main_header.show();
+			page.elements.$nav_candidates.click(function(){
+				console.log(true);
 				page.elements.$candidates_list.show();
 				page.elements.$comments.hide();
 				$(this).addClass('is-active');
-				page.elements.$tab_discussion.removeClass('is-active');
+				page.elements.$nav_discussion.removeClass('is-active');
 			});
 			
-			// header fixed while scrolling
-			$(window).scroll(function(){
-				scroll = $(this).scrollTop();
-				position = $('.main__content__header').position();
-				
-				//scroll > position.top ? $('.main__content__header__container,.contexttabs').addClass('is-fixed') : $('.main__content__header__container,.contexttabs').removeClass('is-fixed');
-				
-			});
-			
-			
-			//support buttons
+			// support buttons
 			page.support.handlers();
 			page.unsupport.handlers();
-			//page.animation.cascadeEffect(page.elements.$main_header);
+			
+			page.candidates.listEffect(page.elements.$header_candidates);
 			
 		 }
 			
@@ -114,21 +100,21 @@
 			 * * ELEMENTS
 			 */
 			
-			 page.elements.$login   				= $(".fbconnect",".header__login");
-			 page.elements.$logout  				= $(".userinfo__logout",".header__login");
+			 page.elements.$login   			= $(".fbconnect",".header__login");
+			 page.elements.$logout  			= $(".userinfo__logout",".header__login");
 			 page.elements.$user_info  			= $(".userinfo",".header__login");
-			 page.elements.$user_name  	  	= $(".userinfo__name",".header__login");
+			 page.elements.$user_name  	  		= $(".userinfo__name",".header__login");
 			 page.elements.$user_picture 		= $(".userinfo__photo",".header__login");
-			 page.elements.$support					= $(".support__button",".main__content__body");
-			 page.elements.$unsupport				= $(".unsupport__button",".main__content__body");
-			 page.elements.$comments				= $(".discussion");
-			 page.elements.$tabs						= $(".contexttabs");
-			 page.elements.$tab_discussion	= $(".contexttabs__discussion");
-			 page.elements.$tab_candidates	= $(".contexttabs__candidates");
-			 page.elements.$main_content		= $(".main__content__body")
-			 page.elements.$main_header			= $(".main__content__header__container");
-			 page.elements.$candidates_list = $(".candidateslist")
-			
+			 page.elements.$support				= $(".support__button",".main__content__body");
+			 page.elements.$unsupport			= $(".unsupport__button",".main__content__body");
+			 page.elements.$comments			= $(".discussion");
+			 page.elements.$header_candidates	= $('.candidateslist__header__wrapper');
+			 page.elements.$nav					= $(".main__nav");
+			 page.elements.$nav_discussion		= $(".contexttabs__discussion");
+			 page.elements.$nav_candidates		= $(".contexttabs__candidates");
+			 page.elements.$filterfield 		= $(".listfilter__filterfield");
+			 page.elements.$tooltips			= $('.tooltip');
+			 page.elements.$candidates_list     = $('.candidateslist');
 		/**
 		 * page
 		 * * ANIMATION
@@ -156,37 +142,6 @@
 				}
 				
 			}
-			
-			page.animation.cascadeEffect = function(block) {
-				
-				var blocks = [];
-				
-				for (i=0; i<block.length; i++) {
-					blocks.push(block.eq(i));
-				}
-				
-				var limit  = blocks[0].position().top;
-				
-				$(window).scroll(function(){
-					var scroll = $(this).scrollTop();
-					for (i=0; i<blocks.length; i++) {
-						if(limit < scroll) {
-							if (scroll > blocks[i].position().top) {
-								block.removeClass('is-fixed');
-								page.elements.$tabs.addClass('is-fixed');
-								blocks[i].addClass('is-fixed');
-							}
-						} else {
-							block.removeClass('is-fixed');
-							page.elements.$tabs.removeClass('is-fixed');
-						}
-					}
-					
-				});
-				
-				//scroll > position.top ? $('.main__content__header__container,.contexttabs').addClass('is-fixed') : $('.main__content__header__container,.contexttabs').removeClass('is-fixed');
-				
-			}
 		
 		/**
 		 * page
@@ -203,6 +158,33 @@
 			 */
 			
 		 }
+			
+			page.candidates.listEffect = function(list) {
+				
+				var blocks = [];
+				
+				for ( i = 0; i < list.length; i++ ) {
+					blocks.push(list.eq(i));
+				}
+				
+				var limit  = blocks[0].offset().top;
+				
+				$(window).scroll(function(){
+					var scroll = $(this).scrollTop();
+					for (i=0; i<blocks.length; i++) {
+						if(limit < scroll) {
+							if (scroll > blocks[i].offset().top) {
+								list.removeClass('is-fixed');
+								page.elements.$nav.addClass('is-fixed');
+								blocks[i].addClass('is-fixed');
+							}
+						} else {
+							list.removeClass('is-fixed');
+							page.elements.$nav.removeClass('is-fixed');
+						}
+					}
+				});
+			}
 		 
 	 		/**
 			 * page
