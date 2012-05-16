@@ -528,31 +528,29 @@
 			position:relative;
 			height:60px;
 			float:left;
-			color:#f7f8fb;
+			color:#f4f6f9;
 			font-size:30px;
 			font-weight:bold;
-			text-shadow:0 1px 2px #07161d;
+			text-shadow:0 1px 3px #a9b5c3;
 			margin:0 20px 0 20px;
 		}
 		.introduction__tip__title {
 			position:relative;
-			color:#f7f8fb;
+			color:#224d60;
 			font-weight:bold;
 			font-size:26px;
 			letter-spacing:-1px;
 			margin-bottom:4px;
 			float:left;
-			text-shadow:0 1px 0px #07161d;
 		}
 		.introduction__tip__description {
 			position:relative;
-			color:#d5d9e6;
+			color:#224d60;
 			font-weight:200;
 			font-size:16px;
 			width:200px;
 			letter-spacing:-1px;
 			float:left;
-			text-shadow:0 1px 0px #07161d;
 		}
 		
 .row-division {
