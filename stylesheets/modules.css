@@ -135,17 +135,13 @@
 		}
 
 .contexttabs {
-	position:relative;
-	list-style:none;
-	padding:0;
-	margin:0;
-	border-width:5px 0 5px 5px;
-	border-style:solid;
-	border-color:#afb3b9;
-	border-color:rgba(255,255,255,0.2);
-	border-radius:10px 0 0 10px;
-	overflow:hidden;
-	width:68px;
+  border-radius:5px 0 0 5px;
+  list-style:none;
+  margin:0;
+  overflow:hidden;
+  padding:0;
+  position:relative;
+  width:73px;
 }
 	.contexttabs.is-fixed {
 		position:fixed;

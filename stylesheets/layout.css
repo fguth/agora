@@ -67,14 +67,24 @@
 	
 .main {
 	margin:50px 0;
+	position:relative;
 }
 	.main__nav {
-		width:73px;
-		display:inline-block;
+    border-color:rgba(255, 255, 255, 0.2);
+    border-radius:10px 0 0 10px;
+    border-style:solid;
+    border-width:5px 0 5px 5px;
+    display:inline-block;
+    left:0;
+    position:absolute;
+    top:0;
+    width:63px;
 	}
 	.main__content {
-		width:827px;
+		width:832px;
 		display:inline-block;
+		position:absolute;
+		right:0;
 	}
 		.main__content__wrapper {
 			border-width:5px 5px 5px 5px;
