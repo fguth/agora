@@ -68,6 +68,7 @@
 .main {
 	margin:50px 0;
 	position:relative;
+	overflow:auto;
 }
 	.main__nav {
     border-color:rgba(255, 255, 255, 0.2);
@@ -75,16 +76,17 @@
     border-style:solid;
     border-width:5px 0 5px 5px;
     display:inline-block;
-    left:0;
-    position:absolute;
-    top:0;
+    float:left;
+    position:relative;
     width:63px;
+		z-index:1;
 	}
 	.main__content {
 		width:832px;
 		display:inline-block;
-		position:absolute;
-		right:0;
+		position:relative;
+		float:right;
+		z-index:2;
 	}
 		.main__content__wrapper {
 			border-width:5px 5px 5px 5px;
