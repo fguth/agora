@@ -150,6 +150,12 @@
 	.contexttabs__item {
 		position:relative;
 	}
+		.contexttabs__candidates {
+			border-radius:4px 0 0;
+		}
+		.contexttabs__discussion {
+			border-radius:0 0 0 4px;
+		}
 	.contexttabs__link {
 		background:#f7f9fa;
 		box-shadow:-15px 3px 4px #dadde0 inset;
@@ -207,10 +213,10 @@
 	position:relative;
 	margin:0;
 	background:#fff;
+	border-radius:0 5px 5px 5px;
 }
 	.candidateslist__header {
 		position:relative;
-		background:#fff;
 		padding:40px 40px 10px;
 		margin:0;
 	}
@@ -226,7 +232,6 @@
 		}
 	.candidateslist__item {
 		position:relative;
-		background:#fff;
 		display:inline-block;
 		padding:0 14px;
 		width:161px;
@@ -545,7 +550,6 @@
 		
 .row-division {
 	position:relative;
-	background:#fff;
 	clear:both;
 	display:block;
 	padding:20px 40px;
@@ -566,10 +570,10 @@
 	position:relative;
 	margin:0;
 	background:#fff;
+	border-radius:0 5px 5px 5px;
 }
 	.discussion__header {
 		position:relative;
-		background:#fff;
 		padding:40px 40px 10px;
 		margin:0;
 	}
