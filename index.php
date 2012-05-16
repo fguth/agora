@@ -196,10 +196,6 @@
 									</a>
 								</div>
 							</dd>
-
-							<dd class="row-division">
-								<hr />
-							</dd>
 							
 							<dt class="candidateslist__header">
 								<div class="breadcrumb">
