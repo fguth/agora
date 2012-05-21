@@ -450,26 +450,24 @@
     height: 60px;
     margin: 0 20px;
     position: relative;
-    text-shadow: 0 1px 2px #07161D;
+    text-shadow: 0 1px 5px #a9b5c3;
 }
 .introduction__tip__title {
-    color: #F7F8FB;
+    color: #224d60;
     float: left;
     font-size: 26px;
     font-weight: bold;
     letter-spacing: -1px;
     margin-bottom: 4px;
     position: relative;
-    text-shadow: 0 1px 0 #07161D;
 }
 .introduction__tip__description {
-    color: #D5D9E6;
+    color: #224d60;
     float: left;
     font-size: 16px;
     font-weight: 200;
     letter-spacing: -1px;
     position: relative;
-    text-shadow: 0 1px 0 #07161D;
     width: 200px;
 }
 .row-division {
