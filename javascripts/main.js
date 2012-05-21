@@ -245,12 +245,13 @@
 					blocks.push(list.eq(i));
 				}
 				
-				var limit  = blocks[0].offset().top;
+				//var limit  = blocks[0].offset().top;
 				
 				$(window).scroll(function(){
+
 					var scroll = $(this).scrollTop();
 					for (i=0; i<blocks.length; i++) {
-						if(limit < scroll) {
+						if(list.parent().offset().top < scroll) {
 							if (scroll > blocks[i].offset().top) {
 								list.removeClass('is-fixed');
 								page.elements.$nav.addClass('is-fixed');
