@@ -497,7 +497,8 @@
 	<script type="text/javascript" src="javascripts/library/jquery-1.7.2.min.js"></script>
 	<script type="text/javascript" src="javascripts/library/jquery.backstretch.min.js"></script>
 	<script type="text/javascript" src="javascripts/library/tooltipsy.min.js"></script>
-	<script type="text/javascript" src="javascripts/library/jquery.list.min.js"></script>
+	<script src="http://j.maxmind.com/app/geoip.js"></script> 
+	<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
 	<script type="text/javascript" src="javascripts/config.js"></script>
 	<script type="text/javascript" src="javascripts/main.js"></script>
 	

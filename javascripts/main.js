@@ -22,11 +22,14 @@
 			  xfbml      : CONFIG.get('XFBML')
 			});
 		
-			// PAGE INITIALIZE	
+			// page initialize
 			FB.getLoginStatus(page.init);
 			
-			// ELEMENTS INITIALIZE
+			// elements initialize
 			page.elements();
+			
+			// location initialize
+			page.location();
 					
 		}
 		
@@ -91,6 +94,7 @@
 			page.support.handlers();
 			page.unsupport.handlers();
 			
+			// candidates listEffect
 			page.candidates.listEffect(page.elements.$header_candidates);
 			
 		 }
@@ -115,6 +119,74 @@
 			 page.elements.$filterfield 		= $(".listfilter__filterfield");
 			 page.elements.$tooltips			= $('.tooltip');
 			 page.elements.$candidates_list     = $('.candidateslist');
+			 page.elements.$adress				= $('.citynav__cityname', '.header');
+		
+		/**
+		 * page
+		 * * LOCATION
+		 */
+
+		 page.location = function() {
+		 	
+			// get current location by url
+			var address = false;
+			
+			if(address) {
+				page.location.load(address);
+			} else {
+				page.location.load();
+			}
+			
+		 }
+	 		
+			/**
+			 * page
+			 * * LOCATION
+			 * * * LOAD
+			 */
+			
+			page.location.load = function(address) {
+				
+				var lat 	 = geoip_latitude()
+				var lng 	 = geoip_longitude();
+				var geocoder = new google.maps.Geocoder();
+				
+				if (address) {
+					// load location by url or home city
+				} else {
+					geocoder.geocode({ 'latLng': new google.maps.LatLng(lat, lng) }, function (results, status) {
+				       if (status == google.maps.GeocoderStatus.OK) {
+						    if (results) {
+								page.location.apply(results[6].formatted_address);
+				            }
+				        }
+				    });
+				}
+				
+			}
+			
+			/**
+			 * page
+			 * * LOCATION
+			 * * * SET
+			 */
+			
+			page.location.apply = function(address) {
+				page.elements.$adress.val(address)
+				// load candidates by address
+				page.candidates(address);
+			}
+			
+	 		/**
+			 * page
+			 * * LOCATION
+			 * * * DEFAULT
+			 */
+			
+			page.location.set = function(user,address) {
+				//set user home location
+			}
+
 		/**
 		 * page
 		 * * ANIMATION
@@ -127,12 +199,12 @@
 			 * * ANIMATION
 			 * * * TYPES
 			 */
-			
+
 			page.animation.supportToggle = function(candidate_id) {
-				
+
 				var support_button   = $("#" + candidate_id + " a.support__button",".candidateslist__row");
 				var unsupport_button = $("#" + candidate_id + " a.unsupport__button",".candidateslist__row");
-				
+
 				if(support_button.hasClass("is-hidden")) {
 					unsupport_button.addClass("is-hidden");
 					support_button.removeClass("is-hidden");
@@ -140,7 +212,7 @@
 				    support_button.addClass("is-hidden");
 				    unsupport_button.removeClass("is-hidden");
 				}
-				
+
 			}
 		
 		/**
@@ -148,7 +220,7 @@
 		 * * CANDIDATES
 		 */
 		 
-		 page.candidates = function() {
+		 page.candidates = function(address) {
 		
 		 	// CANDIDATES INITIALIZE
 			
@@ -158,6 +230,12 @@
 			 */
 			
 		 }
+
+	 		/**
+			 * page
+			 * * CANDIDATES
+			 * * * LISTEFFECT
+			 */
 			
 			page.candidates.listEffect = function(list) {
 				
@@ -185,7 +263,27 @@
 					}
 				});
 			}
-		 
+			
+	 		/**
+			 * page
+			 * * CANDIDATES
+			 * * * LOAD
+			 */
+			 
+			 page.candidates.load = function(type,filter,scroll) {
+				
+		 	 }
+			
+			 	/**
+				 * page
+				 * * CANDIDATES
+				 * * * LOAD
+				 */
+
+				 page.candidates.load.more = function(start,limit,filter) {
+
+			 	 }
+			
 	 		/**
 			 * page
 			 * * CANDIDATES
@@ -432,7 +530,7 @@
 			 * * * STATUS
 			 */
 			 
-			 page.auth.status = false;
+			page.auth.status = false;
 			
 			/**
 			 * page
