@@ -54,8 +54,11 @@
 					</a>
 					
 					<div class="userinfo">
-						<img src="#" alt="" class="userinfo__photo" /><p class="userinfo__name">
-						</p><a href="javascript:void(0);" class="userinfo__logout">Sair</a>
+						<div class="userinfo__text">
+							<p class="userinfo__name"></p>
+							<a href="javascript:void(0);" class="userinfo__logout">Sair</a>
+						</div>
+						<img src="images/loader-userphoto.gif" alt="" class="userinfo__photo" />
 					</div>
 					
 				</div>

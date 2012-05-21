@@ -567,7 +567,7 @@
 						page.auth.id = response.id;
 						
 						page.elements.$logout.bind('click',function(e){ e.preventDefault(); FB.logout(); });	  
-						page.elements.$user_name.text(response.name);
+						page.elements.$user_name.text(response.first_name);
 						page.elements.$user_picture.attr('src','https://graph.facebook.com/' + response.username + '/picture');
 						page.elements.$user_picture.attr('alt', response.name);
 

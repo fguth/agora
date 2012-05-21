@@ -54,9 +54,9 @@
 					</a>
 					
 					<div class="userinfo">
-						<img src="#" alt="User name" class="userinfo__photo" />
 						<p class="userinfo__name">User name</p>
-						<a href="javascript:void(0);" class="userinfo__logout">Sair</a>
+						<a href="javascript:void(0);" class="userinfo__logout">Desconectar</a>
+						<img src="#" alt="User name" class="userinfo__photo" />
 					</div>
 					
 				</div>
@@ -103,46 +103,36 @@
 						</li>
 					</ul>				
 				</div><div class="main__content">
-					<div class="main__content__header">
-						<div class="main__content__header__contextinfo">
-							<div class="breadcrumb">
-								<h2>Post title</h2>
-							</div>
-							<div class="currentsupport">
-								<img src="#" alt="Candidate photo" class="currentsupport__candidatephoto" />
-								<p class="currentsupport__label">Você apoia <a href="#" class="currentsupport__candidatename">Candidate name</a></p>
-							</div>
-							<form class="listfilter">
-								<input type="text" name="filterfield" value="Filtrar" class="listfilter__filterfield" />
-								<img src="images/icon-bloom.png" alt="Filtrar" class="listfilter__icon" />
-							</form>
-						</div>
-					</div>
-					<div class="main__content__body">
-						<ul class="candidateslist">
-							<div class="candidateslist__row">
-								
-								<li class="candidateslist__item">
-									<a href="http://candidato-url" class="candidatecard">
-										<img src="#" alt="Candidate photo" class="candidatecard__photo" />
-										<p class="candidatecard__name">Candidate name</p>
-									</a>
-									<div class="support">
-										<div class="support__counter">
-											<span class="support__counter__number">88</span>
-										</div>
-										<a href="javascript:void(0);" id="123123123" class="support__button">
-											<img src="images/icon-support.png" alt="Apoiar candidato" class="support__button__icon" /><span class="support__button__text">Apoiar</span>
-										</a>
-										<a href="javascript:void(0);" id="123123123" class="unsupport__button is-hidden">
-											<span class="unsupport__button__text">Desfazer</span>
-										</a>
-									</div>
-								</li>
+					
+					<div class="main__content__wrapper">
 
+						<div class="candidateinfo">
+							
+							<div class="candidateinfo__header">
+								<div class="candidateinfo__header__wrapper">
+									<div class="candidateinfo__header__content">
+										<div class="breadcrumb">
+											<h2>Prefeito</h2>
+										</div>
+										<div class="currentsupport">
+											<img src="#" alt="Candidate photo" class="currentsupport__candidatephoto" />
+											<p class="currentsupport__label">Você apoia <a href="#" class="currentsupport__candidatename">Candidate name</a></p>
+										</div>
+										<form class="listfilter">
+											<input type="text" name="filterfield" value="Filtrar" class="listfilter__filterfield" />
+											<img src="images/icon-bloom.png" alt="Filtrar" class="listfilter__icon" />
+										</form>
+									</div>
+								</div>
 							</div>
-						</ul>
+							
+							<div class="candidateinfo__content">
+							</div>
+							
+						</div>
+						
 					</div>
+					
 				</div>
 				
 			</div><!-- End Main -->

@@ -108,25 +108,34 @@
     display: none;
     position: relative;
 }
+.userinfo__text {
+		width:100px;
+		float:left;
+		margin:0 10px 0 0;
+		text-align:right;
+}
 .userinfo__photo {
-    border: 2px solid #245266;
+    border:1px solid;
+		border-color:#173c4c #143543 #112e3b;
     border-radius: 3px 3px 3px 3px;
-    box-shadow: 0 1px 2px #102D39;
-    display: inline-block;
+    box-shadow: 0 1px 1px #1a4254;
+    float: left;
+		display: block;
     width: 32px;
 }
 .userinfo__name {
-    color: #9FB7C1;
-    display: inline-block;
-    font-size: 11px;
-    margin: 2px 10px 0 6px;
-    width: 80px;
+    color: #c9dbe2;
+		display: block;
+    font-size: 14px;
+    margin: 3px 0 0 0;
+		text-shadow:0 1px 1px #14313e;
 }
 .userinfo__logout {
-    color: #133442;
-    display: inline-block;
-    font-size: 11px;
+    color: #9fb8c2;
+		display: block;
+    font-size: 12px;
     margin: 2px 0 0;
+		text-shadow:0 1px 1px #14313e;
 }
 .userinfo__logout:hover {
     text-decoration: underline;
@@ -203,7 +212,7 @@
     width: 822px;
 }
 .candidateslist__header__wrapper {
-    background: none repeat scroll 0 0 rgba(255, 255, 255, 0.95);
+    background: none repeat scroll 0 0 rgba(255, 255, 255, 0.97);
     height: 110px;
     margin: 0;
     position: relative;
