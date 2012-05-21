@@ -157,7 +157,7 @@
 					geocoder.geocode({ 'latLng': new google.maps.LatLng(lat, lng) }, function (results, status) {
 				       if (status == google.maps.GeocoderStatus.OK) {
 						    if (results) {
-								page.location.apply(results[6].formatted_address);
+								page.location.apply(results[0].address_components[3].long_name + ', ' + results[0].address_components[4].short_name);
 				            }
 				        }
 				    });
