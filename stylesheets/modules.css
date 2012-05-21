@@ -190,19 +190,20 @@
     box-shadow: 0 2px 0 #F16666 inset, -1px 1px 2px #222222;
 }
 .candidateslist {
-    background: none repeat scroll 0 0 #FFFFFF;
+    background: #FFFFFF;
     margin: 0;
     position: relative;
+		padding-bottom:20px;
 }
 .candidateslist__header {
-    background: none repeat scroll 0 0 #FFFFFF;
+    background: #FFFFFF;
     height: 110px;
     margin: 0;
     position: relative;
     width: 822px;
 }
 .candidateslist__header__wrapper {
-    background: none repeat scroll 0 0 rgba(255, 255, 255, 0.98);
+    background: none repeat scroll 0 0 rgba(255, 255, 255, 0.95);
     height: 110px;
     margin: 0;
     position: relative;

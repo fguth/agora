@@ -111,7 +111,7 @@
 								<div class="candidateslist__header__wrapper">
 									<div class="candidateslist__header__content">
 										<div class="breadcrumb">
-											<h2>Xota</h2>
+											<h2>Prefeito</h2>
 										</div>
 										<div class="currentsupport">
 											<img src="#" alt="Candidate photo" class="currentsupport__candidatephoto" />
@@ -277,7 +277,7 @@
 								<div class="candidateslist__header__wrapper">
 									<div class="candidateslist__header__content">
 										<div class="breadcrumb">
-											<h2>Gostoso</h2>
+											<h2>Vereador</h2>
 										</div>
 										<div class="currentsupport">
 											<img src="#" alt="Candidate photo" class="currentsupport__candidatephoto" />
@@ -370,7 +370,7 @@
 								<div class="candidateslist__header__wrapper">
 									<div class="candidateslist__header__content">
 										<div class="breadcrumb">
-											<h2>Prefeito</h2>
+											<h2>Faxineiro</h2>
 										</div>
 										<div class="currentsupport">
 											<img src="#" alt="Candidate photo" class="currentsupport__candidatephoto" />
