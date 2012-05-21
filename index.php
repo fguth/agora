@@ -36,13 +36,13 @@
 				
 				<div class="header__nav">
 					<form class="citynav">
-						<a href="#" title="Ir para minha cidade" class="citynav__gotomycity tooltip">
-							<img src="images/icon-gotomycity.png" alt="Ir para minha cidade" />
+						<a href="javascript:void(0)" title="Minha cidade" class="citynav__gotomycity tooltip">
+							<img src="images/icon-gotomycity.png" alt="Minha cidade" />
 						</a>
 						<input type="text" name="cityname" class="citynav__cityname" />
-						<a href="#" title="Definir como minha cidade" class="citynav__setmycity tooltip">
-							<img src="images/icon-setmycity.png" alt="Definir como minha cidade" class="is-normal" />
-							<img src="images/icon-setmycity-hover.png" alt="Definir como minha cidade" class="is-hover" />
+						<a href="javascript:void(0)" title="Voto aqui" class="citynav__setmycity tooltip">
+							<img src="images/icon-setmycity.png" alt="Voto aqui" class="is-normal" />
+							<img src="images/icon-setmycity-hover.png" alt="Voto aqui" class="is-hover" />
 						</a>
 					</form>
 				</div>
