@@ -25,12 +25,7 @@
 			// page initialize
 			FB.getLoginStatus(page.init);
 			
-			// elements initialize
-			page.elements();
-			
-			// location initialize
-			page.location();
-					
+								
 		}
 		
 		/**
@@ -40,10 +35,16 @@
 		 
 		 page.init = function(response) {
 			
-		 	// INITIALIZE
+		 	// initialize
 			page.auth(response);
 			
 			FB.Event.subscribe('auth.statusChange', page.auth);
+			
+			// elements initialize
+			page.elements();
+			
+			// location initialize
+			page.location();
 			 
 		 }
 		
@@ -119,7 +120,7 @@
 			 page.elements.$filterfield 		= $(".listfilter__filterfield");
 			 page.elements.$tooltips			= $('.tooltip');
 			 page.elements.$candidates_list     = $('.candidateslist');
-			 page.elements.$adress				= $('.citynav__cityname', '.header');
+			 page.elements.$address				= $('.citynav__cityname', '.header');
 		
 		/**
 		 * page
@@ -127,13 +128,29 @@
 		 */
 
 		 page.location = function() {
-		 	
-			// get current location by url
-			var address = false;
 			
-			if(address) {
-				page.location.load(address);
+			// get current path by url
+			var path      = window.location.pathname;
+			
+			// verify the url elements
+			var url  	   	   = path.length == 7 ? false : path.split("/");
+			
+			// store elements
+			var location   	   = new Object();
+			location.state	   = url[1] ? url[1] : false;
+			location.city	   = url[2] ? url[2] : false;
+			location.candidate = url[3] ? url[3] : false;
+			
+			if(url) {
+				if (location.state && location.city && !location.candidate) {
+					console.log("Tem url definindo cidade/estado/ - carrega cidade!");
+					page.location.load(location);
+				} else if (location.state && location.city && location.candidate) {
+					console.log("Tem url definindo cidade/estado/candidato - carrega candidato!");
+					page.location.load(location);
+				}
 			} else {
+				console.log("Url indefinida - carrega cidade por geo!");
 				page.location.load();
 			}
 			
@@ -145,19 +162,22 @@
 			 * * * LOAD
 			 */
 			
-			page.location.load = function(address) {
+			page.location.load = function(location) {
 				
-				var lat 	 = geoip_latitude()
-				var lng 	 = geoip_longitude();
-				var geocoder = new google.maps.Geocoder();
-				
-				if (address) {
+				if (location) {
 					// load location by url or home city
+					page.location.apply(location);
 				} else {
-					geocoder.geocode({ 'latLng': new google.maps.LatLng(lat, lng) }, function (results, status) {
+					var geocoder = new google.maps.Geocoder();
+					geocoder.geocode({ 'latLng': new google.maps.LatLng(geoip_latitude(), geoip_longitude()) }, function (results, status) {
 				       if (status == google.maps.GeocoderStatus.OK) {
 						    if (results) {
-								page.location.apply(results[0].address_components[3].long_name + ', ' + results[0].address_components[4].short_name);
+								location 	   	   = new Object();
+								location.city      = results[0].address_components[3].long_name;
+								location.state     = results[0].address_components[4].short_name;
+								location.candidate = false;
+							
+								page.location.apply(location);
 				            }
 				        }
 				    });
@@ -168,23 +188,52 @@
 			/**
 			 * page
 			 * * LOCATION
-			 * * * SET
+			 * * * APPLY
 			 */
 			
-			page.location.apply = function(address) {
-				page.elements.$adress.val(address)
-				// load candidates by address
-				page.candidates(address);
+			page.location.apply = function(location) {
+				console.log("Carregar candidatos ou candidato");
+				if (page.location.verify(location)) {
+					
+					location.title 	   = location.city + ', ' + location.state;
+					location.url       = location.candidate ? "/" + sef(location.state) + "/" + sef(location.city) + "/" + sef(location.candidate)
+															: "/" + sef(location.state) + "/" + sef(location.city); 
+					
+					// set input actual location
+					page.elements.$address.val(location.title);
+					
+					// set url 
+					window.history.pushState(location.title,location.title,location.url);
+				    
+					// load candidates by location or candidate
+					page.candidates.load(location);	
+					
+				} else {
+					//Error 404
+				}
+				
 			}
 			
 	 		/**
 			 * page
 			 * * LOCATION
-			 * * * DEFAULT
+			 * * * SET
 			 */
 			
 			page.location.set = function(user,address) {
 				//set user home location
+			}
+			
+			/**
+			 * page
+			 * * LOCATION
+			 * * * VERIFY
+			 */
+			
+			page.location.verify = function(state,city,candidate) {
+				address = true;
+				//verify if the city exist
+				return address;
 			}
 
 		/**
@@ -220,10 +269,10 @@
 		 * * CANDIDATES
 		 */
 		 
-		 page.candidates = function(address) {
+		 page.candidates = function(location) {
 		
-		 	// CANDIDATES INITIALIZE
-			
+		 	// candidates initialize INITIALIZE
+			console.log(location);
 		    /** 
 			 * Start cadidates load
 			 * * Need to implement
@@ -506,7 +555,7 @@
 		 
 		 page.auth = function(response){
 			
-			// AUTH INITIALIZE
+			// auth initialize
 			
 			page.elements.$login.unbind('click').hide();
 			page.elements.$user_info.unbind('click').hide();
@@ -514,13 +563,11 @@
 			page.auth.token = null;
 			
 			if (response.authResponse) {
-				
+				page.auth.status = true;
 				page.auth.allowed(response.authResponse.accessToken);
-			
 			} else {
-				
+				page.auth.status = false;
 				page.auth.refused();
-			
 			}
 			 
 		 }
@@ -559,17 +606,14 @@
 			page.auth.allowed = function(acessToken){
 				
 				if(acessToken) {
-				
+					
 					page.auth.token  = acessToken;
-					page.auth.status = true;
-
 					FB.api('/me', function(response) {
 						
 						page.auth.id = response.id;
 						
 						page.elements.$logout.bind('click',function(e){ e.preventDefault(); FB.logout(); });	  
 						page.elements.$user_name.text(response.first_name);
-						page.elements.$user_picture.attr('src','https://graph.facebook.com/' + response.username + '/picture');
 						page.elements.$user_picture.attr('alt', response.name);
 
 						//Verify the user in our database
@@ -591,8 +635,6 @@
 			 
 			 page.auth.refused = function(){
 				
-				page.auth.status = false;
-				
 				page.elements.$login.fadeIn(function(){
 					
 					$(this).bind('click',function(e){ 
@@ -610,7 +652,6 @@
 			 */
 
 			 page.user = function(user) { 
-				
 				$.ajax({
 					data: {
 						action	: CONFIG.get('CHECK_USER'),
@@ -623,7 +664,6 @@
 					type: "post",
 					url: CONFIG.get('AJAX_URL')
 				});
-				 
 			 }
 
 		 		/**
@@ -633,17 +673,16 @@
 				 */
 
 				 page.user.process = function(response) {
-
 					if(response.sucess) {
-
 						console.log(response);
-
+						page.elements.$user_picture.attr('src','https://graph.facebook.com/' + response.user.data.username + '/picture');
+							
+						// load user hometowon
+						page.location.load(false);
+						
 					} else {
-
 						console.log(response.mensage);	
-
 					}
-
 				 }
 
 				 /**
@@ -653,9 +692,8 @@
 				 */
 
 				page.user.error = function(response) {
-
 					console.log(String(response.error).toLowerCase());
-
+					page.user.hometown = false;
 				}
 				
 		$(page);

@@ -113,6 +113,14 @@ class User {
 		}
 	}
 	
+	public function hometown($id = false) {
+		if ($id) {
+			return count(db("SELECT id FROM users WHERE id = " . $id)) ? true : false;
+		} else {
+			return count(db("SELECT id FROM users WHERE id = " . $this->data->id)) ? true : false;
+		}
+	}
+	
 	public function verify() {
 		return $this->data->verified == 1 ? true : false;
 	}
