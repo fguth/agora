@@ -133,24 +133,24 @@
 			var path      = window.location.pathname;
 			
 			// verify the url elements
-			var url  	   	   = path.length == 7 ? false : path.split("/");
+			var url  	   	   = path.length == 1 ? false : path.split("/");
 			
 			// store elements
 			var location   	   = new Object();
 			location.state	   = url[1] ? url[1] : false;
 			location.city	   = url[2] ? url[2] : false;
-			location.candidate = url[3] ? url[3] : false;
+			location.post 	   = url[3] ? url[3] : false;
+			location.candidate = url[4] ? url[4] : false;
 			
 			if(url) {
 				if (location.state && location.city && !location.candidate) {
-					console.log("Tem url definindo cidade/estado/ - carrega cidade!");
+					// url - has state/city
 					page.location.load(location);
-				} else if (location.state && location.city && location.candidate) {
-					console.log("Tem url definindo cidade/estado/candidato - carrega candidato!");
+				} else if (location.state && location.city && location.post && location.candidate) {
+					// url - has state/city/post/candidate
 					page.location.load(location);
 				}
 			} else {
-				console.log("Url indefinida - carrega cidade por geo!");
 				page.location.load();
 			}
 			
@@ -173,8 +173,9 @@
 				       if (status == google.maps.GeocoderStatus.OK) {
 						    if (results) {
 								location 	   	   = new Object();
-								location.city      = results[0].address_components[3].long_name;
-								location.state     = results[0].address_components[4].short_name;
+								location.city      = results[1].address_components[0].long_name;
+								location.state     = results[1].address_components[1].short_name;
+								location.post	   = false;
 								location.candidate = false;
 							
 								page.location.apply(location);
@@ -192,11 +193,10 @@
 			 */
 			
 			page.location.apply = function(location) {
-				console.log("Carregar candidatos ou candidato");
 				if (page.location.verify(location)) {
 					
 					location.title 	   = location.city + ', ' + location.state;
-					location.url       = location.candidate ? "/" + sef(location.state) + "/" + sef(location.city) + "/" + sef(location.candidate)
+					location.url       = location.post && location.candidate ? "/" + sef(location.state) + "/" + sef(location.city) + "/" + sef(location.post) + "/" + sef(location.candidate)
 															: "/" + sef(location.state) + "/" + sef(location.city); 
 					
 					// set input actual location
@@ -211,7 +211,6 @@
 				} else {
 					//Error 404
 				}
-				
 			}
 			
 	 		/**

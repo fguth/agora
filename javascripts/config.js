@@ -5,7 +5,7 @@
 
 var CONFIG = (function() {
     
-	var isLocal = window.location.hostname == "localhost";
+	var isLocal = window.location.hostname == "local.agora.vc";
 	
 	var production = {
 		
@@ -31,11 +31,11 @@ var CONFIG = (function() {
 		'APP_NAME'		: 'agora-local',
 		'APP_ACTION'	: 'apoiar',
 		'APP_OBJECT'	: 'candidato',
-		'CHANNEL_URL'	: 'http://localhost/agora/javascript/library/channel.php',
+		'CHANNEL_URL'	: 'http://local.agora.vc/javascript/library/channel.php',
 		'STATUS'		: true,
 		'COOKIE'		: true,
 		'XFBML'			: true,
-		'AJAX_URL'		: 'http://localhost/agora/hypertext-preprocessor/system.php',
+		'AJAX_URL'		: 'http://local.agora.vc/hypertext-preprocessor/system.php',
 		'CHECK_USER'	: '8b5b422abef67a034aac2d83f07afbcd',
 		'SUPPORT'		: '256fc6e4dbf98308ceca2b9b924b25af',
 		'UNSUPPORT'		: '89e3d438a10459f93076b8750c1a664f',
