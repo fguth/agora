@@ -1,0 +1,109 @@
+.fuckingerror {
+	text-align:center;
+	padding:100px;
+	position:relative;
+}
+
+.fuckingmeme {
+	width:207px;
+	height:180px;
+	background:url('../images/fuckingmeme.png') no-repeat;
+	margin:0 auto;
+	position:relative;
+}
+
+.fuckingplay {
+	width:39px;
+	height:37px;
+	background:url('../images/fuckingplay.png') no-repeat;	
+	display:block;
+	position:absolute;
+	top:50%;
+	left:50%;
+	margin:-18px 0 0 -19px;
+}
+	.fuckingplay:hover {
+		background:url('../images/fuckingplayhover.png') no-repeat;			
+	}
+	
+.fuckingvideo {
+	position:absolute;
+	top:80px;
+	left:50%;
+	margin:0 0 0 -280px;
+	z-index:2;
+}	
+	
+.fuckingtitle {
+	font-size:54px;
+	color:#204a5c;
+	letter-spacing:-6px;
+	margin:-20px 0 0;
+	position:relative;
+}
+
+.fuckingapologies {
+	color:#204a5c;
+	font-size:14px;
+	width:350px;
+	margin:5px auto;
+	line-height:18px;
+}
+
+.fuckingbuttons {
+	margin:70px 0 0;
+}
+	.fuckingback {
+		margin:0 10px 0 0;
+		height:37px;
+		line-height:36px;
+		background:#fff;
+		box-shadow:0 -4px 8px #e1e5e7 inset, 0 1px 3px #445463;
+		border-radius:3px;
+		text-align:center;
+		display:inline-block;
+		width:150px;
+		font-size:14px;
+		color:#204a5c;
+		font-weight:bold;
+	}
+		.fuckingback:hover {
+			box-shadow:0 -4px 8px #e1e5e7 inset, 0 1px 5px #445463;
+		}
+		.fuckingback:active {
+			box-shadow:0 0 6px #222d37 inset;
+		}
+	.fuckingzuckerberg {
+		height:37px;
+		line-height:36px;
+		background:#26467f;
+		box-shadow:0 -4px 8px #1e3969 inset, 0 1px 3px #445463;
+		border-radius:3px;
+		text-align:center;
+		display:inline-block;
+		width:150px;
+		font-size:14px;
+		color:#fff;
+		font-weight:bold;
+	}
+		.fuckingzuckerberg:hover {
+			box-shadow:0 -4px 8px #1e3969 inset, 0 1px 5px #445463;
+		}
+		.fuckingzuckerberg:active {
+			box-shadow:0 0 6px #0f2140 inset;
+		}
+		
+.fuckingfooter {
+	margin:15px 0 0;
+	color:#fff;
+	font-size:12px;
+	text-shadow:0 1px 1px #3e4d5d;
+	font-weight:200;
+}
+	.fuckingfooterlink {
+		font-weight:bold;
+		color:#fff;
+	}
+		.fuckingfooterlink:hover {
+			text-decoration:underline;
+		}
