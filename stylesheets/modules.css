@@ -174,12 +174,7 @@
     box-shadow: none;
 }
 .contexttabs__link__news {
-    -moz-border-bottom-colors: none;
-    -moz-border-image: none;
-    -moz-border-left-colors: none;
-    -moz-border-right-colors: none;
-    -moz-border-top-colors: none;
-    background: -moz-linear-gradient(center bottom , #AD0002 0%, #D8001F 100%) repeat scroll 0 0 #CC000C;
+    background: linear-gradient(center bottom , #AD0002 0%, #D8001F 100%) repeat scroll 0 0 #CC000C;
     border-color: #970006 #890005 #770004;
     border-radius: 10px 10px 10px 10px;
     border-style: solid;
@@ -369,11 +364,6 @@
     text-align: center;
 }
 .support__counter:after {
-    -moz-border-bottom-colors: none;
-    -moz-border-image: none;
-    -moz-border-left-colors: none;
-    -moz-border-right-colors: none;
-    -moz-border-top-colors: none;
     border-color: transparent transparent transparent #E6EAEC;
     border-style: solid;
     border-width: 10px;
@@ -387,7 +377,7 @@
     width: 0;
 }
 .support__button {
-    background: -moz-linear-gradient(center bottom , #0C9E13 0%, #1BBB23 100%) repeat scroll 0 0 #14AD1B;
+    background: linear-gradient(center bottom , #0C9E13 0%, #1BBB23 100%) repeat scroll 0 0 #14AD1B;
     border-radius: 3px 3px 3px 3px;
     box-shadow: 0 0 5px #D4D4D4, 0 1px 2px #7FC883;
     display: inline-block;
@@ -398,11 +388,11 @@
     width: 82px;
 }
 .support__button:hover {
-    background: -moz-linear-gradient(center bottom , #0DA114 0%, #1BC223 100%) repeat scroll 0 0 #15B61D;
+    background: linear-gradient(center bottom , #0DA114 0%, #1BC223 100%) repeat scroll 0 0 #15B61D;
     box-shadow: 0 0 5px #75BA79, 0 1px 2px #75BA79;
 }
 .support__button:active {
-    background: -moz-linear-gradient(center bottom , #0B9612 0%, #18AD20 100%) repeat scroll 0 0 #119918;
+    background: linear-gradient(center bottom , #0B9612 0%, #18AD20 100%) repeat scroll 0 0 #119918;
     box-shadow: 0 2px 4px #06730B inset;
 }
 .support__button__icon {
@@ -415,7 +405,7 @@
     text-shadow: 0 0 1px #045608;
 }
 .unsupport__button {
-    background: -moz-linear-gradient(center bottom , #2E3234 0%, #3C4144 100%) repeat scroll 0 0 #353A3C;
+    background: linear-gradient(center bottom , #2E3234 0%, #3C4144 100%) repeat scroll 0 0 #353A3C;
     border-radius: 3px 3px 3px 3px;
     box-shadow: 0 1px 1px #B5BCC0;
     display: inline-block;
@@ -427,11 +417,11 @@
     width: 82px;
 }
 .unsupport__button:hover {
-    background: -moz-linear-gradient(center bottom , #313638 0%, #464C4F 100%) repeat scroll 0 0 #414648;
+    background: linear-gradient(center bottom , #313638 0%, #464C4F 100%) repeat scroll 0 0 #414648;
     box-shadow: 0 1px 3px #787C80;
 }
 .unsupport__button:active {
-    background: -moz-linear-gradient(center bottom , #222222 0%, #333333 100%) repeat scroll 0 0 #2B2F31;
+    background: linear-gradient(center bottom , #222222 0%, #333333 100%) repeat scroll 0 0 #2B2F31;
     box-shadow: 0 2px 4px #000000 inset;
 }
 .unsupport__button .unsupport__button__text {
