@@ -249,7 +249,7 @@
 							</div>
 							
 							<div class="fbcomments">
-								<fb:comments href="http://<?php print_r($_SERVER['SERVER_NAME']); print_r($_SERVER['REQUEST_URI']); ?>" num_posts="5" width="737"></fb:comments>
+								<fb:comments href="http://<?php echo(HOST . PATH); ?>" num_posts="5" width="737"></fb:comments>
 							</div>
 						
 						</div>

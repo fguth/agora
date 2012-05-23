@@ -4,7 +4,10 @@ define("HT", chr(9));
 define("LF", chr(10));
 define("CR", chr(13));
 
-define("IS_LOCAL", $_SERVER["HTTP_HOST"] == "local.agora.vc");
+define("HOST", $_SERVER["HTTP_HOST"]);
+define("PATH", $_SERVER["REQUEST_URI"]);
+
+define("IS_LOCAL", HOST == "local.agora.vc");
 
 if (IS_LOCAL) {
 	define("DB_HOST", "localhost");
