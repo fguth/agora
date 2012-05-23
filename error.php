@@ -16,7 +16,7 @@ require("hypertext-preprocessor/direct-access.php");
 		<link rel="stylesheet" href="stylesheets/layout.css" />
 		<link rel="stylesheet" href="stylesheets/error.css" />
 		
-		<link rel="icon" type="image/png" href="images/favicon.ico" />
+		<link rel="shortcut icon" href="images/favicon.ico">
 		
 		<script type="text/javascript" src="javascripts/library/jquery-1.7.2.min.js"></script>
 		<script type="text/javascript">
