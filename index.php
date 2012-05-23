@@ -232,7 +232,7 @@
 							
 							<div class="discussion__header">
 								<div class="breadcrumb">
-									<h2>São Paulo</h2>
+									<h2>Discussão</h2>
 								</div>
 								<div class="currentsupport">
 									<img src="#" alt="Candidate photo" class="currentsupport__candidatephoto" />
