@@ -16,9 +16,6 @@ if (IS_LOCAL) {
 	define("DB_NAME", "db_agora");
 	define("APP_NAME", "agora-local");
 	define("APP_ID", "196526257128071");
-	define("APP_ACTION", "apoiar");
-	define("APP_CANDIDATE_OBJECT", "candidato");
-	define("APP_PROJECT_OBJECT", "projeto");
 } else {
 	define("DB_HOST", "db.agora.vc");
 	define("DB_USER", "agora_dml");
@@ -26,7 +23,11 @@ if (IS_LOCAL) {
 	define("DB_NAME", "db_agora");
 	define("APP_NAME", "agora-master");
 	define("APP_ID", "202465246524252");
-	define("APP_ACTION", "apoiar");
-	define("APP_CANDIDATE_OBJECT", "candidato");
-	define("APP_PROJECT_OBJECT", "projeto");
+
 }
+
+define("APP_ACTION", "apoiar");
+define("APP_CANDIDATE_OBJECT", "candidato");
+define("APP_PROJECT_OBJECT", "projeto");
+
+?>

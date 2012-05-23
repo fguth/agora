@@ -1,4 +1,13 @@
-<?php require("hypertext-preprocessor/config.php"); ?>
+<?php 
+
+require("hypertext-preprocessor/config.php");
+require("hypertext-preprocessor/library.php");
+require("hypertext-preprocessor/url.class.php");
+require("hypertext-preprocessor/location.class.php");
+
+$url = new Url(HOST,PATH);
+
+?>
 
 <!DOCTYPE html>
 
@@ -6,24 +15,26 @@
 
 	<head>
 		
-		<base href="http://<?php echo(HOST); ?>" />
+		<base href="http://<?php echo($url->config->host); ?>" />
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<meta name="description" content="Ágora é uma plataforma para discussão política. Indique sua intenção de voto e debata propostas para as Eleições 2012." />
-		<title>Ágora - Eleições 2012</title>
+		
+		<title><?php echo($url->title); ?></title>
 		<link rel="stylesheet" href="stylesheets/basic.css" />
 		<link rel="stylesheet" href="stylesheets/modules.css" />
 		<link rel="stylesheet" href="stylesheets/layout.css" />
-		<head prefix="og: http://ogp.me/ns# <?php echo(APP_NAME); ?>: 
-		                  http://ogp.me/ns/apps/<?php echo(APP_NAME); ?>#">
-		<meta property="fb:app_id" content="<?php echo(APP_ID); ?>" /> 
-		<meta property="og:title" content="Ágora - Eleições 2012" />
-		<meta property="og:type" content="<?php echo(APP_NAME); ?>:<?php echo(APP_PROJECT_OBJECT); ?>">
-		<meta property="og:url" content="http://<?php echo(HOST . PATH); ?>" />
-		<meta property="og:image" content="https://fbcdn-sphotos-a.akamaihd.net/hphotos-ak-ash3/523977_279169475490552_274490955958404_623177_1354285026_n.jpg" />
-		<meta property="og:site_name" content="Ágora" />
-		<meta property="og:description" content="Ágora é uma plataforma para discussão política. Indique sua intenção de voto e debata propostas para as Eleições 2012." />
-		
 		<link rel="shortcut icon" href="images/favicon.ico">
+		
+		<head prefix="og: http://ogp.me/ns# <?php echo($url->config->appName); ?>: 
+		                  http://ogp.me/ns/apps/<?php echo($url->config->appName); ?>#">
+		
+		<meta property="fb:app_id" content="<?php echo($url->config->appId); ?>" /> 
+		<meta property="og:title" content="<?php echo($url->title); ?>" />
+		<meta property="og:type" content="<?php echo($url->type); ?>">
+		<meta property="og:url" content="<?php echo($url->address); ?>" />
+		<meta property="og:image" content="<?php echo($url->image); ?>" />
+		<meta property="og:site_name" content="Ágora" />
+		<meta property="og:description" content="<?php echo($url->desc); ?>" />
+		<meta name="description" content="<?php echo($url->desc); ?>" />
 		
 	</head>
 	
@@ -34,7 +45,7 @@
 			<div class="header">
 			
 				<div class="header__logo">
-					<h1><a href="http://<?php echo(HOST); ?>">
+					<h1><a href="<?php echo($url->address); ?>">
 						<img src="images/logo-agora.png" alt="Ágora" />
 					</a></h1>
 				</div>
