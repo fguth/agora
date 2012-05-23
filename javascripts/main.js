@@ -55,9 +55,6 @@
 		 
 		 page.elements = function() {
 			
-		 	// background
-			$.backstretch("images/bg-site.jpg");
-			
 			// tooltips
 			page.elements.$tooltips.tooltipsy({delay:0});
 			
