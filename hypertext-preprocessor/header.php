@@ -22,6 +22,8 @@
 		<meta property="og:site_name" content="Ágora" />
 		<meta property="og:description" content="Ágora é uma plataforma para discussão política. Indique sua intenção de voto e debata propostas para as Eleições 2012." />
 		
+		<link rel="shortcut icon" href="images/favicon.ico">
+		
 	</head>
 	
 	<body>
