@@ -1,4 +1,4 @@
-<?php require("config.php"); ?>
+<?php require("hypertext-preprocessor/config.php"); ?>
 
 <!DOCTYPE html>
 
