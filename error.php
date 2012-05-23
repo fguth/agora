@@ -11,7 +11,6 @@ require("hypertext-preprocessor/direct-access.php");
 		<base href="http://<?php print_r($_SERVER["HTTP_HOST"]); ?>" />
 		
 		<link rel="stylesheet" type="text/css" href="stylesheets/application.css" />
-		<link rel="icon" type="image/png" href="images/favicon.ico" />
 	</head>
 	<body>
 		<pre id="content"><?php
