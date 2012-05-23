@@ -9,7 +9,9 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="description" content="Ágora é uma plataforma para discussão política. Indique sua intenção de voto e debata propostas para as Eleições 2012." />
 		<title>Ágora - Eleições 2012</title>
-		<link rel="stylesheet" href="stylesheets/application.css" />
+		<link rel="stylesheet" href="stylesheets/basic.css" />
+		<link rel="stylesheet" href="stylesheets/modules.css" />
+		<link rel="stylesheet" href="stylesheets/layout.css" />
 		<head prefix="og: http://ogp.me/ns# <?php echo APP_NAME; ?>: 
 		                  http://ogp.me/ns/apps/<?php echo APP_NAME; ?>#">
 		<meta property="fb:app_id" content="<?php echo APP_ID; ?>" /> 
@@ -498,7 +500,6 @@
 	</body>
 	
 	<script type="text/javascript" src="javascripts/library/jquery-1.7.2.min.js"></script>
-	<script type="text/javascript" src="javascripts/library/jquery.backstretch.min.js"></script>
 	<script type="text/javascript" src="javascripts/library/tooltipsy.min.js"></script>
 	<script type="text/javascript" src="javascripts/library/prefixfree.min.js"></script>
 	<script type="text/javascript" src="javascripts/library/sef.js"></script>
