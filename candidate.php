@@ -1,67 +1,4 @@
-<?php require("hypertext-preprocessor/config.php"); ?>
-
-<!DOCTYPE html>
-
-<html lang="pt-br">
-
-	<head>
-		
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<meta name="description" content="Gibran Malheiros está concorrendo para o cargo de prefeito da cidade de Dois Irmãos." />
-		<title>Ágora - Eleições 2012</title>
-		<link rel="stylesheet" href="stylesheets/application.css" />
-		<head prefix="og: http://ogp.me/ns# <?php echo APP_NAME; ?>: 
-		                  http://ogp.me/ns/apps/<?php echo APP_NAME; ?>#">
-		<meta property="fb:app_id" content="<?php echo APP_ID; ?>" /> 
-		<meta property="og:title" content="Gibran Malheiros" />
-		<meta property="og:type" content="<?php echo APP_NAME; ?>:<?php echo APP_CANDIDATE_OBJECT; ?>">
-		<meta property="og:url" content="http://<?php print_r($_SERVER['SERVER_NAME']); print_r($_SERVER['REDIRECT_URL']); ?>" />
-		<meta property="og:image" content="https://graph.facebook.com/gibatronic/picture?type=large" />
-		<meta property="og:site_name" content="Ágora" />
-		<meta property="og:description" content="Gibran Malheiros está concorrendo para o cargo de prefeito da cidade de Dois Irmãos." />
-		
-	</head>
-	
-	<body>
-		
-		<div class="wrapper">
-			
-			<div class="header">
-			
-				<div class="header__logo">
-					<h1><a href="#">
-						<img src="images/logo-agora.png" alt="Ágora" />
-					</a></h1>
-				</div>
-				
-				<div class="header__nav">
-					<form class="citynav">
-						<a href="#" title="Ir para minha cidade" class="citynav__gotomycity tooltip">
-							<img src="images/icon-gotomycity.png" alt="Ir para minha cidade" />
-						</a>
-						<input type="text" name="cityname" class="citynav__cityname" />
-						<a href="#" title="Definir como minha cidade" class="citynav__setmycity tooltip">
-							<img src="images/icon-setmycity.png" alt="Definir como minha cidade" class="is-normal" />
-							<img src="images/icon-setmycity-hover.png" alt="Definir como minha cidade" class="is-hover" />
-						</a>
-					</form>
-				</div>
-				
-				<div class="header__login">
-					
-					<a href="javascript:void(0);" class="fbconnect">
-						<span class="fbconnect__icon"><img src="images/icon-fbconnect.png" alt="Facebook connect" /></span><span class="fbconnect__text">Conecte-se</span>
-					</a>
-					
-					<div class="userinfo">
-						<p class="userinfo__name">User name</p>
-						<a href="javascript:void(0);" class="userinfo__logout">Desconectar</a>
-						<img src="#" alt="User name" class="userinfo__photo" />
-					</div>
-					
-				</div>
-			
-			</div><!-- End Header -->
+<?php require("hypertext-preprocessor/header.php"); ?>
 			
 			<div class="middle">
 				
@@ -84,7 +21,7 @@
 					</div>
 				</div>
 				
-			</div><!-- End Middle -->
+			</div>
 			
 			<div class="main">
 				
@@ -135,25 +72,7 @@
 					
 				</div>
 				
-			</div><!-- End Main -->
+			</div>
 			
-		</div><!-- End Wrapper -->
-
-	</body>
-	
-	<script type="text/javascript" src="javascripts/library/jquery-1.7.2.min.js"></script>
-	<script type="text/javascript" src="javascripts/library/jquery.backstretch.min.js"></script>
-	<script type="text/javascript" src="javascripts/library/tooltipsy.min.js"></script>
-	<script type="text/javascript" src="javascripts/config.js"></script>
-	<script type="text/javascript" src="javascripts/main.js"></script>
-	
-	<script type="text/javascript">
-		$('.tooltip').tooltipsy({
-			delay:0,
-			show:function(e, $el){
-				$el.slideDown(150);
-			}
-		});
-	</script>
-	
-</html>
+<?php require('hypertext-preprocessor/footer.php'); ?>
+			
