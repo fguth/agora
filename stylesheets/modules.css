@@ -199,6 +199,7 @@
     margin: 0;
     position: relative;
 		padding-bottom:20px;
+		border-radius:0 5px 5px 5px;
 }
 .candidateslist__header {
     background: #FFFFFF;
