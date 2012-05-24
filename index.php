@@ -249,7 +249,7 @@
 							</div>
 							
 							<div class="fbcomments">
-								<fb:comments href="<?php echo($url->address); ?>" num_posts="5" width="737"></fb:comments>
+								<fb:comments href="<?php echo($header->address); ?>" num_posts="5" width="737"></fb:comments>
 							</div>
 						
 						</div>

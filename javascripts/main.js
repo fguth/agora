@@ -43,6 +43,9 @@
 			// elements initialize
 			page.elements();
 			
+			// url initialize
+			page.url();
+			
 			// location initialize
 			page.location();
 			 
@@ -117,7 +120,28 @@
 			 page.elements.$filterfield 		= $(".listfilter__filterfield");
 			 page.elements.$tooltips			= $('.tooltip');
 			 page.elements.$candidates_list     = $('.candidateslist');
-			 page.elements.$address				= $('.citynav__cityname', '.header');
+			 page.elements.$location			= $('.citynav__cityname', '.header');
+		
+		/**
+		 * page
+		 * * URL
+		 */
+
+		 page.url = function() {
+			
+			// set url 
+			window.history.pushState(page.url.title,page.url.title,page.url.path);
+			
+		 }
+			/**
+			 * page
+			 * * URL
+			 * * * INFO
+			 */
+				
+			page.url.path = $('meta[name=path]').attr("content");
+			
+			page.url.location = $('meta[name=location]').attr("content");
 		
 		/**
 		 * page
@@ -126,112 +150,11 @@
 
 		 page.location = function() {
 			
-			// get current path by url
-			var path      = window.location.pathname;
-			
-			// verify the url elements
-			var url  	   	   = path.length == 1 ? false : path.split("/");
-			
-			// store elements
-			var location   	   = new Object();
-			location.state	   = url[1] ? url[1] : false;
-			location.city	   = url[2] ? url[2] : false;
-			location.post 	   = url[3] ? url[3] : false;
-			location.candidate = url[4] ? url[4] : false;
-			
-			if(url) {
-				if (location.state && location.city && !location.candidate) {
-					// url - has state/city
-					page.location.load(location);
-				} else if (location.state && location.city && location.post && location.candidate) {
-					// url - has state/city/post/candidate
-					page.location.load(location);
-				}
-			} else {
-				page.location.load();
-			}
-			
-		 }
-	 		
-			/**
-			 * page
-			 * * LOCATION
-			 * * * LOAD
-			 */
-			
-			page.location.load = function(location) {
-				
-				if (location) {
-					// load location by url or home city
-					page.location.apply(location);
-				} else {
-					var geocoder = new google.maps.Geocoder();
-					geocoder.geocode({ 'latLng': new google.maps.LatLng(geoip_latitude(), geoip_longitude()) }, function (results, status) {
-				       if (status == google.maps.GeocoderStatus.OK) {
-						    if (results) {
-								location 	   	   = new Object();
-								location.city      = results[1].address_components[0].long_name;
-								location.state     = results[1].address_components[1].short_name;
-								location.post	   = false;
-								location.candidate = false;
-							
-								page.location.apply(location);
-				            }
-				        }
-				    });
-				}
-				
-			}
-			
-			/**
-			 * page
-			 * * LOCATION
-			 * * * APPLY
-			 */
-			
-			page.location.apply = function(location) {
-				if (page.location.verify(location)) {
-					
-					location.title 	   = location.city + ', ' + location.state;
-					location.url       = location.post && location.candidate ? "/" + sef(location.state) + "/" + sef(location.city) + "/" + sef(location.post) + "/" + sef(location.candidate)
-															: "/" + sef(location.state) + "/" + sef(location.city); 
-					
-					// set input actual location
-					page.elements.$address.val(location.title);
-					
-					// set url 
-					window.history.pushState(location.title,location.title,location.url);
-				    
-					// load candidates by location or candidate
-					page.candidates.load(location);	
-					
-				} else {
-					//Error 404
-				}
-			}
-			
-	 		/**
-			 * page
-			 * * LOCATION
-			 * * * SET
-			 */
-			
-			page.location.set = function(user,address) {
-				//set user home location
-			}
-			
-			/**
-			 * page
-			 * * LOCATION
-			 * * * VERIFY
-			 */
-			
-			page.location.verify = function(state,city,candidate) {
-				address = true;
-				//verify if the city exist
-				return address;
-			}
+			// set value 
+			page.elements.$location.val(page.url.location)
 
+		 }
+		
 		/**
 		 * page
 		 * * ANIMATION
@@ -674,7 +597,7 @@
 						page.elements.$user_picture.attr('src','https://graph.facebook.com/' + response.user.data.username + '/picture');
 							
 						// load user hometowon
-						page.location.load(false);
+						console.log("Load user home town");
 						
 					} else {
 						console.log(response.mensage);	

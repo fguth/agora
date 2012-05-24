@@ -1,4 +1,5 @@
 <?php
+require("hypertext-preprocessor/config.php");
 require("hypertext-preprocessor/direct-access.php");
 ?>
 
@@ -7,10 +8,13 @@ require("hypertext-preprocessor/direct-access.php");
 <html lang="pt-br" xmlns:fb="http://ogp.me/ns/fb#">
 
 	<head>
+		
+		<base href="http://<?php echo(HOST); ?>" />
+		
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		
 		<title>Vish - Ágora</title>
-
+		
 		<link rel="stylesheet" href="stylesheets/basic.css" />
 		<link rel="stylesheet" href="stylesheets/modules.css" />
 		<link rel="stylesheet" href="stylesheets/layout.css" />
@@ -46,7 +50,7 @@ require("hypertext-preprocessor/direct-access.php");
 			<p class="fuckingapologies">Ocorreu um erro e <strong>não foi possível encontrar</strong> a página que você procura. Nossa equipe já foi notificada.</p>
 			
 			<div class="fuckingbuttons">
-				<a href="http://<?php echo($_SERVER['HTTP_HOST']); ?>" class="fuckingback">Voltar para a home</a>
+				<a href="http://<?php echo(HOST); ?>" class="fuckingback">Voltar para a home</a>
 				<a href="http://facebook.com/agora.vc" class="fuckingzuckerberg">Facebook</a>
 			</div>
 			

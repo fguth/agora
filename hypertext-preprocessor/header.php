@@ -2,10 +2,10 @@
 
 require("hypertext-preprocessor/config.php");
 require("hypertext-preprocessor/library.php");
-require("hypertext-preprocessor/url.class.php");
+require("hypertext-preprocessor/header.class.php");
 require("hypertext-preprocessor/location.class.php");
 
-$url = new Url(HOST,PATH);
+$header = new Header(HOST,PATH);
 
 ?>
 
@@ -13,30 +13,7 @@ $url = new Url(HOST,PATH);
 
 <html lang="pt-br" xmlns:fb="http://ogp.me/ns/fb#">
 
-	<head>
-		
-		<base href="http://<?php echo($url->config->host); ?>" />
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		
-		<title><?php echo($url->title); ?></title>
-		<link rel="stylesheet" href="stylesheets/basic.css" />
-		<link rel="stylesheet" href="stylesheets/modules.css" />
-		<link rel="stylesheet" href="stylesheets/layout.css" />
-		<link rel="shortcut icon" href="images/favicon.ico">
-		
-		<head prefix="og: http://ogp.me/ns# <?php echo($url->config->appName); ?>: 
-		                  http://ogp.me/ns/apps/<?php echo($url->config->appName); ?>#">
-		
-		<meta property="fb:app_id" content="<?php echo($url->config->appId); ?>" /> 
-		<meta property="og:title" content="<?php echo($url->title); ?>" />
-		<meta property="og:type" content="<?php echo($url->type); ?>">
-		<meta property="og:url" content="<?php echo($url->address); ?>" />
-		<meta property="og:image" content="<?php echo($url->image); ?>" />
-		<meta property="og:site_name" content="Ágora" />
-		<meta property="og:description" content="<?php echo($url->desc); ?>" />
-		<meta name="description" content="<?php echo($url->desc); ?>" />
-		
-	</head>
+	<?php $header->render(); ?>
 	
 	<body>
 		
