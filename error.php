@@ -1,7 +1,4 @@
-<?php
-require("hypertext-preprocessor/config.php");
-require("hypertext-preprocessor/direct-access.php");
-?>
+<?php require("hypertext-preprocessor/config.php"); ?>
 
 <!DOCTYPE HTML>
 
@@ -13,7 +10,8 @@ require("hypertext-preprocessor/direct-access.php");
 		
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		
-		<title>Vish - Ágora</title>
+		<title>Ooooops - Ágora</title>
+		<meta name="description" content="Ocorreu um erro e não foi possível encontrar a página que você procura. Nossa equipe já foi notificada." />
 		
 		<link rel="stylesheet" href="stylesheets/basic.css" />
 		<link rel="stylesheet" href="stylesheets/modules.css" />

@@ -66,9 +66,9 @@
     border: 1px solid #213A6E;
     border-radius: 3px 3px 3px 3px;
     box-shadow: 0 1px 2px #5F7AB3 inset, 0 -1px 1px #1B315D inset, 0 1px 2px #153949;
-    display: inline-block;
     height: 36px;
     line-height: 36px;
+	display:inline-block;
     position: relative;
     text-align: center;
 }
@@ -105,7 +105,6 @@
     vertical-align: top;
 }
 .userinfo {
-    display: none;
     position: relative;
 }
 .userinfo__text {

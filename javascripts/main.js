@@ -13,7 +13,7 @@
 		 
 		var page = function() {
 			
-			// FACEBOOK INITIALIZE
+			// facebook initialize
 			FB.init({
 			  appId      : CONFIG.get('APP_ID'),
 			  channelUrl : CONFIG.get('CHANNEL_URL'),
@@ -21,22 +21,6 @@
 			  cookie     : CONFIG.get('COOKIE'),
 			  xfbml      : CONFIG.get('XFBML')
 			});
-		
-			// page initialize
-			FB.getLoginStatus(page.init);
-			
-								
-		}
-		
-		/**
-		 * page
-		 * * ELEMENTS
-		 */
-		 
-		 page.init = function(response) {
-			
-		 	// initialize
-			page.auth(response);
 			
 			FB.Event.subscribe('auth.statusChange', page.auth);
 			
@@ -45,11 +29,8 @@
 			
 			// url initialize
 			page.url();
-			
-			// location initialize
-			page.location();
-			 
-		 }
+						
+		}
 		
 		/**
 		 * page
@@ -95,8 +76,13 @@
 			page.support.handlers();
 			page.unsupport.handlers();
 			
+			// DEPOIS COLOCAR NA CONSTRUTORA DO CANDIDATES
 			// candidates listEffect
 			page.candidates.listEffect(page.elements.$header_candidates);
+			
+			// login and logout buttons
+			page.elements.$login.bind('click',page.login);
+			page.elements.$logout.bind('click',page.logout);
 			
 		 }
 			
@@ -130,29 +116,8 @@
 		 page.url = function() {
 			
 			// set url 
-			window.history.pushState(page.url.title,page.url.title,page.url.path);
+			window.history.pushState(document.title,document.title,$('meta[name=path]').attr("content"));
 			
-		 }
-			/**
-			 * page
-			 * * URL
-			 * * * INFO
-			 */
-				
-			page.url.path = $('meta[name=path]').attr("content");
-			
-			page.url.location = $('meta[name=location]').attr("content");
-		
-		/**
-		 * page
-		 * * LOCATION
-		 */
-
-		 page.location = function() {
-			
-			// set value 
-			page.elements.$location.val(page.url.location)
-
 		 }
 		
 		/**
@@ -285,7 +250,7 @@
 				var candidate_url = $(this).parent().parent().find(".candidatecard").attr("href");
 				var candidate_id  = $(this).parent().attr("id");
 
-				if(page.auth.status) {
+				if(page.auth.token) {
 					
 					//After support server-side process be done. Put this FP.api into page.support.process sucess data.
 					FB.api(
@@ -309,7 +274,7 @@
 										action			: CONFIG.get('SUPPORT'),
 										candidate_id	: candidate_id,
 										user_id			: page.auth.id,
-										token			: page.auth.token
+										user_token		: page.auth.token
 									},
 									dataType: "json",
 									error: page.support.error,
@@ -388,7 +353,7 @@
 				// UNSUPPORT INITIALIZE
 				var candidate_id  = $(this).parent().attr("id");
 				
-				if(page.auth.status) {
+				if(page.auth.token) {
 					
 					//SERVER-SIDE UNSUPPORT PROCESS
 					$.ajax({
@@ -396,7 +361,7 @@
 							action			: CONFIG.get('UNSUPPORT'),
 							candidate_id	: candidate_id,
 							user_id			: page.auth.id,
-							token			: page.auth.token
+							user_token		: page.auth.token
 						},
 						dataType: "json",
 						error: page.unsupport.error,
@@ -471,150 +436,72 @@
 		 * page
 		 * * AUTH
 		 */
-		 
-		 page.auth = function(response){
-			
-			// auth initialize
-			
-			page.elements.$login.unbind('click').hide();
-			page.elements.$user_info.unbind('click').hide();
-			
-			page.auth.token = null;
-			
-			if (response.authResponse) {
-				page.auth.status = true;
-				page.auth.allowed(response.authResponse.accessToken);
-			} else {
-				page.auth.status = false;
-				page.auth.refused();
-			}
-			 
+
+		 page.auth = function(response) {
+			// set user and token id - Here we can treat the facebook status
+			if (response.status === 'connected') {
+				page.auth.id 	= response.authResponse.userID;
+				page.auth.token = response.authResponse.accessToken;
+			  } else {
+			    page.auth.id 	= null;
+				page.auth.token = null;
+			  }
+			console.log(response.status);
 		 }
-			
+		
+		page.auth.id = null;
+		page.auth.token = null;
+		
+		/**
+		 * page
+		 * * LOGIN
+		 */
+		 
+		 page.login = function(e) {
+			e.preventDefault();
+			page.elements.$login.addClass('is-hidden');
+			page.elements.$user_info.removeClass('is-hidden');
+			FB.login(page.login.success, {scope: CONFIG.get('PERMISSIONS').join(',')});
+		 }
+		
 			/**
 			 * page
-			 * * AUTH
-			 * * * STATUS
+			 * * LOGIN
+			 * * * SUCCESS
 			 */
-			 
-			page.auth.status = false;
-			
-			/**
-			 * page
-			 * * AUTH
-			 * * * TOKEN
-			 */
-			
-			page.auth.token = null;
-			
-			/**
-			 * page
-			 * * AUTH
-			 * * * ID
-			 */
-			
-			page.auth.id = null;
-			
-			
-			/**
-			 * page
-			 * * AUTH
-			 * * * ALLOWED
-			 */
-			 
-			page.auth.allowed = function(acessToken){
-				
-				if(acessToken) {
-					
-					page.auth.token  = acessToken;
-					FB.api('/me', function(response) {
-						
-						page.auth.id = response.id;
-						
-						page.elements.$logout.bind('click',function(e){ e.preventDefault(); FB.logout(); });	  
-						page.elements.$user_name.text(response.first_name);
-						page.elements.$user_picture.attr('alt', response.name);
-
-						//Verify the user in our database
-						page.user(response);
-
-					});
-					
-					page.elements.$user_info.fadeIn();
-				
+		
+			page.login.success = function(response) {
+				if (response.authResponse.accessToken) {
+					document.location.reload();
 				}
-
 			}
-			 
-			 /**
-			 * page
-			 * * AUTH
-			 * * * REFUSED
-			 */
-			 
-			 page.auth.refused = function(){
-				
-				page.elements.$login.fadeIn(function(){
-					
-					$(this).bind('click',function(e){ 
-						e.preventDefault();
-						FB.login(function(response) {}, {scope: CONFIG.get('PERMISSIONS').join(',')});
-					});	
-					
-				}); 
-				
-			 }
+		
+		/**
+		 * page
+		 * * LOGOUT
+		 */
+		
+		page.logout = function(e) {
+			e.preventDefault();
+			FB.logout(page.logout.success);
 			
+		}	
+		
 			/**
 			 * page
-			 * * USER
+			 * * LOGOUT
+			 * * * SUCCESS
 			 */
-
-			 page.user = function(user) { 
-				$.ajax({
-					data: {
-						action	: CONFIG.get('CHECK_USER'),
-						user	: user,
-						token	: page.auth.token
-					},
-					dataType: "json",
-					error: page.user.error,
-					success: page.user.process,
-					type: "post",
-					url: CONFIG.get('AJAX_URL')
-				});
-			 }
-
-		 		/**
-				 * page
-				 * * USER
-				 * * * PROCESS
-				 */
-
-				 page.user.process = function(response) {
-					if(response.sucess) {
-						console.log(response);
-						page.elements.$user_picture.attr('src','https://graph.facebook.com/' + response.user.data.username + '/picture');
-							
-						// load user hometowon
-						console.log("Load user home town");
-						
-					} else {
-						console.log(response.mensage);	
-					}
-				 }
-
-				 /**
-				 * page
-				 * * USER
-				 * * * ERROR
-				 */
-
-				page.user.error = function(response) {
-					console.log(String(response.error).toLowerCase());
-					page.user.hometown = false;
-				}
-				
+	
+			page.logout.success = function(response) {
+				FB.Auth.setAuthResponse(null, 'unknown');
+				page.elements.$user_info.addClass('is-hidden');
+				page.elements.$user_name.text('');
+				page.elements.$user_picture.attr('src', 'images/loader-userphoto.gif');
+				page.elements.$user_picture.attr('alt', 'carregando');
+				page.elements.$login.removeClass('is-hidden');		
+			}
+			
 		$(page);
 
 	}

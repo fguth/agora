@@ -1,8 +1,8 @@
-<?php	
-require("config.php");
-require("library.php");
-require("user.class.php");
-require("candidate.class.php");
+<?php
+require("../config.php");	
+require("functions.php");
+require("../classes/user.class.php");
+require("../classes/candidate.class.php");
 
 define("CANDIDATES_LIST", "75720f54472ffabfca3fcb0a08e19bd9");
 define("CHECK_USER", "8b5b422abef67a034aac2d83f07afbcd");
@@ -10,17 +10,13 @@ define("SUPPORT", "256fc6e4dbf98308ceca2b9b924b25af");
 define("UNSUPPORT", "89e3d438a10459f93076b8750c1a664f");
 
 $system = new stdClass();
-$user = new User();
-$candidate = new Candidate();
 
 // GRAB DATA PASSED TROUGHT $_POST
 
+// PAGE REQUEST
+
 if (preg_match("/^[0-9A-Z]{32}\$/i", $_REQUEST["action"])) {
 	$system->action = $_REQUEST["action"]; 
-}
-
-if ($_REQUEST["candidate_id"]) { 
-	$candidate->id($_REQUEST["candidate_id"]);
 }
 
 if ($_REQUEST["filter"]) { 
@@ -39,16 +35,24 @@ if (preg_match("/^[0-9]+\$/", $_REQUEST["start"])) {
 	$system->start = 0;
 }
 
-if ($_REQUEST["token"]) { 
-	$user->token($_REQUEST["token"]);
+// CANDIDATE REQUEST
+
+if ($_REQUEST["candidate_id"]) { 
+	$system->candidate_id = $_REQUEST["candidate_id"];
 }
 
-if ($_REQUEST["user"]) { 
-	$user->data($_REQUEST["user"]);
+// USER REQUEST
+
+if ($_REQUEST["user_token"]) { 
+	$system->user_token = $_REQUEST["user_token"];
+}
+
+if ($_REQUEST["user_data"]) { 
+	$system->user_data = $_REQUEST["user_data"];
 }
 
 if ($_REQUEST["user_id"]) { 
-	$user->id($_REQUEST["user_id"]);
+	$system->user_id = $_REQUEST["user_id"];
 }
 
 // SWITCH ACTIONS
@@ -83,40 +87,20 @@ switch ($system->action) {
 		$system->return->start = $system->start;
 		
 		break;
-	case CHECK_USER:
-	
-		if ($user->validate()) {
-			
-			if ($user->exist()) {
-				$user->update();
-				$system->return->action = "Update";
-			} else {
-				$user->create();
-				$system->return->action = "Create";
-			}
-
-			$system->return->user		= $user;
-			$system->return->sucess 	= true;
-			$system->return->mensage 	= "User validated.";
-			
-		} else {
-
-			$system->return->sucess  = false;
-			$system->return->mensage = "User data or/and token error.";
-
-		}
-			
-		break;
 	
 	case SUPPORT:
 		
 		$system->return->action = "Support";
 		
-		if ($user->exist($user->id)) {
+		$user = new User(null,null,null);
+		
+		if ($user->exist($system->user_id)) {
 			
-			if (/*$candidate->exist()*/1 == 1) {
+			$candidate = new Candidate();
+			
+			if (/*$candidate->exist($system->candidate_id)*/1 == 1) {
 				
-				//$candidate->support($user->id);
+				//$candidate->support($system->user_id);
 				$system->return->candidate_id = $candidate->id();
 				$system->return->sucess  = true;
 				$system->return->mensage = "Candidate supported.";
@@ -141,9 +125,13 @@ switch ($system->action) {
 	
 		$system->return->action = "Unsupport";
 		
-		if ($user->exist($user->id)) {
+		$user = new User(null,null,null);
+		
+		if ($user->exist($system->user_id)) {
 			
-			if (/*$candidate->exist()*/1 == 1) {
+			$candidate = new Candidate();
+			
+			if (/*$candidate->exist($system->candidate_id)*/1 == 1) {
 				
 				$system->return->support_id   = $candidate->unsupport($user->id);
 				$system->return->candidate_id = $candidate->id();
