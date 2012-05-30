@@ -2,10 +2,10 @@
 				<img src="images/logo-agora-footer.png" alt="Ágora" class="footer__logo" />
 				<div class="footer__column">
 					<ul class="footer__links">
-						<li class="footer__links__item"><a href="" class="footer__links__item__link">Sobre</a></li>•
-						<li class="footer__links__item"><a href="" class="footer__links__item__link">Política de Privacidade</a></li>•
-						<li class="footer__links__item"><a href="" class="footer__links__item__link">Termos de uso</a></li>•
-						<li class="footer__links__item"><a href="" class="footer__links__item__link">Contato</a></li>
+						<li class="footer__links__item"><a href="/sobre" class="footer__links__item__link">Sobre</a></li>•
+						<li class="footer__links__item"><a href="/privacidade" class="footer__links__item__link">Política de Privacidade</a></li>•
+						<li class="footer__links__item"><a href="/termos" class="footer__links__item__link">Termos de uso</a></li>•
+						<li class="footer__links__item"><a href="mailto:cope@agora.vc" class="footer__links__item__link">Contato</a></li>
 					</ul>
 					<p class="footer__copyright">© Ágora 2012. Alguns direitos reservados.</p>
 				</div>
