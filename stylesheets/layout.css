@@ -51,6 +51,7 @@ body {
 	margin:35px 0 20px;
 	position:relative;
 	overflow:auto;
+	min-height:950px;
 }
 	.main__nav {
 		border-color:#b6b3b3;
