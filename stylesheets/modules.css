@@ -57,7 +57,7 @@
 		height:34px;
 }
 .citynav__setmycity.is-normal {
-		background:url('../images/icon-setmycity.png') no-repeat;	
+		background:url('../images/icon-setmycity.png') no-repeat;
 }
 .citynav__setmycity.is-normal:hover {
 		background:url('../images/icon-setmycity-hover.png') no-repeat;	
@@ -67,6 +67,9 @@
 }
 .citynav__setmycity.is-active:hover {
 		background:url('../images/icon-setmycity.png') no-repeat;	
+}
+.citynav__setmycity.is-loading {
+		background:url('../images/loader-city.gif') no-repeat;
 }
 .fbconnect {
     background: none repeat scroll 0 0 #3B5998;
