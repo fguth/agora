@@ -522,7 +522,7 @@
 }
 .fbcomments {
     padding: 0 40px 20px;
-		min-height:200px;
+		min-height:300px;
 }
 
 .candidateinfo {
@@ -641,7 +641,7 @@
 	margin:0 0 0 5px;
 }
 .footer__links {
-	margin:10px 0 0 0;
+	margin:11px 0 0 0;
 	color:#fff;
 	font-size:12px;
 	text-shadow:0 1px 1px #173a49;
