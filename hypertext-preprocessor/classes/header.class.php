@@ -57,10 +57,10 @@ class Header {
 				
 				if($this->user && $this->user->info->hometown) {
 					$this->city				 = $this->user->info->hometown;
-					$this->title 			 = $this->user->info->city_name . " - Ágora Eleições 2012";
-					$this->config->path 	 = strtolower($this->user->info->state_sa) . "/" . $this->user->info->city_url;
 					$this->location  		 = $this->user->info->city_name . ", " . $this->user->info->state_sa;
-					$this->address 			 = "http://" . $this->config->host . "/" . $this->config->path;
+					$this->config->path 	 = $this->page;
+					$this->address 			 = "http://" . $this->config->host . "/" . $this->page;
+					
 				} else {				
 					// current location
 					$currentLocation = new CurrentLocation();
