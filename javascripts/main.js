@@ -456,7 +456,6 @@
 				page.elements.$hometown.attr('href','http://' + document.location.host);
 				page.elements.$star.removeClass('is-active');
 				page.elements.$star.addClass('is-normal');
-				
 			}
 
 		/**
@@ -465,6 +464,10 @@
 		 */
 
 		page.hometown = function(e) {
+			page.elements.$star.removeClass('is-active');
+			page.elements.$star.removeClass('is-normal');
+			page.elements.$star.addClass('is-loading');
+			
 			e.preventDefault();
 			$.ajax({
 				data: {
@@ -488,16 +491,9 @@
 			 */
 
 			page.hometown.success = function(response) {
-				
 				page.elements.$hometown.attr('href',document.location);
-				
-				if(page.elements.$star.hasClass('is-active')) { 
-					page.elements.$star.removeClass('is-active');
-					page.elements.$star.addClass('is-normal');
-				} else { 
-					page.elements.$star.addClass('is-active');
-					page.elements.$star.removeClass('is-normal');
-				}
+				page.elements.$star.removeClass('is-loading');
+				page.elements.$star.addClass('is-active');
 			}
 			
 		/**

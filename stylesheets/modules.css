@@ -69,7 +69,7 @@
 		background:url('../images/icon-setmycity.png') no-repeat;	
 }
 .citynav__setmycity.is-loading {
-		background:url('../images/loader-city.gif') no-repeat;
+		background:url("http://local.agora.vc/stylesheets/../images/loader-city.gif") no-repeat 0px 1px;
 }
 .fbconnect {
     background: none repeat scroll 0 0 #3B5998;

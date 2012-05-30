@@ -46,3 +46,19 @@ function sef($name) {
 	
 	return $name;
 }
+
+/**
+ * VERIFY IF HAVE A VALUE
+ * 
+ * @param all $value
+ * 
+ * @return $value or null if emppty
+ * 
+ * @example
+ * value("example") will output "example" 
+ * value("") will output "null" 
+ */
+
+function value($value) {
+	return $value ? $value: 'null';
+}

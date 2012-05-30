@@ -47,12 +47,41 @@ class Header {
 		// verify url to set the correct tags
 		if ($this->config->parameters) {
 			// set location or/and candidate
+			$this->page			= $this->config->parameters[0];
 			$this->state		= $this->config->parameters[0];
 			$this->city			= $this->config->parameters[1];
 			$this->post			= $this->config->parameters[2];
 			$this->candidate	= $this->config->parameters[3];
 			
-			if ($this->state && $this->city && !$this->post && !$this->candidate) {
+			if ($this->page && !$this->city && !$this->post && !$this->candidate) {
+				
+				if($this->user && $this->user->info->hometown) {
+					$this->city				 = $this->user->info->hometown;
+					$this->title 			 = $this->user->info->city_name . " - Ágora Eleições 2012";
+					$this->config->path 	 = strtolower($this->user->info->state_sa) . "/" . $this->user->info->city_url;
+					$this->location  		 = $this->user->info->city_name . ", " . $this->user->info->state_sa;
+					$this->address 			 = "http://" . $this->config->host . "/" . $this->config->path;
+				} else {				
+					// current location
+					$currentLocation = new CurrentLocation();
+
+					if ($currentLocation->status) {
+						// set current location or/and candidate
+						$this->state		= $currentLocation->state;
+						$this->city			= $currentLocation->city;
+
+						// url - current location
+						$location = $this->validate("location");
+						if($location) {
+							$this->city			 	 = $location->id;
+							$this->config->path 	 = $this->page;
+							$this->location  		 = $location->name . ", " . $location->state_sa;
+							$this->address 			 = "http://" . $this->config->host . "/" . $this->page;
+						}
+					}
+				}
+				
+			} else if ($this->state && $this->city && !$this->post && !$this->candidate) {
 				// url - has state/city
 				$city = $this->validate("city");
 				
@@ -104,7 +133,6 @@ class Header {
 					}
 				}
 			}
-			
 		}
 	}
 	
