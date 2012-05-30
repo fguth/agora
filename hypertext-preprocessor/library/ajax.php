@@ -67,24 +67,30 @@ if ($_REQUEST["city_id"]) {
 switch ($system->action) {
 	// GET CANDIDATES INFO
 	case CANDIDATES_LIST:
-		// SELECT EVERY-FUCKING-THING
-		$query = "SELECT * FROM candidates_data";
-		
-		// NARROW THE SEARCH
-		if ($system->filter) {
-			// IF THE FILTER IS ONLY NUMBERS WE'RE ONLY NEED TO FILTER BY THE CANDIDATE NUMBER
-			if (preg_match("/^[0-9]+\$/", $system->filter)) {
-				$query .= " WHERE number LIKE '" . $system->filter . "%'";
-			} else {
-				$query .= " WHERE name LIKE '%" . $system->filter . "%' OR party_acronym = '" . $system->filter . "' OR party_name LIKE '%" . $system->filter . "%'";
+		if ($system->user_id) {
+			// IN THE PRESENCE OF A USER ID WE'RE GOING TO USE A MAGICAL PROCEDURE TO GRAB THE DATA 
+			// THIS PROCEDURE DELIVER THE SAME DATA OF THE ELSE QUERY PLUS A COLUMN FLAGGIN IF THE user_id ALREADY SUPPORTED THE CANDIDATE OR NOT
+			$candidates = db("CALL user_supported_candidates(1, " . ($system->filter ? "'" . $system->filter . "'" : "NULL") . ", " . $system->start . ", " . $system->limit . ")");
+		} else {
+			// SELECT EVERY-FUCKING-THING
+			$query = "SELECT * FROM candidates_data";
+			
+			// NARROW THE SEARCH
+			if ($system->filter) {
+				// IF THE FILTER IS ONLY NUMBERS WE'RE ONLY NEED TO FILTER BY THE CANDIDATE NUMBER
+				if (preg_match("/^[0-9]+\$/", $system->filter)) {
+					$query .= " WHERE number LIKE '" . $system->filter . "%'";
+				} else {
+					$query .= " WHERE name LIKE '%" . $system->filter . "%' OR party_acronym = '" . $system->filter . "' OR party_name LIKE '%" . $system->filter . "%'";
+				}
 			}
+			
+			// MOST SUPPORTED CANDIDATES FIRST, PLEASE
+			$query .= " ORDER BY supports DESC, name ASC LIMIT " . $system->start . ", " . $system->limit;
+			
+			// RUN THE QUERY
+			$candidates = db($query);
 		}
-		
-		// MOST SUPPORTED CANDIDATES FIRST, PLEASE
-		$query .= " ORDER BY supports DESC, name ASC LIMIT " . $system->start . ", " . $system->limit;
-		
-		// RUN THE QUERY
-		$candidates = db($query);
 		
 		// DONE, POPULATE THE BUFFER
 		$system->return->sucess = true;
