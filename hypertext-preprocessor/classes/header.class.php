@@ -17,6 +17,7 @@ class Header {
 	
 	public $state;
 	public $city;
+	public $city_id;
 	public $post;
 	public $candidate;
 	
@@ -56,6 +57,7 @@ class Header {
 				$city = $this->validate("city");
 				
 				if($city) {
+					$this->city			= $city->id;
 					$this->title 		= $city->name . " - Ágora Eleições 2012";
 					$this->location  	= $city->name . ', ' . $city->state_sa;
 					$this->address 		= "http://" . $this->config->host . $this->config->path;
@@ -66,6 +68,7 @@ class Header {
 				$this->candidate = $this->validate("candidate");
 				
 				if($this->candidate) {
+					$this->city			= $this->candidate->city_id;
 					$this->title 		= $this->candidate->name . " - Ágora Eleições 2012";
 					$this->desc 		= $this->candidate->name . " está concorrendo para o cargo de " . $this->candidate->post_name . " da cidade de " . $this->candidate->city_name . ".";
 					$this->type 		= APP_NAME . ":" . APP_CANDIDATE_OBJECT;
@@ -76,6 +79,7 @@ class Header {
 			
 		} else {
 			if($this->user && $this->user->info->hometown) {
+				$this->city				 = $this->user->info->hometown;
 				$this->title 			 = $this->user->info->city_name . " - Ágora Eleições 2012";
 				$this->config->path 	 = strtolower($this->user->info->state_sa) . "/" . $this->user->info->city_url;
 				$this->location  		 = $this->user->info->city_name . ", " . $this->user->info->state_sa;
@@ -92,6 +96,7 @@ class Header {
 					// url - current location
 					$location = $this->validate("location");
 					if($location) {
+						$this->city			 	 = $location->id;
 						$this->title 			 = $location->name . " - Ágora Eleições 2012";
 						$this->config->path 	 = strtolower($location->state_sa) . "/" . $location->url;
 						$this->location  		 = $location->name . ", " . $location->state_sa;
@@ -120,7 +125,7 @@ class Header {
 		$html .= 		'<img src="images/icon-gotomycity.png" alt="Minha cidade" />';
 		$html .= 	'</a>';
 		$html .= 	'<input type="text" name="cityname" class="citynav__cityname" value="' . $this->location . '" />';
-		$html .= 	'<a href="javascript:void(0)" title="Voto aqui" class="citynav__setmycity tooltip ' . $isHometown . '"></a>';
+		$html .= 	'<a href="" id="' . $this->city . '" title="Voto aqui" class="citynav__setmycity tooltip ' . $isHometown . '"></a>';
 		$html .= '</form>';
 		
 		echo $html;
@@ -142,7 +147,7 @@ class Header {
 		$html .= 		'<p class="userinfo__name">' . $name .'</p>';
 		$html .= 		'<a href="javascript:void(0);" class="userinfo__logout">Sair</a>';
 		$html .= 	'</div>';
-		$html .= 	'<img src="' . $picture .'" alt="' . $name .'" class="userinfo__photo" />';
+		$html .= 	'<img src="' . $picture .'" alt="" class="userinfo__photo" />';
 		$html .= '</div>';
 		
 		echo $html;
@@ -186,15 +191,15 @@ class Header {
 	private function validate($type) {
 		switch($type) {
 			case "city" :
-			 	$data = db("SELECT name,state_sa FROM cities_data WHERE url = '" . $this->city . "' AND state_sa = '" . $this->state . "'");
+			 	$data = db("SELECT id,name,state_sa,url FROM cities_data WHERE url = '" . $this->city . "' AND state_sa = '" . $this->state . "'");
 				return count($data) ? $data[0] : 0; 
 			break;
 			case "candidate" : 
-				$data = db("SELECT name,post_name,city_name,state_sa FROM candidates_data WHERE state_sa = '" . $this->state ."' AND city_url = '" . $this->city ."' AND post_name = '" . $this->post ."' AND url = '" . $this->candidate ."'");
+				$data = db("SELECT name,post_name,city_name,city_url,state_sa FROM candidates_data WHERE state_sa = '" . $this->state ."' AND city_url = '" . $this->city ."' AND post_name = '" . $this->post ."' AND url = '" . $this->candidate ."'");
 				return count($data) ? $data[0] : 0; 
 			break;
 			case "location" :
-				$data = db("SELECT name,state_sa,url FROM cities_data WHERE name = '" . $this->city . "' AND state_name = '" . $this->state . "'");
+				$data = db("SELECT id,name,state_sa,url FROM cities_data WHERE name = '" . $this->city . "' AND state_name = '" . $this->state . "'");
 				return count($data) ? $data[0] : 0;
 			break; 
 		}	

@@ -4,6 +4,7 @@ require("functions.php");
 require("../classes/user.class.php");
 require("../classes/candidate.class.php");
 
+define("SET_HOMETOWN", "dc82dd58115798afdb98d8ea2efefbc3");
 define("CANDIDATES_LIST", "75720f54472ffabfca3fcb0a08e19bd9");
 define("CHECK_USER", "8b5b422abef67a034aac2d83f07afbcd");
 define("SUPPORT", "256fc6e4dbf98308ceca2b9b924b25af");
@@ -55,6 +56,12 @@ if ($_REQUEST["user_id"]) {
 	$system->user_id = $_REQUEST["user_id"];
 }
 
+// HOME TOWN
+
+if ($_REQUEST["city_id"]) { 
+	$system->city_id = $_REQUEST["city_id"];
+}
+
 // SWITCH ACTIONS
 	
 switch ($system->action) {
@@ -92,9 +99,9 @@ switch ($system->action) {
 		
 		$system->return->action = "Support";
 		
-		$user = new User(null,null,null);
+		$user = new User($system->user_id,$system->user_token);
 		
-		if ($user->exist($system->user_id)) {
+		if ($user->exist()) {
 			
 			$candidate = new Candidate();
 			
@@ -125,9 +132,9 @@ switch ($system->action) {
 	
 		$system->return->action = "Unsupport";
 		
-		$user = new User(null,null,null);
+		$user = new User($system->user_id,$system->user_token);
 		
-		if ($user->exist($system->user_id)) {
+		if ($user->exist()) {
 			
 			$candidate = new Candidate();
 			
@@ -150,6 +157,23 @@ switch ($system->action) {
 			$system->return->sucess  = false;
 			$system->return->mensage = "User validated or/and token error.";
 
+		}
+			
+	break;
+	
+	case SET_HOMETOWN:
+	
+		$system->return->action = "Hometown";
+		
+		$user = new User($system->user_id,$system->user_token);
+		
+		if ($user->exist()) {
+			$system->return->city_id = $system->city_id;
+			$user->hometown($system->city_id);
+			
+		} else {
+			$system->return->sucess  = false;
+			$system->return->mensage = "User validated or/and token error.";
 		}
 			
 	break;

@@ -76,6 +76,9 @@
 			page.support.handlers();
 			page.unsupport.handlers();
 			
+			// hometown buttons
+			page.elements.$star.bind('click',page.hometown);
+
 			// DEPOIS COLOCAR NA CONSTRUTORA DO CANDIDATES
 			// candidates listEffect
 			page.candidates.listEffect(page.elements.$header_candidates);
@@ -107,7 +110,9 @@
 			 page.elements.$tooltips			= $('.tooltip');
 			 page.elements.$candidates_list     = $('.candidateslist');
 			 page.elements.$location			= $('.citynav__cityname', '.header');
-		
+			 page.elements.$star				= $('.citynav__setmycity', '.header');
+			 page.elements.$hometown			= $('.citynav__gotomycity', '.header');
+			
 		/**
 		 * page
 		 * * URL
@@ -119,34 +124,6 @@
 			window.history.pushState(document.title,document.title,$('meta[name=path]').attr("content"));
 			
 		 }
-		
-		/**
-		 * page
-		 * * ANIMATION
-		 */
-
-		 page.animation = function() {}
-
-	 		/**
-			 * page
-			 * * ANIMATION
-			 * * * TYPES
-			 */
-
-			page.animation.supportToggle = function(candidate_id) {
-
-				var support_button   = $("#" + candidate_id + " a.support__button",".candidateslist__row");
-				var unsupport_button = $("#" + candidate_id + " a.unsupport__button",".candidateslist__row");
-
-				if(support_button.hasClass("is-hidden")) {
-					unsupport_button.addClass("is-hidden");
-					support_button.removeClass("is-hidden");
-				} else {				
-				    support_button.addClass("is-hidden");
-				    unsupport_button.removeClass("is-hidden");
-				}
-
-			}
 		
 		/**
 		 * page
@@ -228,16 +205,6 @@
 				
 		 	 }
 			 
-			 /**
-			 * page
-			 * * CANDIDATES
-			 * * * PROCESS
-			 */
-			 
-			 page.candidates.error = function() {
-				
-		 	 }
-			
 			/**
 			 * page
 			 * * SUPPORT
@@ -251,7 +218,6 @@
 				var candidate_id  = $(this).parent().attr("id");
 
 				if(page.auth.token) {
-					
 					//After support server-side process be done. Put this FP.api into page.support.process sucess data.
 					FB.api(
 						'/me/' + CONFIG.get('APP_NAME') + ':' + CONFIG.get('APP_ACTION') + '?' + CONFIG.get('APP_OBJECT') + '=' + candidate_url,
@@ -259,16 +225,10 @@
 
 						function(response) {
 
-							if (!response || response.error) {
-
-								console.log(response.error.message);
-								//REDIRECT TO ERROR PAGE
-
-							} else {
+							if (response && !response.error) {
 
 								console.log('Publish ID: ' + response.id);
 
-								//SERVER-SIDE SUPPORT PROCESS
 								$.ajax({
 									data: {
 										action			: CONFIG.get('SUPPORT'),
@@ -277,24 +237,43 @@
 										user_token		: page.auth.token
 									},
 									dataType: "json",
-									error: page.support.error,
+									error: page.error,
 									success: page.support.process,
 									type: "post",
 									url: CONFIG.get('AJAX_URL')
 								});
+
+							} else {
+								page.error();
 							}
-
-
-						 }
-					);
-					
+					});
 				} else {
 
-					FB.login(function(response) {}, {scope: CONFIG.get('PERMISSIONS').join(',')});
-
+					page.login();
 				}
 
 			 }
+				
+				/**
+				 * page
+				 * * SUPPORT
+				 * * * TOGGLE
+				 */
+				
+				page.support.toggle = function(candidate_id) {
+
+					var support_button   = $("#" + candidate_id + " a.support__button",".candidateslist__row");
+					var unsupport_button = $("#" + candidate_id + " a.unsupport__button",".candidateslist__row");
+
+					if(support_button.hasClass("is-hidden")) {
+						unsupport_button.addClass("is-hidden");
+						support_button.removeClass("is-hidden");
+					} else {				
+					    support_button.addClass("is-hidden");
+					    unsupport_button.removeClass("is-hidden");
+					}
+
+				}
 
 				/**
 				 * page
@@ -317,7 +296,7 @@
 
 				 page.support.process = function(response) {
 					
-					page.animation.supportToggle(response.candidate_id);
+					page.support.toggle(response.candidate_id);
 					
 					console.log("Support realized.");
 
@@ -328,21 +307,7 @@
 					}
 
 				 }
-
-				 /**
-				 * page
-				 * * SUPPORT
-				 * * * ERROR
-				 */
-
-				page.support.error = function(response) {
-					
-					//REDIRECT TO ERROR PAGE
-					console.log("Support error.");
-					console.log(String(response).toLowerCase());
-
-				}
-				
+	
 			/**
 			 * page
 			 * * UNSUPPORT
@@ -364,16 +329,14 @@
 							user_token		: page.auth.token
 						},
 						dataType: "json",
-						error: page.unsupport.error,
+						error: page.error,
 						success: page.unsupport.process,
 						type: "post",
 						url: CONFIG.get('AJAX_URL')
 					});
 					
 				} else {
-
-					FB.login(function(response) {}, {scope: CONFIG.get('PERMISSIONS').join(',')});
-
+					page.login();
 				}
 
 			 }
@@ -402,42 +365,26 @@
 					
 					if(response.support_id) {
 						
-						FB.api(response.support_id, 'delete', function(remove) {
-							if (!remove || remove.error) {
-							  console.log("Need to integrat with dinamic candidates supports - candidate.class.php : unsupport()");
-							  console.log(remove.error);
-
+						FB.api(response.support_id, 'delete', function(response) {
+							if (response && !response.error) {
+								page.support.toggle(response.candidate_id);
 							} else {
-							  	console.log("Unsupported");
-								page.animation.supportToggle(response.candidate_id);
+								page.error();
 							}
 						});
 						
-					} else {
-						console.log(response.error);	
+					} else {	
+						page.error();	
 					}
 					
 				 }
 
-				 /**
-				 * page
-				 * * UNSUPPORT
-				 * * * ERROR
-				 */
-
-				page.unsupport.error = function(response) {
-
-					console.log("Unsupport error.");
-					console.log(String(error).toLowerCase());
-
-				}
-				
 		/**
 		 * page
 		 * * AUTH
 		 */
 
-		 page.auth = function(response) {
+		page.auth = function(response) {
 			// set user and token id - Here we can treat the facebook status
 			if (response.status === 'connected') {
 				page.auth.id 	= response.authResponse.userID;
@@ -448,6 +395,12 @@
 			  }
 			console.log(response.status);
 		 }
+		
+		/**
+		 * page
+		 * * AUTH
+		 * * * PARAMETERS
+		 */
 		
 		page.auth.id = null;
 		page.auth.token = null;
@@ -499,9 +452,64 @@
 				page.elements.$user_name.text('');
 				page.elements.$user_picture.attr('src', 'images/loader-userphoto.gif');
 				page.elements.$user_picture.attr('alt', 'carregando');
-				page.elements.$login.removeClass('is-hidden');		
+				page.elements.$login.removeClass('is-hidden');	
+				page.elements.$hometown.attr('href','http://' + document.location.host);
+				page.elements.$star.removeClass('is-active');
+				page.elements.$star.addClass('is-normal');
+				
+			}
+
+		/**
+		 * page
+		 * * SETHOME
+		 */
+
+		page.hometown = function(e) {
+			e.preventDefault();
+			$.ajax({
+				data: {
+					action			: CONFIG.get('SET_HOMETOWN'),
+					city_id 		: page.elements.$star.attr('id'),
+					user_id			: page.auth.id,
+					user_token		: page.auth.token
+				},
+				dataType: "json",
+				error: page.error,
+				success: page.hometown.success,
+				type: "post",
+				url: CONFIG.get('AJAX_URL')
+			});
+		}	
+
+			/**
+			 * page
+			 * * SETHOME
+			 * * * SUCCESS
+			 */
+
+			page.hometown.success = function(response) {
+				
+				page.elements.$hometown.attr('href',document.location);
+				
+				if(page.elements.$star.hasClass('is-active')) { 
+					page.elements.$star.removeClass('is-active');
+					page.elements.$star.addClass('is-normal');
+				} else { 
+					page.elements.$star.addClass('is-active');
+					page.elements.$star.removeClass('is-normal');
+				}
 			}
 			
+		/**
+		 * page
+		 * * ERROR
+		 */
+		
+		page.error = function(response) {
+			console.log(response);
+			window.location.assign("http://" + window.location.hostname + "/oooops/")
+		}
+		
 		$(page);
 
 	}

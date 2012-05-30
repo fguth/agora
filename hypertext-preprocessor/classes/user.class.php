@@ -109,7 +109,7 @@ class User {
 		");
 	}
 	
-	public function exist($id = null) {
+	public function exist() {
 		if($id) {
 			return count(db("SELECT id FROM users WHERE id = " . $id)) ? true : false;
 		} else {

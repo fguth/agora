@@ -22,6 +22,8 @@ var CONFIG = (function() {
 		'CHECK_USER'	: '8b5b422abef67a034aac2d83f07afbcd',
 		'SUPPORT'		: '256fc6e4dbf98308ceca2b9b924b25af',
 		'UNSUPPORT'		: '89e3d438a10459f93076b8750c1a664f',
+		'CANDIDATES_LIST' : "75720f54472ffabfca3fcb0a08e19bd9",
+		'SET_HOMETOWN'  : 'dc82dd58115798afdb98d8ea2efefbc3',
 		'PERMISSIONS'	: ['email,user_about_me,user_birthday,user_education_history,user_hometown,user_interests,user_location,user_relationships,user_religion_politics,user_work_history,publish_actions']
 		
 	};
@@ -41,6 +43,8 @@ var CONFIG = (function() {
 		'CHECK_USER'	: '8b5b422abef67a034aac2d83f07afbcd',
 		'SUPPORT'		: '256fc6e4dbf98308ceca2b9b924b25af',
 		'UNSUPPORT'		: '89e3d438a10459f93076b8750c1a664f',
+		'CANDIDATES_LIST' : "75720f54472ffabfca3fcb0a08e19bd9",
+		'SET_HOMETOWN'  : 'dc82dd58115798afdb98d8ea2efefbc3',
 		'PERMISSIONS'	: ['email,user_about_me,user_birthday,user_education_history,user_hometown,user_interests,user_location,user_relationships,user_religion_politics,user_work_history,publish_actions']
 		
 	}
