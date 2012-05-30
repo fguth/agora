@@ -83,3 +83,9 @@ body {
 			border-radius:0 10px 10px 10px;
 			overflow:hidden;
 		}
+		
+.footer {
+	width:832px;
+	float:right;
+	padding:0 0 35px;
+}

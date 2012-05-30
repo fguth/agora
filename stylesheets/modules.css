@@ -51,15 +51,21 @@
     position: absolute;
     right: 0;
     top: 0;
+		display:block;
+		width:34px;
+		height:34px;
 }
-.citynav__setmycity .is-hover {
-    display: none;
+.citynav__setmycity.is-normal {
+		background:url('../images/icon-setmycity.png') no-repeat;	
 }
-.citynav__setmycity:hover .is-hover {
-    display: block;
+.citynav__setmycity.is-normal:hover {
+		background:url('../images/icon-setmycity-hover.png') no-repeat;	
 }
-.citynav__setmycity:hover .is-normal {
-    display: none;
+.citynav__setmycity.is-active {
+		background:url('../images/icon-setmycity-hover.png') no-repeat;	
+}
+.citynav__setmycity.is-active:hover {
+		background:url('../images/icon-setmycity.png') no-repeat;	
 }
 .fbconnect {
     background: none repeat scroll 0 0 #3B5998;
@@ -515,6 +521,7 @@
 }
 .fbcomments {
     padding: 0 40px 20px;
+		min-height:200px;
 }
 
 .candidateinfo {
@@ -619,4 +626,46 @@
 .candidateinfo__backbutton:active {
 	border-color:#c1c9d1 #dadfe3 #dadfe3;
 	box-shadow:0 1px 8px #ccd5dc inset;
+}
+
+.footer {
+	position:relative;
+}
+.footer__logo {
+	display:inline-block;
+}
+
+.footer__column {
+	display:inline-block;
+	margin:0 0 0 5px;
+}
+.footer__links {
+	margin:10px 0 0 0;
+	color:#fff;
+	font-size:12px;
+	text-shadow:0 1px 1px #173a49;
+	padding:0;
+	list-style:none;
+}
+.footer__links__item {
+	display:inline-block;
+	margin:0 5px;
+}
+.footer__links__item__link {
+	color:#fff;
+}
+.footer__links__item__link:hover {
+	text-decoration:underline;
+}
+
+.footer__copyright {
+	color:#d8dada;
+	font-size:10px;
+	text-shadow:0 1px 1px #173a49;
+	margin:3px 0 0 5px;
+}
+
+.footer__flag {
+	float:right;
+	margin:10px 0 0;
 }
