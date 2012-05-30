@@ -11,6 +11,7 @@
     display: inline-block;
     height: 34px;
     width: 36px;
+		margin:0 6px 0 0;
 }
 .citynav__gotomycity:hover {
     background: none repeat scroll 0 0 #245266;

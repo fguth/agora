@@ -48,7 +48,7 @@ body {
 }	
 	
 .main {
-	margin:35px 0;
+	margin:35px 0 20px;
 	position:relative;
 	overflow:auto;
 }
@@ -87,5 +87,5 @@ body {
 .footer {
 	width:832px;
 	float:right;
-	padding:0 0 35px;
+	padding:0 0 80px;
 }
