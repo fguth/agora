@@ -70,7 +70,7 @@ switch ($system->action) {
 		if ($system->user_id) {
 			// IN THE PRESENCE OF A USER ID WE'RE GOING TO USE A MAGICAL PROCEDURE TO GRAB THE DATA 
 			// THIS PROCEDURE DELIVER THE SAME DATA OF THE ELSE QUERY PLUS A COLUMN FLAGGIN IF THE user_id ALREADY SUPPORTED THE CANDIDATE OR NOT
-			$candidates = db("CALL user_supported_candidates(1, " . ($system->filter ? "'" . $system->filter . "'" : "NULL") . ", " . $system->start . ", " . $system->limit . ")");
+			$candidates = db("CALL user_supported_candidates(" . $system->user_id . ", " . ($system->filter ? "'" . $system->filter . "'" : "NULL") . ", " . $system->start . ", " . $system->limit . ")");
 		} else {
 			// SELECT EVERY-FUCKING-THING
 			$query = "SELECT * FROM candidates_data";
@@ -93,11 +93,11 @@ switch ($system->action) {
 		}
 		
 		// DONE, POPULATE THE BUFFER
-		$system->return->sucess = true;
+		$system->return->sucess 	= true;
 		$system->return->candidates = $candidates;
-		$system->return->filter = $system->filter;
-		$system->return->limit = $system->limit;
-		$system->return->start = $system->start;
+		$system->return->filter 	= $system->filter;
+		$system->return->limit 		= $system->limit;
+		$system->return->start 		= $system->start;
 		
 		break;
 	
