@@ -256,8 +256,4 @@
 						
 					</div>
 					
-				</div>
-				
-			</div>
-
 <?php require('hypertext-preprocessor/footer.php'); ?>

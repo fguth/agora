@@ -15,6 +15,12 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_URI} ^/(AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO)/[^/]+/(prefeito|vereador)/[^/]+/?$ [NC]
 RewriteRule .+ candidate.php [L,NC]
 
+# AGORA.VC/PRIVACIDADE
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} /privacidade
+RewriteRule .+ privacy.php [L,NC]
+
 # HANDLE SOME COMMON ERROS
 ErrorDocument 400 /error.php
 ErrorDocument 401 /error.php
