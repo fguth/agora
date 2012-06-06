@@ -161,6 +161,12 @@
 .contexttabs__item {
     position: relative;
 }
+.contexttabs__item:first-child .contexttabs__link {
+	border-radius:5px 0 0 0;
+}
+.contexttabs__item:last-child .contexttabs__link {
+	border-radius:0 0 0 5px;
+}
 .contexttabs__link {
     background: none repeat scroll 0 0 #F7F9FA;
     box-shadow: -15px 3px 4px #DADDE0 inset;
@@ -214,11 +220,14 @@
     padding: 30px 14px 20px;
 }
 .candidateslist__header {
-    background: #FFFFFF;
+    border-radius:0 5px 0 0;
     height: 110px;
     margin: 0 0 15px;
     position: relative;
     width: 822px;
+}
+.candidateslist__header:first-child .candidateslist__header__wrapper {
+	border-radius:0 5px 0 0;
 }
 .candidateslist__header__wrapper {
     background: none repeat scroll 0 0 rgba(255, 255, 255, 0.97);
@@ -250,7 +259,6 @@
     padding-bottom: 35px;
 }
 .candidateslist__item {
-    background: none repeat scroll 0 0 #FFFFFF;
     display: inline-block;
     margin: 0;
     position: relative;
