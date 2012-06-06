@@ -61,6 +61,7 @@
 										</form>
 									</div>
 								</div>
+								<div class="candidateslist__loader"></div>								
 							</dt>
 							
 							<dd class="candidateslist__item is-first-of-row">
@@ -152,6 +153,7 @@
 										</form>
 									</div>
 								</div>
+								<div class="candidateslist__loader"></div>
 							</dt>
 							
 							<dd class="candidateslist__item is-first-of-row">

@@ -273,6 +273,16 @@
 .candidateslist__item > .support {
     margin: 13px 0 0;
 }
+.candidateslist__loader {
+	width:16px;
+	height:16px;
+	position:absolute;
+	top:275px;
+	left:50%;
+	margin:0 0 0 -11px;
+	background:url('../images/loader-candidates.gif') no-repeat;
+	z-index:5;
+}
 .breadcrumb {
     display: inline-block;
     position: relative;
