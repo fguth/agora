@@ -125,8 +125,8 @@
 		 page.candidates = function() {
 		
 		 	// candidates initialize 
-			page.candidates.load(page.vars.$city,"prefeito",);
-			page.candidates.load(page.vars.$city,"vereador",);
+			page.candidates.load(page.vars.$city,"prefeito");
+			page.candidates.load(page.vars.$city,"vereador");
 			
 			// candidates listEffect
 			page.candidates.listEffect();
