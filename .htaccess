@@ -24,8 +24,8 @@ RewriteRule .+ privacy.php [L,NC]
 # AGORA.VC/TERMOS
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_URI} /termos
-RewriteRule .+ terms.php [L,NC]
+RewriteCond %{REQUEST_URI} /imprensa
+RewriteRule .+ press.php [L,NC]
 
 # AGORA.VC/SOBRE
 RewriteCond %{REQUEST_FILENAME} !-f
