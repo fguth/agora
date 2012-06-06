@@ -334,14 +334,34 @@
     box-shadow: 0 2px 4px #E1E5E7 inset;
     color: #A0A6AC;
     font-size: 14px;
-    font-weight: bold;
     height: 30px;
     padding: 2px 8px 0 32px;
-    width: 80px;
+    width: 40px;
+    outline: none;
+    word-spacing: 10px;
+    cursor: pointer;
+    -webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -ms-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    transition: all .25s ease;
 }
 .listfilter__filterfield:hover {
     border-color: #C1C5C9 #CED2D6 #CED2D6;
     box-shadow: 0 2px 4px #D5D9DB inset;
+}
+.listfilter__filterfield:focus {
+  width: 220px;
+  outline: none;
+  word-spacing: 1px;
+  color: #555;
+  border-color: #C1C5C9 #CED2D6 #CED2D6;
+  box-shadow: 0 2px 4px #D5D9DB inset;
+  -webkit-transition: all .25s ease;
+  -moz-transition: all .25s ease;
+  -ms-transition: all .25s ease;
+  -o-transition: all .25s ease;
+  transition: all .25s ease;
 }
 .listfilter__icon {
     left: 0;

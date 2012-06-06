@@ -39,20 +39,7 @@
 		 
 		 page.elements = function() {
 			
-			// tooltips
-			page.elements.$tooltips.tooltipsy({delay:0});
-			
-			// filter input animation
-			page.elements.$filterfield.focusin(function(){
-				$(this).animate({width: "160px"}, 500);
-				$(this).val() == "Filtrar" ? $(this).val("") : $(this).val();
-			});
-			
-			page.elements.$filterfield.focusout(function(){
-				$(this).animate({width: "80px"}, 500);
-				$(this).val() == "" ? $(this).val("Filtrar") : $(this).val();
-			});
-			
+	
 			// comments
 			page.elements.$comments.hide();
 			
