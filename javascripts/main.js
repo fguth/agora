@@ -27,6 +27,9 @@
 			// elements initialize
 			page.elements();
 			
+			// candidates initialize
+			page.candidates();
+			
 			// url initialize
 			page.url();
 						
@@ -34,7 +37,18 @@
 		
 		/**
 		 * page
-		 * * ELEMENTS INITIALIZE
+		 * * VARS
+		 */
+		 
+		 page.vars = function() {
+			
+		 }
+		
+			 page.vars.$city = $(".citynav__setmycity", ".header").attr("id");
+		
+		/**
+		 * page
+		 * * ELEMENTS
 		 */
 		 
 		 page.elements = function() {
@@ -65,21 +79,12 @@
 			
 			// hometown buttons
 			page.elements.$star.bind('click',page.hometown);
-
-			// DEPOIS COLOCAR NA CONSTRUTORA DO CANDIDATES
-			// candidates listEffect
-			page.candidates.listEffect(page.elements.$header_candidates);
 			
 			// login and logout buttons
 			page.elements.$login.bind('click',page.login);
 			page.elements.$logout.bind('click',page.logout);
 			
 		 }
-			
-	 		/**
-			 * page
-			 * * ELEMENTS
-			 */
 			
 			 page.elements.$login   			= $(".fbconnect",".header__login");
 			 page.elements.$logout  			= $(".userinfo__logout",".header__login");
@@ -89,17 +94,17 @@
 			 page.elements.$support				= $(".support__button",".main__content__body");
 			 page.elements.$unsupport			= $(".unsupport__button",".main__content__body");
 			 page.elements.$comments			= $(".discussion");
-			 page.elements.$header_candidates	= $('.candidateslist__header__wrapper');
+			 page.elements.$header_candidates	= $(".candidateslist__header__wrapper");
 			 page.elements.$nav					= $(".main__nav");
 			 page.elements.$nav_discussion		= $(".contexttabs__discussion");
 			 page.elements.$nav_candidates		= $(".contexttabs__candidates");
 			 page.elements.$filterfield 		= $(".listfilter__filterfield");
-			 page.elements.$tooltips			= $('.tooltip');
-			 page.elements.$candidates_list     = $('.candidateslist');
-			 page.elements.$location			= $('.citynav__cityname', '.header');
-			 page.elements.$star				= $('.citynav__setmycity', '.header');
-			 page.elements.$hometown			= $('.citynav__gotomycity', '.header');
-			
+			 page.elements.$tooltips			= $(".tooltip");
+			 page.elements.$candidates_list     = $(".candidateslist");
+			 page.elements.$location			= $(".citynav__cityname", ".header");
+			 page.elements.$star				= $(".citynav__setmycity", ".header");
+			 page.elements.$hometown			= $(".citynav__gotomycity", ".header");
+		
 		/**
 		 * page
 		 * * URL
@@ -117,15 +122,15 @@
 		 * * CANDIDATES
 		 */
 		 
-		 page.candidates = function(location) {
+		 page.candidates = function() {
 		
-		 	// candidates initialize INITIALIZE
-			console.log(location);
-		    /** 
-			 * Start cadidates load
-			 * * Need to implement
-			 */
+		 	// candidates initialize 
+			page.candidates.load(page.vars.$city,"prefeito",);
+			page.candidates.load(page.vars.$city,"vereador",);
 			
+			// candidates listEffect
+			page.candidates.listEffect();
+		    
 		 }
 
 	 		/**
@@ -134,8 +139,9 @@
 			 * * * LISTEFFECT
 			 */
 			
-			page.candidates.listEffect = function(list) {
+			page.candidates.listEffect = function() {
 				
+				var list   = page.elements.$header_candidates; 
 				var blocks = [];
 				
 				for ( i = 0; i < list.length; i++ ) {
@@ -168,8 +174,24 @@
 			 * * * LOAD
 			 */
 			 
-			 page.candidates.load = function(type,filter,scroll) {
+			 page.candidates.load = function(city,type,context) {
 				
+				$.ajax({
+					data: {
+						action  		: CONFIG.get('CANDIDATES_LIST'),
+						city_id			: city,
+						candidate_type	: type,	
+						user_id			: page.auth.id,
+						user_token		: page.auth.token
+					},
+					context: context,
+					dataType: "json",
+					error: page.error,
+					success: page.candidates.process,
+					type: "post",
+					url: CONFIG.get('AJAX_URL')
+				});
+			
 		 	 }
 			
 			 	/**
@@ -178,7 +200,7 @@
 				 * * * LOAD
 				 */
 
-				 page.candidates.load.more = function(start,limit,filter) {
+				 page.candidates.load.more = function(city,start,limit,filter) {
 
 			 	 }
 			
@@ -188,8 +210,8 @@
 			 * * * PROCESS
 			 */
 			 
-			 page.candidates.process = function() {
-				
+			 page.candidates.process = function(response) {
+				console.log(response);
 		 	 }
 			 
 			/**

@@ -42,6 +42,10 @@ if ($_REQUEST["candidate_id"]) {
 	$system->candidate_id = $_REQUEST["candidate_id"];
 }
 
+if ($_REQUEST["candidate_type"]) { 
+	$system->candidate_type = $_REQUEST["candidate_type"];
+}
+
 // USER REQUEST
 
 if ($_REQUEST["user_token"]) { 
@@ -67,7 +71,8 @@ if ($_REQUEST["city_id"]) {
 switch ($system->action) {
 	// GET CANDIDATES INFO
 	case CANDIDATES_LIST:
-		if ($system->user_id) {
+	/*
+		if ($system->user_id && $system->user_token) {
 			// IN THE PRESENCE OF A USER ID WE'RE GOING TO USE A MAGICAL PROCEDURE TO GRAB THE DATA 
 			// THIS PROCEDURE DELIVER THE SAME DATA OF THE ELSE QUERY PLUS A COLUMN FLAGGIN IF THE user_id ALREADY SUPPORTED THE CANDIDATE OR NOT
 			$candidates = db("CALL user_supported_candidates(" . $system->user_id . ", " . ($system->filter ? "'" . $system->filter . "'" : "NULL") . ", " . $system->start . ", " . $system->limit . ")");
@@ -91,7 +96,7 @@ switch ($system->action) {
 			// RUN THE QUERY
 			$candidates = db($query);
 		}
-		
+	*/	
 		// DONE, POPULATE THE BUFFER
 		$system->return->sucess 	= true;
 		$system->return->candidates = $candidates;
