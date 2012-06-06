@@ -125,8 +125,8 @@
 		 page.candidates = function() {
 		
 		 	// candidates initialize 
-			page.candidates.load(page.vars.$city,"prefeito",'.mayor');
-			page.candidates.load(page.vars.$city,"vereador",'.alderman');
+			page.candidates.load(page.vars.$city,4,'.mayor');
+			page.candidates.load(page.vars.$city,7,'.alderman');
 
 			// candidates listEffect
 			page.candidates.listEffect();
@@ -215,6 +215,7 @@
 				var candidates = response.candidates;
 				var context	   = $(String(this));
 				var output     = '';
+				console.log(candidates);
 				
 				$(candidates).each(function(key, candidate) { 
 					
