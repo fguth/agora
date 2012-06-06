@@ -19,7 +19,7 @@
 							
 								<h3 class="main__general__subtitle">Media Kit</h3>
 								
-								<p class="main__general__paragraph">Logos</p>
+								<p class="main__general__paragraph">Logos para fundos claros e escuros</p>
 								<ul>
 								  <li>Logo do Ágora para fundos claros</li>
 								  <li>Logo do Ágora para fundos escuros</li>
@@ -32,7 +32,7 @@
 								
 								<p class="main__general__paragraph">Outros</p>
 								<ul>
-								  <li>Home page do Ágora</li>
+								  <li>Foto do time</li>
 								</ul>
 								
 								<h3 class="main__general__subtitle">Mais Informações</h3>
