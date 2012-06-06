@@ -8,20 +8,37 @@
 						
 						<div class="main__general__bg">
 
-							<h2 class="main__general__title">Termos de uso</h2>
+							<h2 class="main__general__title">Imprensa</h2>
 							
 							<div class="main__general__content">
 								
-								<h3 class="main__general__subtitle">Título 1</h3>
+								<h3 class="main__general__subtitle">Sobre o Projeto</h3>
 								<p class="main__general__paragraph">
-									Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam sit amet libero id massa pulvinar feugiat. Phasellus pellentesque mi nec sem accumsan a porttitor mauris ultrices. Etiam sapien turpis, pellentesque a tincidunt nec, rhoncus a enim. Cras libero tellus, vehicula sed sagittis vel, aliquam sit amet orci. Nulla quis auctor neque. Mauris pulvinar vulputate mauris, id hendrerit leo malesuada quis. Vivamus pellentesque laoreet tempor. Nulla id quam eu nibh rhoncus pretium sit amet sit amet nisi.
+									Desenvolvido por 4 estudantes do Curso de Comunicação Digital da Unisinos, o Ágora é um projeto que tem o objetivo de  trazer para a Internet uma prática muito comum realizada nos períodos de eleições: pesquisas de opinião. O Ágora é um site desenvolvido por 4 estudantes do Curso de Comunicação Digital da Unisinos.
 								</p>
 							
-								<h3 class="main__general__subtitle">Título 2</h3>
+								<h3 class="main__general__subtitle">Media Kit</h3>
+								
+								<p class="main__general__paragraph">Logos</p>
+								<ul>
+								  <li>Logo do Ágora para fundos claros</li>
+								  <li>Logo do Ágora para fundos escuros</li>
+								</ul>
+								
+								<p class="main__general__paragraph">Telas do site</p>
+								<ul>
+								  <li>Home page do Ágora</li>
+								</ul>
+								
+								<p class="main__general__paragraph">Outros</p>
+								<ul>
+								  <li>Home page do Ágora</li>
+								</ul>
+								
+								<h3 class="main__general__subtitle">Mais Informações</h3>
 								<p class="main__general__paragraph">
-									Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam sit amet libero id massa pulvinar feugiat. Phasellus pellentesque mi nec sem accumsan a porttitor mauris ultrices. Etiam sapien turpis, pellentesque a tincidunt nec, rhoncus a enim. Cras libero tellus, vehicula sed sagittis vel, aliquam sit amet orci. Nulla quis auctor neque. Mauris pulvinar vulputate mauris, id hendrerit leo malesuada quis. Vivamus pellentesque laoreet tempor. Nulla id quam eu nibh rhoncus pretium sit amet sit amet nisi.
+								  Para saber mais sobre o projeto ou agendar entrevistas, escreva para <a href="mailto:cope@agora.vc" title="Contato">cope@agora.vc</a>.
 								</p>
-							
 							</div>
 
 						</div>
