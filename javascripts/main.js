@@ -225,7 +225,7 @@
 					console.log(key);
 					isFirst	= key % 4 == 0 ? 'is-first-of-row' : '';
 					output += '<dd class="candidateslist__item ' + isFirst + ' mayor">';
-						output += '<a href="http://development.agora.vc/' + candidate.url + '" class="candidatecard">';
+						output += '<a href="http://' + window.location.hostname + '/' + candidate.state_sa.toLowerCase() + '/' + candidate.city_url.toLowerCase() + '/' + candidate.post_name.toLowerCase() + '/' + candidate.url.toLowerCase() + '" class="candidatecard">';
 							output += '<img src="images/candidates/' + candidate.id_tse + '.jpg" alt="' + candidate.name + '" class="candidatecard__photo" />';
 							output += '<p class="candidatecard__name">' + candidate.name + '</p>';
 						output += '</a>';
