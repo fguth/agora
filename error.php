@@ -125,7 +125,7 @@
 			</div>
 			
 			<div class="fuckingfooter">
-				<p>© Ágora 2012. Alguns direitos reservados. <a href="/privacidade" class="fuckingfooterlink">Política de privacidade</a> • <a href="/termos" class="fuckingfooterlink">Termos de uso</a> • <a href="/contato" class="fuckingfooterlink">Contato</a></p>
+				<p>© Ágora 2012. Alguns direitos reservados. <a href="/privacidade" class="fuckingfooterlink">Política de privacidade</a> • <a href="/imprensa" class="fuckingfooterlink">Imprensa</a> • <a href="/contato" class="fuckingfooterlink">Contato</a></p>
 			</div>
 			
 		</div>
