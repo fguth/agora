@@ -20,6 +20,10 @@ if (preg_match("/^[0-9A-Z]{32}\$/i", $_REQUEST["action"])) {
 	$system->action = $_REQUEST["action"]; 
 }
 
+if (preg_match("/^[0-9]+\$/", $_REQUEST["city_id"])) { 
+	$system->city_id = (integer) $_REQUEST["city_id"];
+}
+
 if ($_REQUEST["filter"]) { 
 	$system->filter = $_REQUEST["filter"];
 }
@@ -28,6 +32,10 @@ if (preg_match("/^[0-9]+\$/", $_REQUEST["limit"])) {
 	$system->limit = (integer) $_REQUEST["limit"];
 } else {
 	$system->limit = 8;
+}
+
+if (preg_match("/^[0-9]+\$/", $_REQUEST["post_id"])) { 
+	$system->post_id = (integer) $_REQUEST["post_id"];
 }
 
 if (preg_match("/^[0-9]+\$/", $_REQUEST["start"])) { 
@@ -71,41 +79,16 @@ if ($_REQUEST["city_id"]) {
 switch ($system->action) {
 	// GET CANDIDATES INFO
 	case CANDIDATES_LIST:
-	/*
-		if ($system->user_id && $system->user_token) {
-			// IN THE PRESENCE OF A USER ID WE'RE GOING TO USE A MAGICAL PROCEDURE TO GRAB THE DATA 
-			// THIS PROCEDURE DELIVER THE SAME DATA OF THE ELSE QUERY PLUS A COLUMN FLAGGIN IF THE user_id ALREADY SUPPORTED THE CANDIDATE OR NOT
-			$candidates = db("CALL user_supported_candidates(" . $system->user_id . ", " . ($system->filter ? "'" . $system->filter . "'" : "NULL") . ", " . $system->start . ", " . $system->limit . ")");
-		} else {
-			// SELECT EVERY-FUCKING-THING
-			$query = "SELECT * FROM candidates_data";
-			
-			// NARROW THE SEARCH
-			if ($system->filter) {
-				// IF THE FILTER IS ONLY NUMBERS WE'RE ONLY NEED TO FILTER BY THE CANDIDATE NUMBER
-				if (preg_match("/^[0-9]+\$/", $system->filter)) {
-					$query .= " WHERE number LIKE '" . $system->filter . "%'";
-				} else {
-					$query .= " WHERE name LIKE '%" . $system->filter . "%' OR party_acronym = '" . $system->filter . "' OR party_name LIKE '%" . $system->filter . "%'";
-				}
-			}
-			
-			// MOST SUPPORTED CANDIDATES FIRST, PLEASE
-			$query .= " ORDER BY supports DESC, name ASC LIMIT " . $system->start . ", " . $system->limit;
-			
-			// RUN THE QUERY
-			$candidates = db($query);
-		}
-	*/	
+		$candidates = db("CALL user_supported_candidates(" . $system->user_id . ", " . ($system->city_id ? "'" . $system->city_id . "'" : "NULL") . ", " . ($system->post_id ? "'" . $system->post_id . "'" : "NULL") . ", " . ($system->filter ? "'" . $system->filter . "'" : "NULL") . ", " . $system->start . ", " . $system->limit . ")");
+		
 		// DONE, POPULATE THE BUFFER
-		$system->return->sucess 	= true;
+		$system->return->sucess = true;
 		$system->return->candidates = $candidates;
-		$system->return->filter 	= $system->filter;
-		$system->return->limit 		= $system->limit;
-		$system->return->start 		= $system->start;
+		$system->return->filter = $system->filter;
+		$system->return->limit = $system->limit;
+		$system->return->start = $system->start;
 		
 		break;
-	
 	case SUPPORT:
 		
 		$system->return->action = "Support";
