@@ -45,7 +45,7 @@
 					
 						<dl class="candidateslist">
 							
-							<dt class="candidateslist__header">
+							<dt class="candidateslist__header mayor">
 								<div class="candidateslist__header__wrapper">
 									<div class="candidateslist__header__content">
 										<div class="breadcrumb">
@@ -61,83 +61,10 @@
 										</form>
 									</div>
 								</div>
-								<div class="candidateslist__loader"></div>								
+																
 							</dt>
-							
-							<dd class="candidateslist__item is-first-of-row">
-								<a href="http://development.agora.vc/candidate.php" class="candidatecard">
-									<img src="#" alt="Candidate photo" class="candidatecard__photo" />
-									<p class="candidatecard__name">Candidate name</p>
-								</a>
-								<div class="support" id="123123123">
-									<div class="support__counter">
-										<span class="support__counter__number">88</span>
-									</div>
-									<a href="javascript:void(0);" class="support__button">
-										<img src="images/icon-support.png" alt="Apoiar candidato" class="support__button__icon" /><span class="support__button__text">Apoiar</span>
-									</a>
-									<a href="javascript:void(0);" class="unsupport__button is-hidden">
-										<span class="unsupport__button__text">Desfazer</span>
-									</a>
-								</div>
-							</dd>
-							
-							<dd class="candidateslist__item">
-								<a href="http://development.agora.vc/candidate.php" class="candidatecard">
-									<img src="#" alt="Candidate photo" class="candidatecard__photo" />
-									<p class="candidatecard__name">Candidate name</p>
-								</a>
-								<div class="support" id="123123123">
-									<div class="support__counter">
-										<span class="support__counter__number">88</span>
-									</div>
-									<a href="javascript:void(0);" class="support__button">
-										<img src="images/icon-support.png" alt="Apoiar candidato" class="support__button__icon" /><span class="support__button__text">Apoiar</span>
-									</a>
-									<a href="javascript:void(0);" class="unsupport__button is-hidden">
-										<span class="unsupport__button__text">Desfazer</span>
-									</a>
-								</div>
-							</dd>
-							
-							
-							<dd class="candidateslist__item">
-								<a href="http://development.agora.vc/candidate.php" class="candidatecard">
-									<img src="#" alt="Candidate photo" class="candidatecard__photo" />
-									<p class="candidatecard__name">Candidate name</p>
-								</a>
-								<div class="support" id="123123123">
-									<div class="support__counter">
-										<span class="support__counter__number">88</span>
-									</div>
-									<a href="javascript:void(0);" class="support__button">
-										<img src="images/icon-support.png" alt="Apoiar candidato" class="support__button__icon" /><span class="support__button__text">Apoiar</span>
-									</a>
-									<a href="javascript:void(0);" class="unsupport__button is-hidden">
-										<span class="unsupport__button__text">Desfazer</span>
-									</a>
-								</div>
-							</dd>
-							
-							<dd class="candidateslist__item">
-								<a href="http://development.agora.vc/candidate.php" class="candidatecard">
-									<img src="#" alt="Candidate photo" class="candidatecard__photo" />
-									<p class="candidatecard__name">Candidate name</p>
-								</a>
-								<div class="support" id="123123123">
-									<div class="support__counter">
-										<span class="support__counter__number">88</span>
-									</div>
-									<a href="javascript:void(0);" class="support__button">
-										<img src="images/icon-support.png" alt="Apoiar candidato" class="support__button__icon" /><span class="support__button__text">Apoiar</span>
-									</a>
-									<a href="javascript:void(0);" class="unsupport__button is-hidden">
-										<span class="unsupport__button__text">Desfazer</span>
-									</a>
-								</div>
-							</dd>
-
-							<dt class="candidateslist__header">
+							<dd class="candidateslist__loader mayor"></dd>
+							<dt class="candidateslist__header alderman">
 								<div class="candidateslist__header__wrapper">
 									<div class="candidateslist__header__content">
 										<div class="breadcrumb">
@@ -153,81 +80,8 @@
 										</form>
 									</div>
 								</div>
-								<div class="candidateslist__loader"></div>
 							</dt>
-							
-							<dd class="candidateslist__item is-first-of-row">
-								<a href="http://development.agora.vc/candidate.php" class="candidatecard">
-									<img src="#" alt="Candidate photo" class="candidatecard__photo" />
-									<p class="candidatecard__name">Candidate name</p>
-								</a>
-								<div class="support" id="123123123">
-									<div class="support__counter">
-										<span class="support__counter__number">88</span>
-									</div>
-									<a href="javascript:void(0);" class="support__button">
-										<img src="images/icon-support.png" alt="Apoiar candidato" class="support__button__icon" /><span class="support__button__text">Apoiar</span>
-									</a>
-									<a href="javascript:void(0);" class="unsupport__button is-hidden">
-										<span class="unsupport__button__text">Desfazer</span>
-									</a>
-								</div>
-							</dd>
-							
-							<dd class="candidateslist__item">
-								<a href="http://development.agora.vc/candidate.php" class="candidatecard">
-									<img src="#" alt="Candidate photo" class="candidatecard__photo" />
-									<p class="candidatecard__name">Candidate name</p>
-								</a>
-								<div class="support" id="123123123">
-									<div class="support__counter">
-										<span class="support__counter__number">88</span>
-									</div>
-									<a href="javascript:void(0);" class="support__button">
-										<img src="images/icon-support.png" alt="Apoiar candidato" class="support__button__icon" /><span class="support__button__text">Apoiar</span>
-									</a>
-									<a href="javascript:void(0);" class="unsupport__button is-hidden">
-										<span class="unsupport__button__text">Desfazer</span>
-									</a>
-								</div>
-							</dd>
-							
-							<dd class="candidateslist__item">
-								<a href="http://development.agora.vc/candidate.php" class="candidatecard">
-									<img src="#" alt="Candidate photo" class="candidatecard__photo" />
-									<p class="candidatecard__name">Candidate name</p>
-								</a>
-								<div class="support" id="123123123">
-									<div class="support__counter">
-										<span class="support__counter__number">88</span>
-									</div>
-									<a href="javascript:void(0);" class="support__button">
-										<img src="images/icon-support.png" alt="Apoiar candidato" class="support__button__icon" /><span class="support__button__text">Apoiar</span>
-									</a>
-									<a href="javascript:void(0);" class="unsupport__button is-hidden">
-										<span class="unsupport__button__text">Desfazer</span>
-									</a>
-								</div>
-							</dd>
-							
-							<dd class="candidateslist__item">
-								<a href="http://development.agora.vc/candidate.php" class="candidatecard">
-									<img src="#" alt="Candidate photo" class="candidatecard__photo" />
-									<p class="candidatecard__name">Candidate name</p>
-								</a>
-								<div class="support" id="123123123">
-									<div class="support__counter">
-										<span class="support__counter__number">88</span>
-									</div>
-									<a href="javascript:void(0);" class="support__button">
-										<img src="images/icon-support.png" alt="Apoiar candidato" class="support__button__icon" /><span class="support__button__text">Apoiar</span>
-									</a>
-									<a href="javascript:void(0);" class="unsupport__button is-hidden">
-										<span class="unsupport__button__text">Desfazer</span>
-									</a>
-								</div>
-							</dd>
-										
+							<dd class="candidateslist__loader alderman"></dd>									
 						</dl>
 						
 						<div class="discussion">

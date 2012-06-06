@@ -125,9 +125,9 @@
 		 page.candidates = function() {
 		
 		 	// candidates initialize 
-			page.candidates.load(page.vars.$city,"prefeito",);
-			page.candidates.load(page.vars.$city,"vereador",);
-			
+			page.candidates.load(page.vars.$city,"prefeito",'.mayor');
+			page.candidates.load(page.vars.$city,"vereador",'.alderman');
+
 			// candidates listEffect
 			page.candidates.listEffect();
 		    
@@ -211,7 +211,37 @@
 			 */
 			 
 			 page.candidates.process = function(response) {
-				console.log(response);
+				
+				var candidates = response.candidates;
+				var context	   = $(String(this));
+				var output     = '';
+				
+				$(candidates).each(function(key, candidate) { 
+					
+					isFirst	= key % 4 == 0 ? 'is-first-of-row' : '';
+					output += '<dd class="candidateslist__item ' + isFirst + ' mayor">';
+						output += '<a href="http://development.agora.vc/' + candidate.url + '" class="candidatecard">';
+							output += '<img src="candidates/' + candidate.id + '.jpg" alt="' + candidate.name + '" class="candidatecard__photo" />';
+							output += '<p class="candidatecard__name">' + candidate.name + '</p>';
+						output += '</a>';
+						output += '<div class="support" id="' + candidate.id + '">';
+							output += '<div class="support__counter">';
+								output += '<span class="support__counter__number">' + candidate.supports + '</span>';
+							output += '</div>';
+							output += '<a href="javascript:void(0);" class="support__button">';
+								output += '<img src="images/icon-support.png" alt="Apoiar candidato" class="support__button__icon" /><span class="support__button__text">Apoiar</span>';
+							output += '</a>';
+							output += '<a href="javascript:void(0);" class="unsupport__button is-hidden">';
+								output += '<span class="unsupport__button__text">Desfazer</span>';
+							output += '</a>';
+						output += '</div>';
+					output += '</dd>';
+				  	
+				});
+				
+				$('.candidateslist__loader.' + String(this)).hide();
+				$(context).after(output);
+				
 		 	 }
 			 
 			/**
