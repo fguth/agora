@@ -180,7 +180,7 @@
 					data: {
 						action  		: CONFIG.get('CANDIDATES_LIST'),
 						city_id			: city,
-						candidate_type	: type,	
+						post_id			: type,	
 						user_id			: page.auth.id,
 						user_token		: page.auth.token
 					},
@@ -215,14 +215,15 @@
 				var candidates = response.candidates;
 				var context	   = $(String(this));
 				var output     = '';
-				console.log(candidates);
+				console.log(response);
+				
 				
 				$(candidates).each(function(key, candidate) { 
-					
+					console.log(key);
 					isFirst	= key % 4 == 0 ? 'is-first-of-row' : '';
 					output += '<dd class="candidateslist__item ' + isFirst + ' mayor">';
 						output += '<a href="http://development.agora.vc/' + candidate.url + '" class="candidatecard">';
-							output += '<img src="images/candidates/' + candidate.id + '.jpg" alt="' + candidate.name + '" class="candidatecard__photo" />';
+							output += '<img src="images/candidates/' + candidate.id_tse + '.jpg" alt="' + candidate.name + '" class="candidatecard__photo" />';
 							output += '<p class="candidatecard__name">' + candidate.name + '</p>';
 						output += '</a>';
 						output += '<div class="support" id="' + candidate.id + '">';
@@ -240,7 +241,7 @@
 				  	
 				});
 				
-				$('.candidateslist__loader.' + String(this)).hide();
+				$(String(this) + '__loader').hide();
 				$(context).after(output);
 				
 		 	 }

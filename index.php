@@ -63,7 +63,8 @@
 								</div>
 																
 							</dt>
-							<dd class="candidateslist__loader mayor"></dd>
+							<dd class="candidateslist__loader mayor__loader"></dd>
+							
 							<dt class="candidateslist__header alderman">
 								<div class="candidateslist__header__wrapper">
 									<div class="candidateslist__header__content">
@@ -81,7 +82,7 @@
 									</div>
 								</div>
 							</dt>
-							<dd class="candidateslist__loader alderman"></dd>									
+							<dd class="candidateslist__loader alderman__loader"></dd>									
 						</dl>
 						
 						<div class="discussion">

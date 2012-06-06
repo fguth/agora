@@ -50,10 +50,6 @@ if ($_REQUEST["candidate_id"]) {
 	$system->candidate_id = $_REQUEST["candidate_id"];
 }
 
-if ($_REQUEST["candidate_type"]) { 
-	$system->candidate_type = $_REQUEST["candidate_type"];
-}
-
 // USER REQUEST
 
 if ($_REQUEST["user_token"]) { 
