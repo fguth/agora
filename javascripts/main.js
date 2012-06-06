@@ -221,7 +221,7 @@
 					isFirst	= key % 4 == 0 ? 'is-first-of-row' : '';
 					output += '<dd class="candidateslist__item ' + isFirst + ' mayor">';
 						output += '<a href="http://development.agora.vc/' + candidate.url + '" class="candidatecard">';
-							output += '<img src="candidates/' + candidate.id + '.jpg" alt="' + candidate.name + '" class="candidatecard__photo" />';
+							output += '<img src="images/candidates/' + candidate.id + '.jpg" alt="' + candidate.name + '" class="candidatecard__photo" />';
 							output += '<p class="candidatecard__name">' + candidate.name + '</p>';
 						output += '</a>';
 						output += '<div class="support" id="' + candidate.id + '">';
