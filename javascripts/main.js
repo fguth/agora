@@ -53,6 +53,9 @@
 		 
 		 page.elements = function() {
 			
+
+			// tooltips
+      page.elements.$tooltips.tooltipsy({delay:0});
 	
 			// comments
 			page.elements.$comments.hide();
