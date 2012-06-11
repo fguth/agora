@@ -9,6 +9,7 @@ define("DB_NAME", "db_agora");
 define("APP_ACTION", "apoiar");
 define("APP_CANDIDATE_OBJECT", "candidato");
 define("APP_PROJECT_OBJECT", "projeto");
+define("ELLECTION_YEAR", "2012");
 
 if (IS_LOCAL) {
 	define("DB_HOST", "localhost");
