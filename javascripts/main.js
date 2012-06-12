@@ -22,13 +22,10 @@
 			  xfbml      : CONFIG.get('XFBML')
 			});
 			
-			FB.Event.subscribe('auth.statusChange', page.auth);
+			FB.getLoginStatus(page.auth);
 			
 			// elements initialize
 			page.elements();
-			
-			// candidates initialize
-			page.candidates();
 			
 			// url initialize
 			page.url();
@@ -70,7 +67,6 @@
 			});
 			
 			page.elements.$nav_candidates.click(function(){
-				console.log(true);
 				page.elements.$candidates_list.show();
 				page.elements.$candidates_info.show();
 				page.elements.$comments.hide();
@@ -78,9 +74,6 @@
 				page.elements.$nav_discussion.removeClass('is-active');
 			});
 			
-			// support buttons
-			page.support.handlers();
-			page.unsupport.handlers();
 			
 			// hometown buttons
 			page.elements.$star.bind('click',page.hometown);
@@ -96,8 +89,6 @@
 			 page.elements.$user_info  			= $(".userinfo",".header__login");
 			 page.elements.$user_name  	  		= $(".userinfo__name",".header__login");
 			 page.elements.$user_picture 		= $(".userinfo__photo",".header__login");
-			 page.elements.$support				= $(".support__button",".main__content__body");
-			 page.elements.$unsupport			= $(".unsupport__button",".main__content__body");
 			 page.elements.$comments			= $(".discussion");
 			 page.elements.$header_candidates	= $(".candidateslist__header__wrapper");
 			 page.elements.$nav					= $(".main__nav");
@@ -131,8 +122,8 @@
 		 page.candidates = function() {
 		
 		 	// candidates initialize 
-			page.candidates.load(page.vars.$city,4,'.mayor');
-			page.candidates.load(page.vars.$city,7,'.alderman');
+			page.candidates.load(page.vars.$city,4,'mayor');
+			page.candidates.load(page.vars.$city,7,'alderman');
 
 			// candidates listEffect
 			page.candidates.listEffect();
@@ -180,15 +171,20 @@
 			 * * * LOAD
 			 */
 			 
-			 page.candidates.load = function(city,type,context) {
-				
+			 page.candidates.load = function(city,type,context,start,filter) {
+
+			 	console.log(page.auth.id);
+			 	console.log(page.auth.token);
+
 				$.ajax({
 					data: {
 						action  		: CONFIG.get('CANDIDATES_LIST'),
 						city_id			: city,
 						post_id			: type,	
 						user_id			: page.auth.id,
-						user_token		: page.auth.token
+						user_token		: page.auth.token,
+						start			: start,
+						filter 			: filter
 					},
 					context: context,
 					dataType: "json",
@@ -197,18 +193,32 @@
 					type: "post",
 					url: CONFIG.get('AJAX_URL')
 				});
-			
 		 	 }
 			
-			 	/**
-				 * page
-				 * * CANDIDATES
-				 * * * LOAD
-				 */
+		 	/**
+			 * page
+			 * * CANDIDATES
+			 * * * MORE
+			 */
 
-				 page.candidates.load.more = function(city,start,limit,filter) {
+			 page.candidates.more = function(e) {
+				
+				var post_type   = $('a', this).attr('class');
+				var post_id 	= $('a', this).attr('id');
+				var count   	= $('.candidateslist__item.' + post_type).length;
+				var loading 	= '<dd class="loading__candidateslist__item ' + post_type + '">Carregando</dd>';
 
-			 	 }
+				$('.more__candidateslist__item .' + post_type).fadeOut(500, function(){
+					
+					$('.more__candidateslist__item .' + post_type).remove();
+					
+					$('.' + post_type + ':last').after(loading).fadeIn(500, function(){
+						page.candidates.load(page.vars.$city,post_id,post_type,count);
+					});
+
+				});
+
+		 	 }
 			
 	 		/**
 			 * page
@@ -219,228 +229,84 @@
 			 page.candidates.process = function(response) {
 				
 				var candidates = response.candidates;
-				var context	   = $(String(this));
+				var post_id	   = response.post_id;
+				var post_type  = String(this);
+				var context	   = $('.' + post_type);
 				var output     = '';
+				var more_btn   = '.more__candidateslist__item.' + post_type;
+				var more_loader = '.loading__candidateslist__item.' + post_type;
+				var loader 	   = '.' + post_type + '__loader';
+				var last       = '.' + post_type + ':last';
+
 				console.log(response);
 				
+				$(more_loader).fadeOut(500,function(){ $(this).remove(); })
 				
+				var support     = '<a href="javascript:void(0);" class="support__button">';
+				support        += 	'<img src="images/icon-support.png" alt="Apoiar candidato" class="support__button__icon" /><span class="support__button__text">Apoiar</span>';
+				support        += '</a>';
+
+				var unsupport   = '<a href="javascript:void(0);" class="unsupport__button">';
+				unsupport  	   +=   '<span class="unsupport__button__text">Desfazer</span>';
+				unsupport      += '</a>';
+
+				var more        = '<dd class="more__candidateslist__item ' + post_type + '"><a id="' + post_id +'" href="javascript:void(0);" class="' + post_type + '">Carregar mais.</a></dd>';
+
 				$(candidates).each(function(key, candidate) { 
-					console.log(key);
-					isFirst	= key % 4 == 0 ? 'is-first-of-row' : '';
-					output += '<dd class="candidateslist__item ' + isFirst + ' mayor">';
-						output += '<a href="http://' + window.location.hostname + '/' + candidate.state_sa.toLowerCase() + '/' + candidate.city_url.toLowerCase() + '/' + candidate.post_name.toLowerCase() + '/' + candidate.url.toLowerCase() + '" class="candidatecard">';
-							output += '<img src="images/candidates/' + candidate.id_tse + '.jpg" alt="' + candidate.name + '" class="candidatecard__photo" />';
-							output += '<p class="candidatecard__name">' + candidate.name + '</p>';
-						output += '</a>';
-						output += '<div class="support" id="' + candidate.id + '">';
-							output += '<div class="support__counter">';
-								output += '<span class="support__counter__number">' + candidate.supports + '</span>';
-							output += '</div>';
-							output += '<a href="javascript:void(0);" class="support__button">';
-								output += '<img src="images/icon-support.png" alt="Apoiar candidato" class="support__button__icon" /><span class="support__button__text">Apoiar</span>';
-							output += '</a>';
-							output += '<a href="javascript:void(0);" class="unsupport__button is-hidden">';
-								output += '<span class="unsupport__button__text">Desfazer</span>';
-							output += '</a>';
-						output += '</div>';
+
+					console.log(candidate.supported);
+
+					isSupported = candidate.supported == 0 || candidate.supported == null ? support : unsupport;
+					isFirst		= key % 4 == 0 ? 'is-first-of-row' : '';
+
+					output += '<dd class="candidateslist__item ' + isFirst + ' ' + post_type + '">';
+					output += 	'<a href="http://' + window.location.hostname + '/' + candidate.state_sa.toLowerCase() + '/' + candidate.city_url.toLowerCase() + '/' + candidate.post_name.toLowerCase() + '/' + candidate.url.toLowerCase() + '" class="candidatecard">';
+					output += 		'<img src="images/candidates/' + candidate.id_tse + '.jpg" alt="' + candidate.name + '" class="candidatecard__photo" />';
+					output += 		'<p class="candidatecard__name">' + candidate.name + '</p>';
+					output += 	'</a>';
+					output += 	'<div class="support">';
+					output += 		'<div class="support__counter">';
+					output += 			'<span class="support__counter__number">' + candidate.supports + '</span>';
+					output += 		'</div>';
+					output += 		isSupported;
+					output += 	'</div>';
 					output += '</dd>';
-				  	
+
 				});
-				
-				$(String(this) + '__loader').hide();
-				$(context).after(output);
+
+				output 	   += candidates.length ? more : '';
+
+				$(loader).fadeOut(500, function(){ $(this).remove(); });
+
+				$(last).after(output);
+
+				$(more_btn).unbind("click", page.candidates.more);
+				$(more_btn).bind("click", page.candidates.more);
+
 				
 		 	 }
-			 
-			/**
-			 * page
-			 * * SUPPORT
-			 */
 
-			 page.support = function(e) {
-
-				// SUPPORT INITIALIZE
-
-				var candidate_url = $(this).parent().parent().find(".candidatecard").attr("href");
-				var candidate_id  = $(this).parent().attr("id");
-
-				if(page.auth.token) {
-					//After support server-side process be done. Put this FP.api into page.support.process sucess data.
-					FB.api(
-						'/me/' + CONFIG.get('APP_NAME') + ':' + CONFIG.get('APP_ACTION') + '?' + CONFIG.get('APP_OBJECT') + '=' + candidate_url,
-						'post',
-
-						function(response) {
-
-							if (response && !response.error) {
-
-								console.log('Publish ID: ' + response.id);
-
-								$.ajax({
-									data: {
-										action			: CONFIG.get('SUPPORT'),
-										candidate_id	: candidate_id,
-										user_id			: page.auth.id,
-										user_token		: page.auth.token
-									},
-									dataType: "json",
-									error: page.error,
-									success: page.support.process,
-									type: "post",
-									url: CONFIG.get('AJAX_URL')
-								});
-
-							} else {
-								page.error();
-							}
-					});
-				} else {
-
-					page.login();
-				}
-
-			 }
-				
-				/**
-				 * page
-				 * * SUPPORT
-				 * * * TOGGLE
-				 */
-				
-				page.support.toggle = function(candidate_id) {
-
-					var support_button   = $("#" + candidate_id + " a.support__button",".candidateslist__row");
-					var unsupport_button = $("#" + candidate_id + " a.unsupport__button",".candidateslist__row");
-
-					if(support_button.hasClass("is-hidden")) {
-						unsupport_button.addClass("is-hidden");
-						support_button.removeClass("is-hidden");
-					} else {				
-					    support_button.addClass("is-hidden");
-					    unsupport_button.removeClass("is-hidden");
-					}
-
-				}
-
-				/**
-				 * page
-				 * * SUPPORT
-				 * * * HANDLRES
-				 */
-
-				 page.support.handlers = function() {
-
-					page.elements.$support.unbind('click', page.support);
-				 	page.elements.$support.bind('click', page.support);
-
-				 }
-
-		 		/**
-				 * page
-				 * * SUPPORT
-				 * * * PROCESS
-				 */
-
-				 page.support.process = function(response) {
-					
-					page.support.toggle(response.candidate_id);
-					
-					console.log("Support realized.");
-
-					if(response.sucess) {	
-						console.log(response);
-					} else {
-						console.log(response.error);	
-					}
-
-				 }
-	
-			/**
-			 * page
-			 * * UNSUPPORT
-			 */
-
-			 page.unsupport = function(e) {
-
-				// UNSUPPORT INITIALIZE
-				var candidate_id  = $(this).parent().attr("id");
-				
-				if(page.auth.token) {
-					
-					//SERVER-SIDE UNSUPPORT PROCESS
-					$.ajax({
-						data: {
-							action			: CONFIG.get('UNSUPPORT'),
-							candidate_id	: candidate_id,
-							user_id			: page.auth.id,
-							user_token		: page.auth.token
-						},
-						dataType: "json",
-						error: page.error,
-						success: page.unsupport.process,
-						type: "post",
-						url: CONFIG.get('AJAX_URL')
-					});
-					
-				} else {
-					page.login();
-				}
-
-			 }
-
-				/**
-				 * page
-				 * * UNSUPPORT
-				 * * * HANDLRES
-				 */
-
-				 page.unsupport.handlers = function() {
-					
-					//REDIRECT TO ERROR PAGE
-					page.elements.$unsupport.unbind('click', page.unsupport);
-				 	page.elements.$unsupport.bind('click', page.unsupport);
-
-				 }
-
-		 		/**
-				 * page
-				 * * UNSUPPORT
-				 * * * PROCESS
-				 */
-
-				 page.unsupport.process = function(response) {
-					
-					if(response.support_id) {
-						
-						FB.api(response.support_id, 'delete', function(response) {
-							if (response && !response.error) {
-								page.support.toggle(response.candidate_id);
-							} else {
-								page.error();
-							}
-						});
-						
-					} else {	
-						page.error();	
-					}
-					
-				 }
-
-		/**
+		/* *
 		 * page
 		 * * AUTH
 		 */
 
 		page.auth = function(response) {
-			// set user and token id - Here we can treat the facebook status
-			if (response.status === 'connected') {
-				page.auth.id 	= response.authResponse.userID;
-				page.auth.token = response.authResponse.accessToken;
-			  } else {
-			    page.auth.id 	= null;
-				page.auth.token = null;
-			  }
-			console.log(response.status);
+			
+
+			// set user and token id
+			page.auth.status = response.status  === 'connected' ? true : false;
+			page.auth.id 	 = page.auth.status ? response.authResponse.userID : null;
+			page.auth.token  = page.auth.status ? response.authResponse.accessToken : null;
+
+
+console.log(response.status);
+console.log(page.auth.status);
+console.log(page.auth.token);
+
+			// candidates initialize
+			page.candidates();
+
 		 }
 		
 		/**
@@ -449,8 +315,9 @@
 		 * * * PARAMETERS
 		 */
 		
-		page.auth.id = null;
-		page.auth.token = null;
+		page.auth.status = false;
+		page.auth.id 	 = null;
+		page.auth.token  = null;
 		
 		/**
 		 * page
@@ -483,6 +350,14 @@
 		
 		page.logout = function(e) {
 			e.preventDefault();
+			page.elements.$user_info.addClass('is-hidden');
+			page.elements.$user_name.text('');
+			page.elements.$user_picture.attr('src', 'images/loader-userphoto.gif');
+			page.elements.$user_picture.attr('alt', 'carregando');
+			page.elements.$login.removeClass('is-hidden');	
+			page.elements.$hometown.attr('href','http://' + document.location.host);
+			page.elements.$star.removeClass('is-active');
+			page.elements.$star.addClass('is-normal');
 			FB.logout(page.logout.success);
 			
 		}	
@@ -495,14 +370,7 @@
 	
 			page.logout.success = function(response) {
 				FB.Auth.setAuthResponse(null, 'unknown');
-				page.elements.$user_info.addClass('is-hidden');
-				page.elements.$user_name.text('');
-				page.elements.$user_picture.attr('src', 'images/loader-userphoto.gif');
-				page.elements.$user_picture.attr('alt', 'carregando');
-				page.elements.$login.removeClass('is-hidden');	
-				page.elements.$hometown.attr('href','http://' + document.location.host);
-				page.elements.$star.removeClass('is-active');
-				page.elements.$star.addClass('is-normal');
+				window.location.href(document.URL);
 			}
 
 		/**

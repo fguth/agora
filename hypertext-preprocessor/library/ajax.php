@@ -87,6 +87,8 @@ switch ($system->action) {
 		$system->return->filter = $system->filter;
 		$system->return->limit = $system->limit;
 		$system->return->start = $system->start;
+		$system->return->post_id = $system->post_id;
+		$system->return->user_id = $system->user_id;
 		
 		break;
 	case SUPPORT:
