@@ -223,7 +223,7 @@ class Header {
 				return count($data) ? $data[0] : 0; 
 			break;
 			case "candidate" : 
-				$data = db("SELECT name,post_name,city_name,city_url,state_sa FROM candidates_data WHERE state_sa = '" . $this->state ."' AND city_url = '" . $this->city ."' AND post_name = '" . $this->post ."' AND url = '" . $this->candidate ."'");
+				$data = db("SELECT LOWER(name) AS name,number,party_name,party_acronym,birth_si,supports,id_tse, post_name, city_name, state_sa FROM candidates_data WHERE state_sa = '" . $this->state ."' AND city_url = '" . $this->city ."' AND post_name = '" . $this->post ."' AND url = '" . $this->candidate ."'");
 				return count($data) ? $data[0] : 0; 
 			break;
 			case "location" :

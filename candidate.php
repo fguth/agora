@@ -37,8 +37,10 @@
 								
 								<div class="candidateslist__item">
 									<a href="http://development.agora.vc/candidate.php" class="candidatecard">
-										<img src="#" alt="Candidate photo" class="candidatecard__photo" />
-										<p class="candidatecard__name">Candidate name</p>
+										<img src="images/candidates/<?php echo ($header->candidate->id_tse);?>.jpg" alt="<?php echo ($header->candidate->name); ?>" class="candidatecard__photo" />
+										<p class="candidatecard__name">
+											<?php echo ($header->candidate->name); ?>
+										</p>
 									</a>
 									<div class="support" id="123123123">
 										<div class="support__counter">
@@ -54,35 +56,21 @@
 								</div>
 								
 								<div class="candidateinfo__main__content">
-									<h2 class="candidateinfo__candidatename">Candidate name</h2>
+									<h2 class="candidateinfo__candidatename">
+										<?php echo ($header->candidate->name); ?>
+									</h2>
 									<table class="candidateinfo__details">
 										<tr>
 											<td class="candidateinfo__details__title">Número:</td>
 											<td>47840</td>
 										</tr>
 										<tr>
-											<td class="candidateinfo__details__title">Nome completo:</td>
-											<td>Maria Lurdes de Anilda</td>
-										</tr>
-										<tr>
 											<td class="candidateinfo__details__title">Data de nascimento:</td>
 											<td>22/08/1920</td>
-										</tr>
-										<tr>
-											<td class="candidateinfo__details__title">Grau de instrução:</td>
-											<td>Pré-escola completa</td>
 										</tr>
  										<tr>
 											<td class="candidateinfo__details__title">Partido:</td>
 											<td>PCdoB - Partido Comunista do Brasil</td>
-										</tr>
-										<tr>
-											<td class="candidateinfo__details__title">Coligação:</td>
-											<td>Pela Babilônia em Chamas</td>
-										</tr>
-										<tr>
-											<td class="candidateinfo__details__title">Situação da candidatura:</td>
-											<td>Deferido</td>
 										</tr>
 									<table>
 									<a href="#" target="_blank" class="candidateinfo__externallink">Ficha do candidato no STF</a>

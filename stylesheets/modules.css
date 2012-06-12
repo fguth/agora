@@ -601,6 +601,7 @@
 	color:#224d60;
 	font-size:34px;
 	letter-spacing:-1px;
+    text-transform:capitalize;
 }
 .candidateinfo__details {
 	font-size:14px;
