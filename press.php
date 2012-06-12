@@ -93,11 +93,6 @@
 								  </li>
 								</ul>
 								
-								<p class="main__general__paragraph">Outros</p>
-								<ul>
-								  <li>Foto do time</li>
-								</ul>
-								
 								<h3 class="main__general__subtitle">Mais Informações</h3>
 								<p class="main__general__paragraph">
 								  Para saber mais sobre o projeto ou agendar entrevistas, escreva para <a href="mailto:cope@agora.vc" title="Contato">cope@agora.vc</a>.

@@ -727,7 +727,7 @@
             height: 50px;
         }
 
-.imprensalogos {
+.imprensatelas {
     position: relative;
     width: 404px;
     margin-left: 15px;
@@ -736,13 +736,13 @@
     overflow: auto;
     padding: 0;
 }
-    .imprensalogos__item {
+    .imprensatelas__item {
         float: left;
         margin-left: 10px;
         margin-bottom: 10px;
         display: block;
     }
-        .imprensalogos__item__image {
+        .imprensatelas__item__image {
             border: 1px solid #dadfe3;
             width: 126px;
             display: block;
