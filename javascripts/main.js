@@ -55,7 +55,7 @@
 			
 
 			// tooltips
-      page.elements.$tooltips.tooltipsy({delay:0});
+      		page.elements.$tooltips.tooltipsy({delay:0});
 	
 			// comments
 			page.elements.$comments.hide();
@@ -63,6 +63,7 @@
 			// tabs
 			page.elements.$nav_discussion.click(function(){
 				page.elements.$candidates_list.hide();
+				page.elements.$candidates_info.hide();
 				page.elements.$comments.show();
 				$(this).addClass('is-active');
 				page.elements.$nav_candidates.removeClass('is-active');
@@ -71,6 +72,7 @@
 			page.elements.$nav_candidates.click(function(){
 				console.log(true);
 				page.elements.$candidates_list.show();
+				page.elements.$candidates_info.show();
 				page.elements.$comments.hide();
 				$(this).addClass('is-active');
 				page.elements.$nav_discussion.removeClass('is-active');
@@ -104,6 +106,7 @@
 			 page.elements.$filterfield 		= $(".listfilter__filterfield");
 			 page.elements.$tooltips			= $(".tooltip");
 			 page.elements.$candidates_list     = $(".candidateslist");
+			 page.elements.$candidates_info		= $(".candidateinfo")
 			 page.elements.$location			= $(".citynav__cityname", ".header");
 			 page.elements.$star				= $(".citynav__setmycity", ".header");
 			 page.elements.$hometown			= $(".citynav__gotomycity", ".header");

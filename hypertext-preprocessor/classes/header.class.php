@@ -98,7 +98,7 @@ class Header {
 				
 				if($this->candidate) {
 					$this->city			= $this->candidate->city_id;
-					$this->title 		= $this->candidate->name . " - Ágora Eleições 2012";
+					$this->title 		= ucwords(strtolower($this->candidate->name)) . " - Ágora Eleições 2012";
 					$this->desc 		= $this->candidate->name . " está concorrendo para o cargo de " . $this->candidate->post_name . " da cidade de " . $this->candidate->city_name . ".";
 					$this->type 		= APP_NAME . ":" . APP_CANDIDATE_OBJECT;
 					$this->location  	= $this->candidate->city_name . ", " . $this->candidate->state_sa;
@@ -223,7 +223,7 @@ class Header {
 				return count($data) ? $data[0] : 0; 
 			break;
 			case "candidate" : 
-				$data = db("SELECT LOWER(name) AS name,number,party_name,party_acronym,birth_si,supports,id_tse, post_name, city_name, state_sa FROM candidates_data WHERE state_sa = '" . $this->state ."' AND city_url = '" . $this->city ."' AND post_name = '" . $this->post ."' AND url = '" . $this->candidate ."'");
+				$data = db("SELECT LOWER(name) AS name,number,party_name,party_acronym,birth_si,supports,id_tse,post_name,city_name,state_sa FROM candidates_data WHERE state_sa = '" . $this->state ."' AND city_url = '" . $this->city ."' AND post_name = '" . $this->post ."' AND url = '" . $this->candidate ."'");
 				return count($data) ? $data[0] : 0; 
 			break;
 			case "location" :
