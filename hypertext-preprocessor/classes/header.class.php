@@ -154,6 +154,9 @@ class Header {
 		$html .= 	'</a>';
 		$html .= 	'<input type="text" name="cityname" class="citynav__cityname" value="' . $this->location . '" />';
 		$html .= 	'<a href="" id="' . $this->city . '" title="Voto aqui" class="citynav__setmycity tooltip ' . $isHometown . '"></a>';
+		$html .=	'<ul class="citynav__searchdropdown is-hidden">';
+		$html .=		'<li class="citynav__searchdropdown__item">&nbsp;</li>';
+		$html .=	'</ul>';
 		$html .= '</form>';
 		
 		echo $html;

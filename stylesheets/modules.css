@@ -756,3 +756,24 @@
     padding: 0 40px;
     position: relative;
 }
+
+.citynav__searchdropdown {
+    position: absolute;
+    top: 45px;
+    left: 44px;
+    background: #FFFFFF;
+    border-color: #163B4A #133442 #102D39;
+    border-radius: 3px 3px 3px 3px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 3px 4px #66828E inset, 0 1px 2px #3A6679;
+    width: 410px;
+    height: 130px;
+    z-index: 987654321;
+    padding:0;
+    margin:0;
+    list-style:none;
+}
+    .citynav__searchdropdown__item {
+        padding: 8px;
+    }
