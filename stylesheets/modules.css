@@ -704,3 +704,55 @@
 	float:right;
 	margin:10px 0 0;
 }
+
+.imprensalogos {
+    position: relative;
+    width: 324px;
+    margin-left: 15px;
+    display: block;
+    list-style: none;
+    overflow: auto;
+    padding:0;
+}
+    .imprensalogos__item {
+        float: left;
+        margin-left: 10px;
+        margin-top: 10px;
+        display: block;
+    }
+        .imprensalogos__item__image {
+            border: 1px solid #dadfe3;
+            width: 150px;
+            display: block;
+            height: 50px;
+        }
+
+.imprensalogos {
+    position: relative;
+    width: 404px;
+    margin-left: 15px;
+    display: block;
+    list-style: none;
+    overflow: auto;
+    padding: 0;
+}
+    .imprensalogos__item {
+        float: left;
+        margin-left: 10px;
+        margin-bottom: 10px;
+        display: block;
+    }
+        .imprensalogos__item__image {
+            border: 1px solid #dadfe3;
+            width: 126px;
+            display: block;
+            height: 83px;
+        }
+
+.more__candidates__list__item {
+    clear: both;
+    display: block;
+    margin: 0;
+    padding: 0 40px;
+    position: relative;
+}
