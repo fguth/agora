@@ -50,6 +50,10 @@ if ($_REQUEST["candidate_id"]) {
 	$system->candidate_id = $_REQUEST["candidate_id"];
 }
 
+if ($_REQUEST["publish_id"]) { 
+	$system->publish_id = $_REQUEST["publish_id"];
+}
+
 // USER REQUEST
 
 if ($_REQUEST["user_token"]) { 
@@ -95,16 +99,18 @@ switch ($system->action) {
 			
 			$candidate = new Candidate();
 			
-			if (/*$candidate->exist($system->candidate_id)*/1 == 1) {
+			if ($candidate->exist($system->candidate_id)) {
 				
-				//$candidate->support($system->user_id);
-				$system->return->candidate_id = $candidate->id();
+				$candidate->support($system->user_id,$system->candidate_id,$system->publish_id);
+				$system->return->candidate_id = $system->candidate_id;
+				$system->return->publish_id = $system->publish_id;
 				$system->return->sucess  = true;
 				$system->return->mensage = "Candidate supported.";
 				
 			} else {
-				$system->return->sucess  = false;
-				$system->return->mensage = "Candidate doesnt exist.";
+				$system->return->sucess    = false;
+				$system->return->mensage   = "Candidate doesnt exist.";
+				$system->return->candidate = $system->candidate_id;
 			}
 
 			$system->return->user = $user;
@@ -128,10 +134,11 @@ switch ($system->action) {
 			
 			$candidate = new Candidate();
 			
-			if (/*$candidate->exist($system->candidate_id)*/1 == 1) {
+			if ($candidate->exist($system->candidate_id)) {
 				
-				$system->return->support_id   = $candidate->unsupport($user->id);
-				$system->return->candidate_id = $candidate->id();
+				$system->return->publish_id   = $candidate->unsupport($user->id,$system->candidate_id);
+				$system->return->candidate_id = $system->candidate_id;
+				$system->return->user_id = $user->id;
 				$system->return->sucess  = true;
 				$system->return->mensage = "Candidate unsupported.";
 				

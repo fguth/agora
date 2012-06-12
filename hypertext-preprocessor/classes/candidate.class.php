@@ -31,54 +31,22 @@ class Candidate {
 	}
 	
 	
-	public function support($user_id = false) {
-		
-		if ($user_id) {
-			/*db("INSERT INTO 
-						users (id,name,first_name,last_name,username,email,gender,birthday,timezone,verified,json,created_date,last_access) 
-				VALUES ('" . $this->data->id . "',
-						'" . $this->data->name . "',
-						'" . $this->data->first_name . "',
-						'" . $this->data->last_name . "',
-						'" . $this->data->username . "',
-						'" . $this->data->email . "',
-						'" . $this->data->gender . "',
-						'" . $this->data->birthday . "',
-						'" . $this->data->timezone . "',
-						'" . $this->data->verified . "',
-						'" . $this->data->json . "',
-						'" . $this->data->created_date . "',
-						'" . $this->data->last_access . "')
-			");*/
-		}
-		
+	public function support($user = false, $candidate = false, $publish_id = false) {
+		if ($user && $candidate && $publish_id) {
+			db("INSERT INTO supports (user,candidate,publish_id) VALUES (" . $user . "," . $candidate . "," . $publish_id . ")");
+		}	
 	}
 	
-	public function unsupport($user_id = false) {
-		
-		$support_id = null;
-		
-		if ($user_id) {
-			/*db("INSERT INTO 
-						users (id,name,first_name,last_name,username,email,gender,birthday,timezone,verified,json,created_date,last_access) 
-				VALUES ('" . $this->data->id . "',
-						'" . $this->data->name . "',
-						'" . $this->data->first_name . "',
-						'" . $this->data->last_name . "',
-						'" . $this->data->username . "',
-						'" . $this->data->email . "',
-						'" . $this->data->gender . "',
-						'" . $this->data->birthday . "',
-						'" . $this->data->timezone . "',
-						'" . $this->data->verified . "',
-						'" . $this->data->json . "',
-						'" . $this->data->created_date . "',
-						'" . $this->data->last_access . "')
-			");*/
-		}
-		
-		return $support_id;
-		
+	public function unsupport($user = false, $candidate = false) {
+		if ($user && $candidate) {
+			$db 		= db("SELECT publish_id FROM supports WHERE user=" . $user . " AND candidate=" . $candidate);
+			$publish_id = (int) $result[0]->publish_id;
+			
+			if($publish_id) {
+				$db = db("DELETE FROM supports WHERE publish_id=" . $publish_id);
+				return $publish_id;
+			}
+		}	
 	}
 	
 	public function exist($id = false) {
