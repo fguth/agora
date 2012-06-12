@@ -20,7 +20,7 @@ function sef(name) {
 		name = name.replace(new RegExp(search[index], "gi"), change[index]);
 	}
 	
-	name = name.replace(/[^a-z-]/g, "");
+	name = name.replace(/[^a-z-0-9]/g, "");
 	
 	return name;
 }

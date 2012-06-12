@@ -42,7 +42,7 @@ function db($query) {
 function sef($name) {
 	$name = mb_strtolower($name, "UTF-8");
 	$name = str_replace(array(" ", "à", "á", "â", "ã", "ä", "å", "ç", "è", "é", "ê", "ë", "ì", "í", "î", "ï", "ñ", "ò", "ó", "ô", "õ", "ö", "ù", "ú", "û", "ü", "ý"), array("-", "a", "a", "a", "a", "a", "a", "c", "e", "e", "e", "e", "i", "i", "i", "i", "n", "o", "o", "o", "o", "o", "u", "u", "u", "u", "y"), $name);
-	$name = preg_replace("/[^a-z-]/", "", $name);
+	$name = preg_replace("/[^a-z-0-9]/", "", $name);
 	
 	return $name;
 }
@@ -60,5 +60,5 @@ function sef($name) {
  */
 
 function value($value) {
-	return $value ? $value: 'null';
+	return $value ? $value : 'null';
 }
