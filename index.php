@@ -76,7 +76,7 @@
 											<p class="currentsupport__label">Você apoia <a href="#" class="currentsupport__candidatename">Candidate name</a></p>
 										</div>
 										<form class="listfilter">
-											<input type="text" name="filterfield" value="Filtrar" class="listfilter__filterfield" />
+											<input type="text" name="filterfield" class="listfilter__filterfield" placeholder="Filtrar por candidato ou partido..." />
 											<img src="images/icon-bloom.png" alt="Filtrar" class="listfilter__icon" />
 										</form>
 									</div>
