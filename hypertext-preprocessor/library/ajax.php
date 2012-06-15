@@ -9,6 +9,7 @@ define("CANDIDATES_LIST", "75720f54472ffabfca3fcb0a08e19bd9");
 define("CHECK_USER", "8b5b422abef67a034aac2d83f07afbcd");
 define("SUPPORT", "256fc6e4dbf98308ceca2b9b924b25af");
 define("UNSUPPORT", "89e3d438a10459f93076b8750c1a664f");
+define("SAYT_CITY", "9d86a3d362bbb5c7b2b2b54b90940904");
 
 $system = new stdClass();
 
@@ -36,6 +37,10 @@ if (preg_match("/^[0-9]+\$/", $_REQUEST["limit"])) {
 
 if (preg_match("/^[0-9]+\$/", $_REQUEST["post_id"])) { 
 	$system->post_id = (integer) $_REQUEST["post_id"];
+}
+
+if ($_REQUEST["query"]) { 
+	$system->query = $_REQUEST["query"];
 }
 
 if (preg_match("/^[0-9]+\$/", $_REQUEST["start"])) { 
@@ -124,6 +129,37 @@ switch ($system->action) {
 
 		}
 			
+		break;
+	
+	case SAYT_CITY:
+		// Remove the junk and leave only words that metters
+		$system->query = mb_ereg_replace("\W+", " ", $system->query, "i");
+		$system->query = mb_ereg_replace("[^ A-Z]", "_", $system->query, "i");
+		$system->query = mb_ereg_replace(" +", " ", $system->query, "i");
+		$system->query = trim($system->query);
+		
+		if ($system->query) {
+			// Guess what is city name and State acronym
+			$city = trim(preg_replace("/\s*\b([A-Z]{2})\b\s*/i", " ", $system->query));
+			$state = preg_replace("/.*\b([A-Z]{2})\b.*/i", "\$1", $system->query);
+			
+			$query = "SELECT id, name, url, state_id, state_name, state_sa FROM cities_data WHERE name LIKE '" . $city . "%'";
+			
+			if (preg_match("/\b([A-Z]{2})\b/i", $system->query)) {
+				$query .= " AND state_sa LIKE '" . $state . "'";
+			}
+			
+			$query .= " ORDER BY name ASC LIMIT 5";
+			
+			$system->return->sucess = true;
+			$system->return->query = str_replace("_", ".", $city);
+			$system->return->cities = db($query);
+		} else {
+			$system->return->sucess = false;
+			$system->return->mensage = "Missing query to search for";
+			$system->return->cities = array();
+		}
+		
 		break;
 	
 	case UNSUPPORT:

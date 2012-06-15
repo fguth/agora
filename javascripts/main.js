@@ -1,7 +1,7 @@
 /**
-* Developed by Evandro Eisinger & Gibran Malheiros
-* http://agora.vc
-*/
+ * Developed by Evandro Eisinger & Gibran Malheiros
+ * http://agora.vc
+ */
 
 (function($) {
 	
@@ -10,7 +10,7 @@
 		/**
 		 * page
 		 */
-		 
+		
 		var page = function() {
 			
 			// facebook initialize
@@ -29,7 +29,9 @@
 			
 			// url initialize
 			page.url();
-						
+			
+			// Location city nav inicializa
+			page.location();			
 		}
 		
 		/**
@@ -421,6 +423,119 @@ console.log(page.auth.token);
 			window.location.assign("http://" + window.location.hostname + "/oooops/")
 		}
 		
+		/**
+		 * System for the location header field, responsible for the field's behavior and for suggesting cities
+		 */
+		
+		page.location = function() {
+			page.location.original = page.location.elements.$cityname.val();
+			
+			page.location.elements.$cityname.bind("focus", page.location.focus).bind("blur", page.location.blur);
+			
+			// Listen to the key up event but don't flood the hell out of it,
+			// wait at least 1 / 8 of a second before triggering the callback
+			page.location.elements.$cityname.bind("keydown", page.location.keyOverload).bind("keyup", page.location.keyOverload);
+		}
+		
+		page.location.elements = { }
+		
+		page.location.elements.container = ".header__nav";
+		page.location.elements.$citynav = $(".citynav", page.location.container);
+		page.location.elements.$cityname = $(".citynav__cityname", page.location.container);
+		page.location.elements.$dropdown = $(".citynav__searchdropdown", page.location.container);
+		
+		page.location.interval = null;
+		page.location.memory = null;
+		page.location.original = null;
+		
+		page.location.blur = function(event) {
+			page.location.elements.$cityname.val(page.location.original);
+			page.location.elements.$dropdown.addClass("is-hidden");
+		}
+		
+		page.location.error = function(xhr, status, error) {
+			
+		}
+		
+		page.location.focus = function(event) {
+			$(this).select();
+		}
+		
+		page.location.process = function(data, status, xhr) {
+			var html;
+			
+			if (data.sucess && data.cities.length) {
+				html = "";
+				
+				$(data.cities).each(function(index) {
+					// Highlight the difference
+					this.name = this.name.replace(new RegExp("^(" + data.query + ")(.*)", "i"), "$1<strong>$2</strong>");
+					
+					html += "<li data-city-id=\"" + this.id + "\" data-city-url=\"" + this.url + "\" class=\"citynav__searchdropdown__item\">";
+					html += this.name + ", " + this.state_sa;
+					html += "</li>";
+				});
+				
+				page.location.elements.$dropdown.html(html).removeClass("is-hidden");
+			}
+		}
+		
+		page.location.key = function(event) {
+			var query = $.trim(page.location.elements.$cityname.val());
+			
+			if (page.location.memory != query && query.length > 2) {
+				page.location.memory = query;
+				
+				$.ajax({
+					data: {
+						action: CONFIG.get("SAYT_CITY"),
+						query: query
+					},
+					dataType: "json",
+					error: page.location.error,
+					success: page.location.process,
+					type: "post",
+					url: CONFIG.get("AJAX_URL")
+				});
+			}
+		}
+		
+		page.location.keyOverload = function(event) {
+			// Enter, up and down keys have urgent treatment, the other ones can wait
+			
+			window.clearTimeout(page.location.interval);
+			
+			if (event.type = "keydown" && $.inArray(event.which, [13, 27, 38, 40]) != -1) {
+				event.preventDefault();
+				
+				switch (event.which) {
+					case 13:
+						// Enter
+						
+						
+						break;
+					case 27:
+						page.location.elements.$cityname.val("");
+						page.location.elements.$dropdown.addClass("is-hidden");
+						
+						break;
+					case 38:
+						// Up
+						
+						
+						break;
+					case 40:
+						// Down
+						
+						
+						break;
+				}
+			} else {
+				page.location.interval = window.setTimeout(page.location.key, 125, event);
+			}
+		}
+		
+		// Takeoff when DOM is ready to bounce
 		$(page);
 
 	}
