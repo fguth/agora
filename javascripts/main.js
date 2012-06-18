@@ -284,7 +284,7 @@
 
 				$(candidates).each(function(key, candidate) {
 
-					$('#' + candidate.id_tse).bind("click",page.candidates.support);
+					//$('#' + candidate.id_tse).bind("click",page.candidates.support);
 				
 				});
 
@@ -303,23 +303,20 @@
 			 	e.preventDefault();
 
 			 	//LOAD
-
 			 	$(this).addClass("is-loading");
 
 				//VAR
-
 				var candidate_url = $(this).attr("href");
 				var candidate_id  = $(this).attr("id");
 				
 				
 				// SUPPORT INITIALIZE
-
 				if(page.auth.token) {
 					FB.api(
 						'/me/' + CONFIG.get('APP_NAME') + ':' + CONFIG.get('APP_ACTION') + '?' + CONFIG.get('APP_OBJECT') + '=' + candidate_url,
 						'post',
 						function(response) {
-							if (response && !response.error) {
+							if (response && !response.error && page.auth.token && page.auth.id) {
 								/*
 								$.ajax({
 									data: {
@@ -336,8 +333,10 @@
 								}); 
 
 								*/
+								page.candidates.support.process()
 								console.log(response);
 							} else {
+								page.candidates.support.process(candidate_id);
 								console.log(response);
 								//page.error();
 							}
@@ -348,7 +347,66 @@
 				}
 
 			 }
-			 
+
+	 		/**
+			 * page
+			 * * SUPPORT
+			 * * * PROCESS
+			 */
+
+			 page.candidates.support.process = function(response) {
+
+				var id = response;
+
+				if(response) {	
+					//LOAD
+					$('#' + response).unbind("click",page.candidates.support);
+					$('#' + response).bind("click",page.candidates.unsupport);
+			 		$(this).removeClass("is-loading support__button");
+			 		$(this).addClass("unsupport__button");
+				} else {
+					page.error();	
+				}
+
+			 }
+
+			/**
+			 * page
+			 * * UNSUPPORT
+			 */
+
+			 page.candidates.unsupport = function(e) {
+			 	e.preventDefault();
+
+			 	//LOAD
+			 	$(this).addClass("is-loading");
+
+				//VAR
+				var candidate_id  = $(this).attr("id");
+				
+				if(page.auth.id && page.auth.token && candidate_id) {
+					
+					//SERVER-SIDE UNSUPPORT PROCESS
+					/*$.ajax({
+						data: {
+							action			: CONFIG.get('UNSUPPORT'),
+							candidate_id	: candidate_id,
+							user_id			: page.auth.id,
+							user_token		: page.auth.token
+						},
+						dataType: "json",
+						error: page.error,
+						success: page.unsupport.process,
+						type: "post",
+						url: CONFIG.get('AJAX_URL')
+					});
+					*/
+				} else {
+					page.login();
+				}
+
+			 }
+		 
 		/* *
 		 * page
 		 * * AUTH
