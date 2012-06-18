@@ -451,6 +451,9 @@
     font-weight: bold;
     text-shadow: 0 0 1px #045608;
 }
+.support__button.is-loading {
+
+}
 .unsupport__button {
 		background:#353A3C;
     background-image: linear-gradient(bottom , #2E3234 0%, #3C4144 100%);
@@ -783,3 +786,10 @@
         margin: 4px;
         padding: 4px;
     }
+
+.more__candidates__list {
+    
+}
+.loading__candidates__list {
+
+}

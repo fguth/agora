@@ -91,7 +91,7 @@
 										href="http://divulgacand2010.tse.jus.br/divulgacand2010/jsp/abrirTelaDetalheCandidato.action?sqCand=<?php echo ($header->candidate->id_tse); ?>&sgUe=BR"
 										target="_blank"
 										class="candidateinfo__externallink">
-											Ficha do candidato no STE
+											Ficha do candidato no TSE
 									</a>
 								</div>
 								
