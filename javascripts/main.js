@@ -487,7 +487,7 @@
 			page.location.original = page.location.elements.$cityname.val();
 			
 			page.location.elements.$cityname.bind("focus", page.location.focus).bind("blur", page.location.blur);
-			page.location.elements.$dropdown.on("mouseover", "li", page.location.hover).on("mouseout", "li", page.location.hover);
+			page.location.elements.$dropdown.on("mouseover", "li", page.location.hover).on("mouseout", "li", page.location.hover).on("click", "li", page.location.click);
 			
 			// Listen to the key up event but don't flood the hell out of it,
 			// wait at least 1 / 8 of a second before triggering the callback
@@ -510,6 +510,14 @@
 			page.location.elements.$dropdown.addClass("is-hidden");
 		}
 		
+		page.location.click = function(event) {
+			var city = page.location.elements.$dropdown.children("li.citynav__searchdropdown__item__highlighted");
+
+			if (city.length) {
+				window.location.assign("http://" + CONFIG.get("HOST") + "/" + city.attr("data-state-sa").toLowerCase() + "/" + city.attr("data-city-url"));
+			}
+		}
+
 		page.location.error = function(xhr, status, error) {
 			
 		}
@@ -529,7 +537,6 @@
 
 					break;
 			}
-			console.log(event.type);
 		}
 
 		page.location.process = function(data, status, xhr) {
@@ -542,7 +549,7 @@
 					// Highlight the difference
 					this.name = this.name.replace(new RegExp("^(" + data.query + ")(.*)", "i"), "$1<strong>$2</strong>");
 					
-					html += "<li data-city-id=\"" + this.id + "\" data-city-url=\"" + this.url + "\" class=\"citynav__searchdropdown__item\">";
+					html += "<li data-city-id=\"" + this.id + "\" data-city-url=\"" + this.url + "\" data-state-sa=\"" + this.state_sa + "\" class=\"citynav__searchdropdown__item\">";
 					html += this.name + ", " + this.state_sa;
 					html += "</li>";
 				});
@@ -572,10 +579,11 @@
 		}
 		
 		page.location.keyOverload = function(event) {
+			var city;
 			var index;
 			var total;
 
-			// Enter, up and down keys have urgent treatment, the other ones can wait
+			// Enter, esc, up and down keys have urgent treatment, the other ones should wait to avoid overload and give some room to the user
 			
 			window.clearTimeout(page.location.interval);
 			
@@ -585,7 +593,12 @@
 				switch (event.which) {
 					case 13:
 						// Enter
-						
+
+						city = page.location.elements.$dropdown.children("li.citynav__searchdropdown__item__highlighted");
+
+						if (city.length) {
+							window.location.assign("http://" + CONFIG.get("HOST") + "/" + city.attr("data-state-sa").toLowerCase() + "/" + city.attr("data-city-url"));
+						}
 						
 						break;
 					case 27:
