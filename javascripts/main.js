@@ -243,26 +243,26 @@
 				console.log(response);
 				
 				$(more_loader).fadeOut(500,function(){ $(this).remove(); })
-				
-				var support     = '<a href="javascript:void(0);" class="support__button">';
-				support        += 	'<img src="images/icon-support.png" alt="Apoiar candidato" class="support__button__icon" /><span class="support__button__text">Apoiar</span>';
-				support        += '</a>';
-
-				var unsupport   = '<a href="javascript:void(0);" class="unsupport__button">';
-				unsupport  	   +=   '<span class="unsupport__button__text">Desfazer</span>';
-				unsupport      += '</a>';
 
 				var more        = '<dd class="more__candidateslist__item ' + post_type + '"><a id="' + post_id +'" href="javascript:void(0);" class="' + post_type + '">Carregar mais.</a></dd>';
 
-				$(candidates).each(function(key, candidate) { 
+				$(candidates).each(function(key, candidate) {
 
-					console.log(candidate.supported);
+					var url 		= ('http://' + window.location.hostname + '/' + candidate.state_sa + '/' + candidate.city_url + '/' + candidate.post_name + '/' + candidate.url).toLowerCase() ;
+					var id 			= candidate.id_tse;
+					var support     = '<a id="' + id + '" href="' + url + '" class="support__button">';
+					support        += 	'<img src="images/icon-support.png" alt="Apoiar candidato" class="support__button__icon" /><span class="support__button__text">Apoiar</span>';
+					support        += '</a>';
+
+					var unsupport   = '<a id="' + id + '" href="' + url + '" class="unsupport__button">';
+					unsupport  	   +=   '<span class="unsupport__button__text">Desfazer</span>';
+					unsupport      += '</a>';
 
 					isSupported = candidate.supported == 0 || candidate.supported == null ? support : unsupport;
 					isFirst		= key % 4 == 0 ? 'is-first-of-row' : '';
 
 					output += '<dd class="candidateslist__item ' + isFirst + ' ' + post_type + '">';
-					output += 	'<a href="http://' + window.location.hostname + '/' + candidate.state_sa.toLowerCase() + '/' + candidate.city_url.toLowerCase() + '/' + candidate.post_name.toLowerCase() + '/' + candidate.url.toLowerCase() + '" class="candidatecard">';
+					output += 	'<a href="' + url + '" class="candidatecard">';
 					output += 		'<img src="images/candidates/' + candidate.id_tse + '.jpg" alt="' + candidate.name + '" class="candidatecard__photo" />';
 					output += 		'<p class="candidatecard__name">' + candidate.name + '</p>';
 					output += 	'</a>';
@@ -276,18 +276,79 @@
 
 				});
 
-				output 	   += candidates.length ? more : '';
+				output += candidates.length ? more : '';
 
 				$(loader).fadeOut(500, function(){ $(this).remove(); });
 
 				$(last).after(output);
 
+				$(candidates).each(function(key, candidate) {
+
+					$('#' + candidate.id_tse).bind("click",page.candidates.support);
+				
+				});
+
 				$(more_btn).unbind("click", page.candidates.more);
 				$(more_btn).bind("click", page.candidates.more);
-
 				
 		 	 }
 
+	 		/**
+			 * page
+			 * * CANDIDATES
+			 * * * SUPPORT
+			 */
+
+			 page.candidates.support = function(e) {
+			 	e.preventDefault();
+
+			 	//LOAD
+
+			 	$(this).addClass("is-loading");
+
+				//VAR
+
+				var candidate_url = $(this).attr("href");
+				var candidate_id  = $(this).attr("id");
+				
+				
+				// SUPPORT INITIALIZE
+
+				if(page.auth.token) {
+					FB.api(
+						'/me/' + CONFIG.get('APP_NAME') + ':' + CONFIG.get('APP_ACTION') + '?' + CONFIG.get('APP_OBJECT') + '=' + candidate_url,
+						'post',
+						function(response) {
+							if (response && !response.error) {
+								/*
+								$.ajax({
+									data: {
+										action			: CONFIG.get('SUPPORT'),
+										candidate_id	: candidate_id,
+										user_id			: page.auth.id,
+										user_token		: page.auth.token
+									},
+									dataType: "json",
+									error: page.error,
+									success: page.support.process,
+									type: "post",
+									url: CONFIG.get('AJAX_URL')
+								}); 
+
+								*/
+								console.log(response);
+							} else {
+								console.log(response);
+								//page.error();
+							}
+						}
+					);
+				} else {
+					page.login();
+				}
+
+			 }
+			 
 		/* *
 		 * page
 		 * * AUTH
@@ -300,11 +361,6 @@
 			page.auth.status = response.status  === 'connected' ? true : false;
 			page.auth.id 	 = page.auth.status ? response.authResponse.userID : null;
 			page.auth.token  = page.auth.status ? response.authResponse.accessToken : null;
-
-
-console.log(response.status);
-console.log(page.auth.status);
-console.log(page.auth.token);
 
 			// candidates initialize
 			page.candidates();
