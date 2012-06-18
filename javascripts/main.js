@@ -431,6 +431,7 @@ console.log(page.auth.token);
 			page.location.original = page.location.elements.$cityname.val();
 			
 			page.location.elements.$cityname.bind("focus", page.location.focus).bind("blur", page.location.blur);
+			page.location.elements.$dropdown.on("mouseover", "li", page.location.hover).on("mouseout", "li", page.location.hover);
 			
 			// Listen to the key up event but don't flood the hell out of it,
 			// wait at least 1 / 8 of a second before triggering the callback
@@ -461,6 +462,20 @@ console.log(page.auth.token);
 			$(this).select();
 		}
 		
+		page.location.hover = function(event) {
+			switch (event.type) {
+				case "mouseover":
+					$(this).addClass("citynav__searchdropdown__item__highlighted");
+
+					break;
+				case "mouseout":
+					page.location.elements.$dropdown.children("li").removeClass("citynav__searchdropdown__item__highlighted");
+
+					break;
+			}
+			console.log(event.type);
+		}
+
 		page.location.process = function(data, status, xhr) {
 			var html;
 			
@@ -501,11 +516,14 @@ console.log(page.auth.token);
 		}
 		
 		page.location.keyOverload = function(event) {
+			var index;
+			var total;
+
 			// Enter, up and down keys have urgent treatment, the other ones can wait
 			
 			window.clearTimeout(page.location.interval);
 			
-			if (event.type = "keydown" && $.inArray(event.which, [13, 27, 38, 40]) != -1) {
+			if (event.type == "keydown" && $.inArray(event.which, [13, 27, 38, 40]) != -1) {
 				event.preventDefault();
 				
 				switch (event.which) {
@@ -515,6 +533,8 @@ console.log(page.auth.token);
 						
 						break;
 					case 27:
+						// Esc
+
 						page.location.elements.$cityname.val("");
 						page.location.elements.$dropdown.addClass("is-hidden");
 						
@@ -522,11 +542,35 @@ console.log(page.auth.token);
 					case 38:
 						// Up
 						
-						
+						total = page.location.elements.$dropdown.children("li").length;
+
+						if (page.location.elements.$dropdown.children("li.citynav__searchdropdown__item__highlighted").length) {
+							index = page.location.elements.$dropdown.children("li.citynav__searchdropdown__item__highlighted").index();
+							
+							if (index > 0) {
+								page.location.elements.$dropdown.children("li.citynav__searchdropdown__item__highlighted").removeClass("citynav__searchdropdown__item__highlighted");
+								page.location.elements.$dropdown.children("li:eq(" + (index - 1) + ")").addClass("citynav__searchdropdown__item__highlighted");
+							}
+						} else {
+							page.location.elements.$dropdown.children("li:last-child").addClass("citynav__searchdropdown__item__highlighted");
+						}
+
 						break;
 					case 40:
 						// Down
-						
+
+						total = page.location.elements.$dropdown.children("li").length;
+
+						if (page.location.elements.$dropdown.children("li.citynav__searchdropdown__item__highlighted").length) {
+							index = page.location.elements.$dropdown.children("li.citynav__searchdropdown__item__highlighted").index();
+
+							if (index < total - 1) {
+								page.location.elements.$dropdown.children("li.citynav__searchdropdown__item__highlighted").removeClass("citynav__searchdropdown__item__highlighted");
+								page.location.elements.$dropdown.children("li:eq(" + (index + 1) + ")").addClass("citynav__searchdropdown__item__highlighted");
+							}
+						} else {
+							page.location.elements.$dropdown.children("li:first-child").addClass("citynav__searchdropdown__item__highlighted");
+						}
 						
 						break;
 				}

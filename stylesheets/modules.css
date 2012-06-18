@@ -774,6 +774,7 @@
     list-style:none;
 }
     .citynav__searchdropdown__item {
+        cursor: pointer;
         padding: 8px;
     }
     .citynav__searchdropdown__item__highlighted {
