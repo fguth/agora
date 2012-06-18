@@ -788,8 +788,29 @@
     }
 
 .more__candidates__list {
-    
+    margin:0 auto;
+    height:37px;
+    line-height:36px;
+    background:#fff;
+    box-shadow:0 -4px 8px #e1e5e7 inset, 0 1px 3px #e6ebef;
+    border:1px solid;
+    border-color:#dadfe3 #dadfe3 #c1c9d1;
+    border-radius:3px;
+    text-align:center;
+    display:inline-block;
+    width:742px;
+    font-size:14px;
+    color:#69747e;
+    font-weight:bold;
 }
-.loading__candidates__list {
+.more__candidates__list:hover {
+    border-color:#c1c9d1 #c1c9d1 #b8c0c9;
+    box-shadow:0 -4px 8px #e1e5e7 inset, 0 1px 3px #ccd5dc;
+}
+.more__candidates__list:active {
+    border-color:#c1c9d1 #dadfe3 #dadfe3;
+    box-shadow:0 1px 8px #ccd5dc inset;
+}
+.more__candidates__list.is-loading {
     
 }
