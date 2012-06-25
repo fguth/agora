@@ -143,6 +143,7 @@
 		 		var postName = post == 4 ? "mayor" : "alderman";
 
 		 		$("dd." + postName).remove();
+		 		$("dd." + postName + "__message").addClass("is-hidden");
 		 		$("dd." + postName + "__loader").css({
 					opacity: 1
 				}).removeClass("is-hidden");
@@ -246,15 +247,16 @@
 			 
 			 page.candidates.process = function(response) {
 				
-				var candidates = response.candidates;
-				var post_id	   = response.post_id;
-				var post_type  = String(this);
-				var context	   = $('.' + post_type);
-				var output     = '';
-				var more_btn   = '.more__candidateslist__item.' + post_type;
-				var more_loader = '.loading__candidateslist__item.' + post_type;
-				var loader 	   = '.' + post_type + '__loader';
-				var last       = '.' + post_type + ':last';
+				var candidates	= response.candidates;
+				var post_id		= response.post_id;
+				var post_type	= String(this);
+				var context		= $('.' + post_type);
+				var output		= '';
+				var more_btn	= '.more__candidateslist__item.' + post_type;
+				var more_loader	= '.loading__candidateslist__item.' + post_type;
+				var loader		= '.' + post_type + '__loader';
+				var last		= '.' + post_type + ':last';
+				var message		= '.' + post_type + '__message';
 
 				// console.log(response);
 				
@@ -302,6 +304,10 @@
 					},
 					duration: 500
 				});
+
+				if (candidates.length == 0) {
+					$(message).removeClass("is-hidden");
+				}
 
 				$(last).after(output);
 

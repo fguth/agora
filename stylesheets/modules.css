@@ -277,6 +277,10 @@
 	height:275px;
 	background:url('../images/loader-candidates.gif') center center no-repeat;
 }
+.candidateslist__message {
+    width:742px;
+    height:275px;
+}
 .breadcrumb {
     display: inline-block;
     position: relative;

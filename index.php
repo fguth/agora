@@ -64,6 +64,7 @@
 																
 							</dt>
 							<dd class="candidateslist__loader mayor__loader"></dd>
+							<dd class="candidateslist__message mayor__message is-hidden">Nenhum candidato encontrado.</dd>
 							
 							<dt class="candidateslist__header alderman">
 								<div class="candidateslist__header__wrapper">
@@ -82,7 +83,8 @@
 									</div>
 								</div>
 							</dt>
-							<dd class="candidateslist__loader alderman__loader"></dd>									
+							<dd class="candidateslist__loader alderman__loader"></dd>
+							<dd class="candidateslist__message alderman__message is-hidden">Nenhum candidato encontrado.</dd>
 						</dl>
 						
 						<?php require('hypertext-preprocessor/discussion.php'); ?>
