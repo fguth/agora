@@ -315,9 +315,7 @@
 				$(last).after(output);
 
 				$(candidates).each(function(key, candidate) {
-
-					//$('#' + candidate.id_tse).bind("click",page.candidates.support);
-				
+					$('#' + candidate.id_tse).bind("click",page.candidates.support);
 				});
 
 				$(more_btn).unbind("click", page.candidates.more);
@@ -407,7 +405,7 @@
 						'post',
 						function(response) {
 							if (response && !response.error && page.auth.token && page.auth.id) {
-								/*
+								///*
 								$.ajax({
 									data: {
 										action			: CONFIG.get('SUPPORT'),
@@ -422,7 +420,7 @@
 									url: CONFIG.get('AJAX_URL')
 								}); 
 
-								*/
+								//*/
 								page.candidates.support.process()
 								// console.log(response);
 							} else {
