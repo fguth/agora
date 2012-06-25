@@ -133,6 +133,8 @@
 			page.candidates.listEffect();
 		 }
 
+		page.candidates.virgin = true;
+
 			/**
 			 * page
 			 * * candidates
@@ -141,6 +143,8 @@
 
 		 	page.candidates.clean = function(post) {
 		 		var postName = post == 4 ? "mayor" : "alderman";
+
+		 		page.candidates.virgin = true;
 
 		 		$("dd." + postName).remove();
 		 		$("dd." + postName + "__message").addClass("is-hidden");
@@ -227,9 +231,8 @@
 				var count   	= $('.candidateslist__item.' + post_type).length;
 				var loading 	= '<dd class="loading__candidateslist__item ' + post_type + '">Carregando</dd>';
 
-				$('.more__candidateslist__item .' + post_type).fadeOut(500, function(){
-					
-					$('.more__candidateslist__item .' + post_type).remove();
+				$('.more__candidateslist__item .' + post_type).parent().fadeOut(500, function(){
+					$(this).remove();
 					
 					$('.' + post_type + ':last').after(loading).fadeIn(500, function(){
 						page.candidates.load(page.vars.$city,post_id,post_type,count);
@@ -305,7 +308,7 @@
 					duration: 500
 				});
 
-				if (candidates.length == 0) {
+				if (page.candidates.virgin && candidates.length == 0) {
 					$(message).removeClass("is-hidden");
 				}
 
@@ -320,6 +323,7 @@
 				$(more_btn).unbind("click", page.candidates.more);
 				$(more_btn).bind("click", page.candidates.more);
 				
+				page.candidates.virgin = false;
 		 	 }
 
 		 	page.candidates.sayt = function() {
