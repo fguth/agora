@@ -143,6 +143,9 @@
 		 		var postName = post == 4 ? "mayor" : "alderman";
 
 		 		$("dd." + postName).remove();
+		 		$("dd." + postName + "__loader").css({
+					opacity: 1
+				}).removeClass("is-hidden");
 		 	}
 
 	 		/**
@@ -291,7 +294,14 @@
 
 				output += candidates.length ? more : '';
 
-				$(loader).fadeOut(500, function(){ $(this).remove(); });
+				$(loader).animate({
+					opacity: 0
+				}, {
+					complete: function() {
+						$(this).addClass("is-hidden");
+					},
+					duration: 500
+				});
 
 				$(last).after(output);
 
