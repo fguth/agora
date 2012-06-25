@@ -11,7 +11,8 @@ class CurrentLocation {
 		// set config 
 		$this->config				= new stdClass();
 		$this->config->key			= 'SAK5D4YJMZ74754AM94Z';
-		$this->config->ip	 		= IS_LOCAL ? '187.40.46.183' : $_SERVER["REMOTE_ADDR"];
+		// $this->config->ip	 		= IS_LOCAL ? '187.40.46.183' : $_SERVER["REMOTE_ADDR"];
+		$this->config->ip	 		= IS_LOCAL ? '200.188.161.30' : $_SERVER["REMOTE_ADDR"];
 		$this->config->data			= simplexml_load_file('http://services.ipaddresslabs.com/iplocation/locateip?key=' . $this->config->key . '&ip=' . $this->config->ip);
 
 		// verify data 

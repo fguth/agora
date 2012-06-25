@@ -122,15 +122,28 @@
 		 */
 		 
 		 page.candidates = function() {
-		
+		 	// Search-as-you-type initialize
+			page.candidates.sayt();
+
 		 	// candidates initialize 
-			page.candidates.load(page.vars.$city,4,'mayor');
-			page.candidates.load(page.vars.$city,7,'alderman');
+			page.candidates.load(page.vars.$city, 4, 'mayor');
+			page.candidates.load(page.vars.$city, 7, 'alderman');
 
 			// candidates listEffect
 			page.candidates.listEffect();
-		    
 		 }
+
+			/**
+			 * page
+			 * * candidates
+			 * * * clean
+			 */
+
+		 	page.candidates.clean = function(post) {
+		 		var postName = post == 4 ? "mayor" : "alderman";
+
+		 		$("dd." + postName).remove();
+		 	}
 
 	 		/**
 			 * page
@@ -175,8 +188,8 @@
 			 
 			 page.candidates.load = function(city,type,context,start,filter) {
 
-			 	console.log(page.auth.id);
-			 	console.log(page.auth.token);
+			 	// console.log(page.auth.id);
+			 	// console.log(page.auth.token);
 
 				$.ajax({
 					data: {
@@ -240,7 +253,7 @@
 				var loader 	   = '.' + post_type + '__loader';
 				var last       = '.' + post_type + ':last';
 
-				console.log(response);
+				// console.log(response);
 				
 				$(more_loader).fadeOut(500,function(){ $(this).remove(); })
 
@@ -293,6 +306,63 @@
 				
 		 	 }
 
+		 	page.candidates.sayt = function() {
+		 		page.elements.$filterfield.bind("keydown", page.candidates.sayt.keyOverload).bind("keyup", page.candidates.sayt.keyOverload);
+		 	}
+
+		 	page.candidates.sayt.interval = null;
+		 	page.candidates.sayt.memory = { }
+
+			page.candidates.sayt.key = function(event, element) {
+				var post = $(element).attr("data-post");
+				var postName = post == 4 ? "mayor" : "alderman";
+				var query = $.trim($(element).val());
+
+				if (page.candidates.sayt.memory[post] != query) {
+					page.candidates.sayt.memory[post] = query;
+
+					console.log(post, postName, query);
+
+					page.candidates.clean(post);
+					page.candidates.load(page.vars.$city, post, postName, null, query);
+				}
+			}
+			
+			page.candidates.sayt.keyOverload = function(event) {
+				var post = $(this).attr("data-post");
+
+				window.clearTimeout(page.candidates.sayt.interval);
+
+				// Enter and esc keys have urgent treatment, the other ones should wait to avoid overload and give some room to the user
+
+				if (event.type == "keydown") {
+					if ($.inArray(event.which, [13, 27]) != -1) {
+						event.preventDefault();
+						
+						switch (event.which) {
+							case 13:
+								// Enter
+
+								page.candidates.sayt.key(event, this);
+
+								break;
+							case 27:
+								// ESC
+
+								$(this).val("");
+								
+								page.candidates.sayt.key(event, this);
+
+								break;
+						}
+					}
+				} else {
+					if ($.inArray(event.which, [13, 27]) == -1) {
+						page.candidates.sayt.interval = window.setTimeout(page.candidates.sayt.key, 125, event, this);
+					}
+				}
+			}
+
 	 		/**
 			 * page
 			 * * CANDIDATES
@@ -334,10 +404,10 @@
 
 								*/
 								page.candidates.support.process()
-								console.log(response);
+								// console.log(response);
 							} else {
 								page.candidates.support.process(candidate_id);
-								console.log(response);
+								// console.log(response);
 								//page.error();
 							}
 						}
@@ -533,7 +603,7 @@
 		 */
 		
 		page.error = function(response) {
-			console.log(response);
+			// console.log(response);
 			window.location.assign("http://" + window.location.hostname + "/oooops/")
 		}
 		
@@ -645,61 +715,63 @@
 			
 			window.clearTimeout(page.location.interval);
 			
-			if (event.type == "keydown" && $.inArray(event.which, [13, 27, 38, 40]) != -1) {
-				event.preventDefault();
-				
-				switch (event.which) {
-					case 13:
-						// Enter
+			if (event.type == "keydown") {
+				if ($.inArray(event.which, [13, 27, 38, 40]) != -1) {
+					event.preventDefault();
+					
+					switch (event.which) {
+						case 13:
+							// Enter
 
-						city = page.location.elements.$dropdown.children("li.citynav__searchdropdown__item__highlighted");
+							city = page.location.elements.$dropdown.children("li.citynav__searchdropdown__item__highlighted");
 
-						if (city.length) {
-							window.location.assign("http://" + CONFIG.get("HOST") + "/" + city.attr("data-state-sa").toLowerCase() + "/" + city.attr("data-city-url"));
-						}
-						
-						break;
-					case 27:
-						// Esc
-
-						page.location.elements.$cityname.val("");
-						page.location.elements.$dropdown.addClass("is-hidden");
-						
-						break;
-					case 38:
-						// Up
-						
-						total = page.location.elements.$dropdown.children("li").length;
-
-						if (page.location.elements.$dropdown.children("li.citynav__searchdropdown__item__highlighted").length) {
-							index = page.location.elements.$dropdown.children("li.citynav__searchdropdown__item__highlighted").index();
+							if (city.length) {
+								window.location.assign("http://" + CONFIG.get("HOST") + "/" + city.attr("data-state-sa").toLowerCase() + "/" + city.attr("data-city-url"));
+							}
 							
-							if (index > 0) {
-								page.location.elements.$dropdown.children("li.citynav__searchdropdown__item__highlighted").removeClass("citynav__searchdropdown__item__highlighted");
-								page.location.elements.$dropdown.children("li:eq(" + (index - 1) + ")").addClass("citynav__searchdropdown__item__highlighted");
+							break;
+						case 27:
+							// Esc
+
+							page.location.elements.$cityname.val("");
+							page.location.elements.$dropdown.addClass("is-hidden");
+							
+							break;
+						case 38:
+							// Up
+							
+							total = page.location.elements.$dropdown.children("li").length;
+
+							if (page.location.elements.$dropdown.children("li.citynav__searchdropdown__item__highlighted").length) {
+								index = page.location.elements.$dropdown.children("li.citynav__searchdropdown__item__highlighted").index();
+								
+								if (index > 0) {
+									page.location.elements.$dropdown.children("li.citynav__searchdropdown__item__highlighted").removeClass("citynav__searchdropdown__item__highlighted");
+									page.location.elements.$dropdown.children("li:eq(" + (index - 1) + ")").addClass("citynav__searchdropdown__item__highlighted");
+								}
+							} else {
+								page.location.elements.$dropdown.children("li:last-child").addClass("citynav__searchdropdown__item__highlighted");
 							}
-						} else {
-							page.location.elements.$dropdown.children("li:last-child").addClass("citynav__searchdropdown__item__highlighted");
-						}
 
-						break;
-					case 40:
-						// Down
+							break;
+						case 40:
+							// Down
 
-						total = page.location.elements.$dropdown.children("li").length;
+							total = page.location.elements.$dropdown.children("li").length;
 
-						if (page.location.elements.$dropdown.children("li.citynav__searchdropdown__item__highlighted").length) {
-							index = page.location.elements.$dropdown.children("li.citynav__searchdropdown__item__highlighted").index();
+							if (page.location.elements.$dropdown.children("li.citynav__searchdropdown__item__highlighted").length) {
+								index = page.location.elements.$dropdown.children("li.citynav__searchdropdown__item__highlighted").index();
 
-							if (index < total - 1) {
-								page.location.elements.$dropdown.children("li.citynav__searchdropdown__item__highlighted").removeClass("citynav__searchdropdown__item__highlighted");
-								page.location.elements.$dropdown.children("li:eq(" + (index + 1) + ")").addClass("citynav__searchdropdown__item__highlighted");
+								if (index < total - 1) {
+									page.location.elements.$dropdown.children("li.citynav__searchdropdown__item__highlighted").removeClass("citynav__searchdropdown__item__highlighted");
+									page.location.elements.$dropdown.children("li:eq(" + (index + 1) + ")").addClass("citynav__searchdropdown__item__highlighted");
+								}
+							} else {
+								page.location.elements.$dropdown.children("li:first-child").addClass("citynav__searchdropdown__item__highlighted");
 							}
-						} else {
-							page.location.elements.$dropdown.children("li:first-child").addClass("citynav__searchdropdown__item__highlighted");
-						}
-						
-						break;
+							
+							break;
+					}
 				}
 			} else {
 				page.location.interval = window.setTimeout(page.location.key, 125, event);
