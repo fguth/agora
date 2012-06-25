@@ -152,7 +152,7 @@ class Header {
 		$html .= 	'<a href="' . $urlHometown . '" title="Minha cidade" class="citynav__gotomycity tooltip">';
 		$html .= 		'<img src="images/icon-gotomycity.png" alt="Minha cidade" />';
 		$html .= 	'</a>';
-		$html .= 	'<input type="text" name="cityname" class="citynav__cityname" value="' . $this->location . '" />';
+		$html .= 	'<input type="text" name="cityname" class="citynav__cityname" value="' . $this->location . '" autocomplete="off" />';
 		$html .= 	'<a href="" id="' . $this->city . '" title="Voto aqui" class="citynav__setmycity tooltip ' . $isHometown . '"></a>';
 		$html .=	'<ul class="citynav__searchdropdown is-hidden">';
 		$html .=		'<li class="citynav__searchdropdown__item">&nbsp;</li>';
