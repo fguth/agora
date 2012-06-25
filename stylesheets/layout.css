@@ -1,0 +1,128 @@
+body {
+	background-image:url('../images/bg-site.jpg');
+	background-repeat:no-repeat;
+	background-size:cover;
+	background-attachment:fixed;
+}
+
+.wrapper {
+	width:900px;
+	margin:0 auto;
+	min-height:950px;
+}
+
+.header {
+	height:80px;
+	margin:30px 0 0;
+	background:#2C5567;
+	background-image: linear-gradient(bottom, #1b4253 0%, #224D60 50%, #2C5567 51%, #224D60 100%);
+	border-radius:7px;
+	border-style:solid;
+	border-width:1px;
+	border-color:#1f4b5e #193e4f #12313e;
+	box-shadow:0 1px 2px #306c86 inset, 0 1px 3px #a4aec0;
+}
+	.header__logo {
+		width:200px;
+		height:100%;
+		display:inline-block;
+		background:#345F72;
+		background-image: linear-gradient(bottom, #1b4254 0%, #2A576B 50%, #345F72 51%, #2A576B 100%);
+		border-radius:7px 0 0 7px;
+		box-shadow:0 1px 1px #306c86 inset;
+		text-align:center;
+	}
+	.header__nav {
+		display:inline-block;
+		padding:22px 0;
+		margin:0 0 0 36px;
+	}
+	.header__login {
+		display:inline-block;
+		padding:22px 0;
+		margin:0 0 0 30px;
+	}
+	
+.middle {
+	margin:30px 0 0;
+}	
+	
+.main {
+	margin:35px 0 0;
+	position:relative;
+	overflow:auto;
+}
+	.main__nav {
+		border-color:#b6b3b3;
+    border-color:rgba(255, 255, 255, 0.4);
+    border-radius:10px 0 0 10px;
+    border-style:solid;
+    border-width:5px 0 5px 5px;
+    display:inline-block;
+    float:left;
+    position:relative;
+    width:63px;
+		z-index:2;
+	}
+	.main__nav.is-fixed {
+		position:fixed;
+		top:-5px;
+	}
+	.main__content {
+		width:832px;
+		display:inline-block;
+		position:relative;
+		float:right;
+		z-index:1;
+	}
+		.main__content__wrapper {
+			border-width:5px 5px 5px 5px;
+			border-style:solid;
+			border-color:#afb3b9;
+			border-color:rgba(255,255,255,0.4);
+			border-radius:0 10px 10px 10px;
+			overflow:hidden;
+		}		
+		.main__general__wrapper {
+			border-width:5px 5px 5px 5px;
+			border-style:solid;
+			border-color:#afb3b9;
+			border-color:rgba(255,255,255,0.4);
+			border-radius:10px;
+			overflow:hidden;
+		}
+		.main__general__bg {
+			background:#fff;
+			padding:0 40px;
+			border-radius:5px;
+		}
+		.main__general__title {
+	    color: #A0A6AC;
+	    font-size: 34px;
+	    letter-spacing: -1px;
+	    line-height: 30px;
+			border-bottom:1px solid #DADFE3;
+			padding:40px 0;
+		}
+		.main__general__content {
+			padding:10px 0 40px;
+		}
+			.main__general__subtitle {
+				font-size:16px;
+				color:#484b4f;
+				font-weight:bold;
+				margin:30px 0 0;
+			}
+			.main__general__paragraph {
+				color:#767b80;
+				font-size:14px;
+				margin:15px 0 0;
+				line-height:20px;
+				font-weight:200;
+				text-align:justify;
+			}
+.footer {
+	width:100%;
+	float:right;
+	padding:30px 0 80px;
+}

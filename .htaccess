@@ -1,0 +1,44 @@
+Options -Indexes
+
+RewriteEngine On
+
+# AGORA.VC/UF/MUNICIPIO
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} ^/(AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO)/[^/]+/?$ [NC]
+RewriteRule .+ index.php [L,NC]
+
+# AGORA.VC/UF/MUNICIPIO/PREFEITO/CANDIDATO
+# AGORA.VC/UF/MUNICIPIO/VEREADOR/CANDIDATO
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} ^/(AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO)/[^/]+/(prefeito|vereador)/[^/]+/?$ [NC]
+RewriteRule .+ candidate.php [L,NC]
+
+# AGORA.VC/PRIVACIDADE
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} /privacidade
+RewriteRule .+ privacy.php [L,NC]
+
+# AGORA.VC/TERMOS
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} /imprensa
+RewriteRule .+ press.php [L,NC]
+
+# AGORA.VC/SOBRE
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} /sobre
+RewriteRule .+ about.php [L,NC]
+
+# HANDLE SOME COMMON ERROS
+ErrorDocument 400 /error.php
+ErrorDocument 401 /error.php
+ErrorDocument 403 /error.php
+ErrorDocument 404 /error.php
+ErrorDocument 500 /error.php
+ErrorDocument 501 /error.php
+ErrorDocument 502 /error.php
+ErrorDocument 503 /error.php
