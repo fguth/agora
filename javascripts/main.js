@@ -270,7 +270,7 @@
 				$(candidates).each(function(key, candidate) {
 
 					var url 		= ('http://' + window.location.hostname + '/' + candidate.state_sa + '/' + candidate.city_url + '/' + candidate.post_name + '/' + candidate.url).toLowerCase() ;
-					var id 			= candidate.id_tse;
+					var id 			= candidate.id;
 					var support     = '<a id="' + id + '" href="' + url + '" class="support__button">';
 					support        += 	'<img src="images/icon-support.png" alt="Apoiar candidato" class="support__button__icon" /><span class="support__button__text">Apoiar</span>';
 					support        += '</a>';
@@ -315,7 +315,7 @@
 				$(last).after(output);
 
 				$(candidates).each(function(key, candidate) {
-					$('#' + candidate.id_tse).bind("click",page.candidates.support);
+					$('#' + candidate.id).bind("click",page.candidates.support);
 				});
 
 				$(more_btn).unbind("click", page.candidates.more);
@@ -388,8 +388,10 @@
 			 */
 
 			 page.candidates.support = function(e) {
-			 	e.preventDefault();
-
+			 	if (e.preventDefault) {
+					e.preventDefault();
+			 	}
+			 	
 			 	//LOAD
 			 	$(this).addClass("is-loading");
 
@@ -406,22 +408,24 @@
 						function(response) {
 							if (response && !response.error && page.auth.token && page.auth.id) {
 								///*
+								console.log(response);
 								$.ajax({
 									data: {
 										action			: CONFIG.get('SUPPORT'),
 										candidate_id	: candidate_id,
 										user_id			: page.auth.id,
-										user_token		: page.auth.token
+										user_token		: page.auth.token,
+										publish_id		: response.id
 									},
 									dataType: "json",
 									error: page.error,
-									success: page.support.process,
+									success: page.candidates.support.process,
 									type: "post",
 									url: CONFIG.get('AJAX_URL')
 								}); 
 
 								//*/
-								page.candidates.support.process()
+								page.candidates.support.process();
 								// console.log(response);
 							} else {
 								page.candidates.support.process(candidate_id);
@@ -622,7 +626,7 @@
 		
 		page.error = function(response) {
 			// console.log(response);
-			window.location.assign("http://" + window.location.hostname + "/oooops/")
+			// window.location.assign("http://" + window.location.hostname + "/oooops/")
 		}
 		
 		/**

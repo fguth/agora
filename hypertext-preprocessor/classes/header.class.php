@@ -103,6 +103,7 @@ class Header {
 					$this->type 		= APP_NAME . ":" . APP_CANDIDATE_OBJECT;
 					$this->location  	= $this->candidate->city_name . ", " . $this->candidate->state_sa;
 					$this->address 		= "http://" . $this->config->host . $this->config->path;
+					$this->image 		= "http://" . $this->config->host . "/images/candidates/" . $this->candidate->id_tse . ".jpg";
 				}
 			}
 			

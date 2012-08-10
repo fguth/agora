@@ -12,9 +12,9 @@ define("APP_PROJECT_OBJECT", "projeto");
 define("ELLECTION_YEAR", "2012");
 
 if (IS_LOCAL) {
-	define("DB_HOST", "localhost");
+	define("DB_HOST", HOST);
 	define("DB_USER", "root");
-	define("DB_PASS", "");	
+	define("DB_PASS", "root");	
 	define("APP_NAME", "agora-local");
 	define("APP_ID", "196526257128071");
 	define("APP_SECRET", "a126bbc85bb7dd4c3b8a452c0cbe902d");
