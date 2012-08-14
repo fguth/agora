@@ -80,8 +80,8 @@ if ($_REQUEST["city_id"]) {
 }
 
 // SWITCH ACTIONS
-
 switch ($system->action) {
+	
 	// GET CANDIDATES INFO
 	case CANDIDATES_LIST:
 		$candidates = db("CALL user_supported_candidates(" . ELLECTION_YEAR . ", " . $system->user_id . ", " . ($system->city_id ? "'" . $system->city_id . "'" : "NULL") . ", " . ($system->post_id ? "'" . $system->post_id . "'" : "NULL") . ", " . ($system->filter ? "'" . $system->filter . "'" : "NULL") . ", " . $system->start . ", " . $system->limit . ")");

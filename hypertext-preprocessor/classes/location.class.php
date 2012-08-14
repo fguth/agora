@@ -38,7 +38,8 @@ class CurrentLocation {
 		if ($this->status) {
 			$this->state = strval($this->config->data->geolocation_data->region_name);
 		} else {
-			$this->state = "Error";
+			//Default
+			$this->state = "Rio Grande do Sul";
 		}
 
 	}
@@ -48,7 +49,8 @@ class CurrentLocation {
 		if ($this->status) {
 			$this->city = strval($this->config->data->geolocation_data->city);
 		} else {
-			$this->city = "Error";
+			//Default
+			$this->city = "Porto Alegre";
 		}
 
 	}

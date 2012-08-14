@@ -258,7 +258,6 @@
 				var more_btn	= '.more__candidateslist__item.' + post_type;
 				var more_loader	= '.loading__candidateslist__item.' + post_type;
 				var loader		= '.' + post_type + '__loader';
-				var last		= '.' + post_type + ':last';
 				var message		= '.' + post_type + '__message';
 
 				// console.log(response);
@@ -280,9 +279,9 @@
 					unsupport      += '</a>';
 
 					isSupported = candidate.supported == 0 || candidate.supported == null ? support : unsupport;
-					isFirst		= key % 4 == 0 ? 'is-first-of-row' : '';
 
-					output += '<dd class="candidateslist__item ' + isFirst + ' ' + post_type + '">';
+					output = '';
+					output += '<dd class="candidateslist__item ' + post_type + '">';
 					output += 	'<a href="' + url + '" class="candidatecard">';
 					output += 		'<img src="images/candidates/' + candidate.id_tse + '.jpg" alt="' + candidate.name + '" class="candidatecard__photo" />';
 					output += 		'<p class="candidatecard__name">' + candidate.name + '</p>';
@@ -295,32 +294,27 @@
 					output += 	'</div>';
 					output += '</dd>';
 
+					context.after(output);
+
 				});
 
-				output += candidates.length ? more : '';
+					//output += candidates.length ? more : '';
 
-				$(loader).animate({
-					opacity: 0
-				}, {
-					complete: function() {
-						$(this).addClass("is-hidden");
-					},
-					duration: 500
-				});
+				/*
+					if (page.candidates.virgin && candidates.length == 0) {
+						$(message).removeClass("is-hidden");
+					}
+				*/
 
-				if (page.candidates.virgin && candidates.length == 0) {
-					$(message).removeClass("is-hidden");
-				}
+				/*
+					$(candidates).each(function(key, candidate) {
+						$('#' + candidate.id).bind("click",page.candidates.support);
+					});
 
-				$(last).after(output);
+					$(more_btn).unbind("click", page.candidates.more);
+					$(more_btn).bind("click", page.candidates.more);
+				*/
 
-				$(candidates).each(function(key, candidate) {
-					$('#' + candidate.id).bind("click",page.candidates.support);
-				});
-
-				$(more_btn).unbind("click", page.candidates.more);
-				$(more_btn).bind("click", page.candidates.more);
-				
 				page.candidates.virgin = false;
 		 	 }
 
