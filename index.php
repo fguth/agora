@@ -63,7 +63,7 @@
 								</div>
 																
 							</dt>
-							<dd class="candidateslist__loader mayor__loader"></dd>
+							<dd id="mayor__loader" class="candidateslist__loader mayor__loader"></dd>
 							<dd class="candidateslist__message mayor__message is-hidden">Nenhum candidato encontrado.</dd>
 							
 							<dt class="candidateslist__header alderman">
@@ -83,7 +83,7 @@
 									</div>
 								</div>
 							</dt>
-							<dd class="candidateslist__loader alderman__loader"></dd>
+							<dd id="alderman__loader" class="candidateslist__loader alderman__loader"></dd>
 							<dd class="candidateslist__message alderman__message is-hidden">Nenhum candidato encontrado.</dd>
 						</dl>
 						

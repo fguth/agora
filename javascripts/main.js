@@ -198,7 +198,6 @@
 
 			 	// console.log(page.auth.id);
 			 	// console.log(page.auth.token);
-
 				$.ajax({
 					data: {
 						action  		: CONFIG.get('CANDIDATES_LIST'),
@@ -216,6 +215,23 @@
 					type: "post",
 					url: CONFIG.get('AJAX_URL')
 				});
+
+				$.ajax({
+					data: {
+						action  		: CONFIG.get('CANDIDATES_LIST_COUNT'),
+						city_id			: city,
+						post_id			: type,
+						context 		: context,
+						filter 			: filter
+					},
+					context: context,
+					dataType: "json",
+					error: page.error,
+					success: page.candidates.more,
+					type: "post",
+					url: CONFIG.get('AJAX_URL')
+				});
+
 		 	 }
 			
 		 	/**
@@ -224,22 +240,23 @@
 			 * * * MORE
 			 */
 
-			 page.candidates.more = function(e) {
-				
-				var post_type   = $('a', this).attr('class');
-				var post_id 	= $('a', this).attr('id');
-				var count   	= $('.candidateslist__item.' + post_type).length;
-				var loading 	= '<dd class="loading__candidateslist__item ' + post_type + '">Carregando</dd>';
+			 page.candidates.more = function(response) {
+			
+			 	var total   = response.count;
+			 	var count 	= $('.candidateslist__item.' + response.context).length;
+			 	var context	= $('#' + response.context + '__loader');
+				var output  = '<dd class="more__candidateslist__item ' + response.context + '"><a href="javascript:void(0);" class="' + response.context + '">Carregar mais.</a></dd>';
 
-				$('.more__candidateslist__item .' + post_type).parent().fadeOut(500, function(){
-					$(this).remove();
-					
-					$('.' + post_type + ':last').after(loading).fadeIn(500, function(){
-						page.candidates.load(page.vars.$city,post_id,post_type,count);
-					});
+				total > count ? context.after(output) : '';
 
-				});
+				$('.more__candidateslist__item').unbind("click",page.candidates.more.click);
+				$('.more__candidateslist__item').bind("click",page.candidates.more.click);
 
+
+		 	 }
+
+		 	 page.candidates.more.click = function(response) {
+		 	 	console.log($(this).attr("class"));
 		 	 }
 			
 	 		/**
@@ -257,14 +274,8 @@
 				var output		= '';
 				var more_btn	= '.more__candidateslist__item.' + post_type;
 				var more_loader	= '.loading__candidateslist__item.' + post_type;
-				var loader		= '.' + post_type + '__loader';
+				var loader		= $('#' + post_type + '__loader');
 				var message		= '.' + post_type + '__message';
-
-				// console.log(response);
-				
-				$(more_loader).fadeOut(500,function(){ $(this).remove(); })
-
-				var more        = '<dd class="more__candidateslist__item ' + post_type + '"><a id="' + post_id +'" href="javascript:void(0);" class="' + post_type + '">Carregar mais.</a></dd>';
 
 				$(candidates).each(function(key, candidate) {
 
@@ -297,23 +308,11 @@
 					context.after(output);
 
 				});
+				
+				loader.hide();
 
-					//output += candidates.length ? more : '';
-
-				/*
-					if (page.candidates.virgin && candidates.length == 0) {
-						$(message).removeClass("is-hidden");
-					}
-				*/
-
-				/*
-					$(candidates).each(function(key, candidate) {
-						$('#' + candidate.id).bind("click",page.candidates.support);
-					});
-
-					$(more_btn).unbind("click", page.candidates.more);
-					$(more_btn).bind("click", page.candidates.more);
-				*/
+				$('.support__button').unbind("click",page.candidates.support);
+				$('.support__button').bind("click",page.candidates.support);
 
 				page.candidates.virgin = false;
 		 	 }
@@ -326,15 +325,15 @@
 		 	page.candidates.sayt.memory = { }
 
 			page.candidates.sayt.key = function(event, element) {
-				var post = $(element).attr("data-post");
-				var postName = post == 4 ? "mayor" : "alderman";
-				var query = $.trim($(element).val());
+				var post 		= $(element).attr("data-post");
+				var postName 	= post == 4 ? "mayor" : "alderman";
+				var query 		= $.trim($(element).val());
+				var loader		= $('#' + postName + '__loader');
+
+				loader.show();
 
 				if (page.candidates.sayt.memory[post] != query) {
-					page.candidates.sayt.memory[post] = query;
-
-					console.log(post, postName, query);
-
+					page.candidates.sayt.memory[post] =
 					page.candidates.clean(post);
 					page.candidates.load(page.vars.$city, post, postName, null, query);
 				}
@@ -392,10 +391,11 @@
 				//VAR
 				var candidate_url = $(this).attr("href");
 				var candidate_id  = $(this).attr("id");
-				
+				console.log(candidate_id);
 				
 				// SUPPORT INITIALIZE
 				if(page.auth.token) {
+					/*
 					FB.api(
 						'/me/' + CONFIG.get('APP_NAME') + ':' + CONFIG.get('APP_ACTION') + '?' + CONFIG.get('APP_OBJECT') + '=' + candidate_url,
 						'post',
@@ -418,7 +418,7 @@
 									url: CONFIG.get('AJAX_URL')
 								}); 
 
-								//*/
+								//
 								page.candidates.support.process();
 								// console.log(response);
 							} else {
@@ -427,7 +427,7 @@
 								//page.error();
 							}
 						}
-					);
+					);*/
 				} else {
 					page.login();
 				}

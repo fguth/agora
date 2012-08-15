@@ -6,10 +6,12 @@ require("../classes/candidate.class.php");
 
 define("SET_HOMETOWN", "dc82dd58115798afdb98d8ea2efefbc3");
 define("CANDIDATES_LIST", "75720f54472ffabfca3fcb0a08e19bd9");
+define("CANDIDATES_LIST_COUNT","e71d5b9c2a9783c82d4ba171db4fdd81");
 define("CHECK_USER", "8b5b422abef67a034aac2d83f07afbcd");
 define("SUPPORT", "256fc6e4dbf98308ceca2b9b924b25af");
 define("UNSUPPORT", "89e3d438a10459f93076b8750c1a664f");
 define("SAYT_CITY", "9d86a3d362bbb5c7b2b2b54b90940904");
+
 
 $system = new stdClass();
 
@@ -59,6 +61,10 @@ if ($_REQUEST["publish_id"]) {
 	$system->publish_id = $_REQUEST["publish_id"];
 }
 
+if ($_REQUEST["context"]) { 
+	$system->context = $_REQUEST["context"];
+}
+
 // USER REQUEST
 
 if ($_REQUEST["user_token"]) { 
@@ -84,7 +90,7 @@ switch ($system->action) {
 	
 	// GET CANDIDATES INFO
 	case CANDIDATES_LIST:
-		$candidates = db("CALL user_supported_candidates(" . ELLECTION_YEAR . ", " . $system->user_id . ", " . ($system->city_id ? "'" . $system->city_id . "'" : "NULL") . ", " . ($system->post_id ? "'" . $system->post_id . "'" : "NULL") . ", " . ($system->filter ? "'" . $system->filter . "'" : "NULL") . ", " . $system->start . ", " . $system->limit . ")");
+		$candidates = db("CALL user_supported_candidates(" . ELLECTION_YEAR . ", " . $system->user_id . ", " . ($system->city_id ? "'" . $system->city_id . "'" : "NULL") . ", " . ($system->post_id ? "'" . $system->post_id . "'" : "NULL") . ", " . ($system->filter ? "'" . $system->filter . "'" : "NULL") . ", " . $system->start . ", " . $system->limit . ",NULL)");
 
 		// DONE, POPULATE THE BUFFER
 		$system->return->sucess = true;
@@ -94,6 +100,14 @@ switch ($system->action) {
 		$system->return->start = $system->start;
 		$system->return->post_id = $system->post_id;
 		$system->return->user_id = $system->user_id;
+		
+		break;
+	case CANDIDATES_LIST_COUNT:
+		$candidates = db("CALL user_supported_candidates(" . ELLECTION_YEAR . ", NULL, " . ($system->city_id ? "'" . $system->city_id . "'" : "NULL") . ", " . ($system->post_id ? "'" . $system->post_id . "'" : "NULL") . ", " . ($system->filter ? "'" . $system->filter . "'" : "NULL") . ", NULL, NULL,TRUE)");
+
+		$system->return->sucess  = true;
+		$system->return->context = $system->context;
+		$system->return->count 	 = (INT) $candidates[0]->total;
 		
 		break;
 	case SUPPORT:
