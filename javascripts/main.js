@@ -263,7 +263,7 @@
 			 
 			 page.candidates.process = function(response) {
 				
-				var candidates	= response.candidates;
+				var candidates	= response.candidates.reverse();
 				var post_id		= response.post_id;
 				var post_type	= String(this);
 				var context		= $('.' + post_type + ':last');
