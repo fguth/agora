@@ -126,8 +126,8 @@
 			page.candidates.sayt();
 
 		 	// candidates initialize 
-			page.candidates.load(page.vars.$city, 4, 'mayor');
-			page.candidates.load(page.vars.$city, 7, 'alderman');
+			page.candidates.load(page.vars.$city, 4, 'mayor',0,'');
+			page.candidates.load(page.vars.$city, 7, 'alderman',0,'');
 
 			// candidates listEffect
 			page.candidates.listEffect();
@@ -196,8 +196,6 @@
 			 
 			 page.candidates.load = function(city,type,context,start,filter) {
 
-			 	// console.log(page.auth.id);
-			 	// console.log(page.auth.token);
 				$.ajax({
 					data: {
 						action  		: CONFIG.get('CANDIDATES_LIST'),
@@ -206,28 +204,13 @@
 						user_id			: page.auth.id,
 						user_token		: page.auth.token,
 						start			: start,
-						filter 			: filter
+						context 		: context,
+						filter 			: null
 					},
 					context: context,
 					dataType: "json",
 					error: page.error,
 					success: page.candidates.process,
-					type: "post",
-					url: CONFIG.get('AJAX_URL')
-				});
-
-				$.ajax({
-					data: {
-						action  		: CONFIG.get('CANDIDATES_LIST_COUNT'),
-						city_id			: city,
-						post_id			: type,
-						context 		: context,
-						filter 			: filter
-					},
-					context: context,
-					dataType: "json",
-					error: page.error,
-					success: page.candidates.more,
 					type: "post",
 					url: CONFIG.get('AJAX_URL')
 				});
@@ -242,21 +225,44 @@
 
 			 page.candidates.more = function(response) {
 			
-			 	var total   = response.count;
+				var total   = response.count;
 			 	var count 	= $('.candidateslist__item.' + response.context).length;
-			 	var context	= $('#' + response.context + '__loader');
-				var output  = '<dd class="more__candidateslist__item ' + response.context + '"><a href="javascript:void(0);" class="' + response.context + '">Carregar mais.</a></dd>';
+			 	var more 	= $('#' + response.context + '__more');
+			 	
+			 	console.log(total);
 
-				total > count ? context.after(output) : '';
+			 	more.attr('data-total', total);
+			 	more.attr('data-count', count);
+			 	more.attr('data-type', response.context);
 
-				$('.more__candidateslist__item').unbind("click",page.candidates.more.click);
-				$('.more__candidateslist__item').bind("click",page.candidates.more.click);
+			 	more.fadeIn();
+			 	more.show(); 
+			 	
+			 	more.unbind("click",page.candidates.more.click);
+				more.bind("click",page.candidates.more.click);
 
+				total > count ? more.fadeIn() : more.fadeOut();
 
 		 	 }
 
 		 	 page.candidates.more.click = function(response) {
-		 	 	console.log($(this).attr("class"));
+				
+				var postName	= $(this).attr("data-type");
+				var post 		= postName == "mayor" ? 4 : 7;
+				var query 		= $.trim($('#' + postName + "__filter").val());
+				var count 		= $(this).attr("data-count");
+				var loader		= $('#' + postName + '__loader');
+
+				console.log("City : " + page.vars.$city);
+				console.log("type : " + post);
+				console.log("context : " + postName);
+				console.log("start : " + count);
+				console.log("filter : " + query);
+
+				loader.show();
+				
+				page.candidates.load(page.vars.$city, post, postName, count, query);
+
 		 	 }
 			
 	 		/**
@@ -272,14 +278,12 @@
 				var post_type	= String(this);
 				var context		= $('.' + post_type);
 				var output		= '';
-				var more_btn	= '.more__candidateslist__item.' + post_type;
-				var more_loader	= '.loading__candidateslist__item.' + post_type;
 				var loader		= $('#' + post_type + '__loader');
 				var message		= '.' + post_type + '__message';
 
 				$(candidates).each(function(key, candidate) {
 
-					var url 		= ('http://' + window.location.hostname + '/' + candidate.state_sa + '/' + candidate.city_url + '/' + candidate.post_name + '/' + candidate.url).toLowerCase() ;
+					var url 		= ('//' + window.location.hostname + '/' + candidate.state_sa + '/' + candidate.city_url + '/' + candidate.post_name + '/' + candidate.url).toLowerCase() ;
 					var id 			= candidate.id;
 					var support     = '<a id="' + id + '" href="' + url + '" class="support__button">';
 					support        += 	'<img src="images/icon-support.png" alt="Apoiar candidato" class="support__button__icon" /><span class="support__button__text">Apoiar</span>';
@@ -307,14 +311,33 @@
 
 					context.after(output);
 
+
 				});
-				
+
+				console.log(response);				
 				loader.hide();
 
 				$('.support__button').unbind("click",page.candidates.support);
 				$('.support__button').bind("click",page.candidates.support);
 
 				page.candidates.virgin = false;
+
+				$.ajax({
+					data: {
+						action  		: CONFIG.get('CANDIDATES_LIST_COUNT'),
+						city_id			: response.city_id,
+						post_id			: response.post_id,
+						context 		: response.context,
+						filter 			: response.filter ? response.filter : ''
+					},
+					context: response.context,
+					dataType: "json",
+					error: page.error,
+					success: page.candidates.more,
+					type: "post",
+					url: CONFIG.get('AJAX_URL')
+				});
+
 		 	 }
 
 		 	page.candidates.sayt = function() {

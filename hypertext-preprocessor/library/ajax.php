@@ -100,6 +100,8 @@ switch ($system->action) {
 		$system->return->start = $system->start;
 		$system->return->post_id = $system->post_id;
 		$system->return->user_id = $system->user_id;
+		$system->return->city_id = $system->city_id;
+		$system->return->context = $system->context;
 		
 		break;
 	case CANDIDATES_LIST_COUNT:

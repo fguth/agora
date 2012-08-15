@@ -56,13 +56,13 @@
 											<p class="currentsupport__label">Você apoia <a href="#" class="currentsupport__candidatename">Candidate name</a></p>
 										</div>
 										<form class="listfilter">
-											<input type="text" name="filterfield" data-post="4" class="listfilter__filterfield" placeholder="Filtrar por candidato ou partido..." autocomplete="off" />
+											<input id="mayor__filter" type="text" name="filterfield" data-post="4" class="listfilter__filterfield" placeholder="Filtrar por candidato ou partido..." autocomplete="off" />
 											<img src="images/icon-bloom.png" alt="Filtrar" class="listfilter__icon" />
 										</form>
 									</div>
-								</div>
-																
+								</div>								
 							</dt>
+							<dd id="mayor__more" class="more__candidateslist__item mayor__more">Carregar mais.</dd>
 							<dd id="mayor__loader" class="candidateslist__loader mayor__loader"></dd>
 							<dd class="candidateslist__message mayor__message is-hidden">Nenhum candidato encontrado.</dd>
 							
@@ -77,12 +77,13 @@
 											<p class="currentsupport__label">Você apoia <a href="#" class="currentsupport__candidatename">Candidate name</a></p>
 										</div>
 										<form class="listfilter">
-											<input type="text" name="filterfield" data-post="7" class="listfilter__filterfield" placeholder="Filtrar por candidato ou partido..." autocomplete="off" />
+											<input id="alderman__filter" type="text" name="filterfield" data-post="7" class="listfilter__filterfield" placeholder="Filtrar por candidato ou partido..." autocomplete="off" />
 											<img src="images/icon-bloom.png" alt="Filtrar" class="listfilter__icon" />
 										</form>
 									</div>
 								</div>
 							</dt>
+							<dd id="alderman__more" class="more__candidateslist__item">Carregar mais.</dd>
 							<dd id="alderman__loader" class="candidateslist__loader alderman__loader"></dd>
 							<dd class="candidateslist__message alderman__message is-hidden">Nenhum candidato encontrado.</dd>
 						</dl>
