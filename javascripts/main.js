@@ -205,7 +205,7 @@
 						user_token		: page.auth.token,
 						start			: start,
 						context 		: context,
-						filter 			: null
+						filter 			: filter
 					},
 					context: context,
 					dataType: "json",
@@ -261,7 +261,7 @@
 
 				loader.show();
 				
-				page.candidates.load(page.vars.$city, post, postName, count, query);
+				page.candidates.load(page.vars.$city, post, postName, 8, '');
 
 		 	 }
 			
@@ -276,11 +276,11 @@
 				var candidates	= response.candidates;
 				var post_id		= response.post_id;
 				var post_type	= String(this);
-				var context		= $('.' + post_type);
-				var output		= '';
+				var context		= $('.' + post_type + ':last');
+				var output		= null;
 				var loader		= $('#' + post_type + '__loader');
 				var message		= '.' + post_type + '__message';
-
+				console.log(candidates);
 				$(candidates).each(function(key, candidate) {
 
 					var url 		= ('//' + window.location.hostname + '/' + candidate.state_sa + '/' + candidate.city_url + '/' + candidate.post_name + '/' + candidate.url).toLowerCase() ;
@@ -294,9 +294,8 @@
 					unsupport      += '</a>';
 
 					isSupported = candidate.supported == 0 || candidate.supported == null ? support : unsupport;
-
-					output = '';
-					output += '<dd class="candidateslist__item ' + post_type + '">';
+		
+					output  = '<dd class="candidateslist__item ' + post_type + '">';
 					output += 	'<a href="' + url + '" class="candidatecard">';
 					output += 		'<img src="images/candidates/' + candidate.id_tse + '.jpg" alt="' + candidate.name + '" class="candidatecard__photo" />';
 					output += 		'<p class="candidatecard__name">' + candidate.name + '</p>';
@@ -314,7 +313,7 @@
 
 				});
 
-				console.log(response);				
+				console.log(output);				
 				loader.hide();
 
 				$('.support__button').unbind("click",page.candidates.support);
