@@ -228,16 +228,11 @@
 				var total   = response.count;
 			 	var count 	= $('.candidateslist__item.' + response.context).length;
 			 	var more 	= $('#' + response.context + '__more');
-			 	
-			 	console.log(total);
 
 			 	more.attr('data-total', total);
 			 	more.attr('data-count', count);
 			 	more.attr('data-type', response.context);
 
-			 	more.fadeIn();
-			 	more.show(); 
-			 	
 			 	more.unbind("click",page.candidates.more.click);
 				more.bind("click",page.candidates.more.click);
 
@@ -253,12 +248,7 @@
 				var count 		= $(this).attr("data-count");
 				var loader		= $('#' + postName + '__loader');
 
-				console.log("City : " + page.vars.$city);
-				console.log("type : " + post);
-				console.log("context : " + postName);
-				console.log("start : " + count);
-				console.log("filter : " + query);
-
+				$(this).fadeOut()
 				loader.show();
 				
 				page.candidates.load(page.vars.$city, post, postName, 8, '');
@@ -280,7 +270,7 @@
 				var output		= null;
 				var loader		= $('#' + post_type + '__loader');
 				var message		= '.' + post_type + '__message';
-				console.log(candidates);
+
 				$(candidates).each(function(key, candidate) {
 
 					var url 		= ('//' + window.location.hostname + '/' + candidate.state_sa + '/' + candidate.city_url + '/' + candidate.post_name + '/' + candidate.url).toLowerCase() ;
@@ -312,8 +302,7 @@
 
 
 				});
-
-				console.log(output);				
+				
 				loader.hide();
 
 				$('.support__button').unbind("click",page.candidates.support);
@@ -413,7 +402,6 @@
 				//VAR
 				var candidate_url = $(this).attr("href");
 				var candidate_id  = $(this).attr("id");
-				console.log(candidate_id);
 				
 				// SUPPORT INITIALIZE
 				if(page.auth.token) {
