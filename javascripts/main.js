@@ -129,6 +129,10 @@
 			page.candidates.load(page.vars.$city, 4, 'mayor',0,'');
 			page.candidates.load(page.vars.$city, 7, 'alderman',0,'');
 
+			// get candidates supported
+			page.candidates.load.supported(page.vars.$city,4);
+			page.candidates.load.supported(page.vars.$city,7);
+
 			// candidates listEffect
 			page.candidates.listEffect();
 		 }
@@ -254,6 +258,69 @@
 				page.candidates.load(page.vars.$city, post, postName, 8, '');
 
 		 	 }
+
+
+	 		/**
+			 * page
+			 * * CANDIDATES
+			 * * * SUPPORTED
+			 */
+			 
+			 page.candidates.load.supported = function(city,type) {
+
+			 	if(page.auth.id && page.auth.token) {
+			 		$.ajax({
+						data: {
+							action  		: CONFIG.get('USER_SUPPORTED_CANDIDATES'),
+							city_id			: city,
+							post_id			: type,	
+							user_id			: page.auth.id,
+							user_token		: page.auth.token,
+						},
+						dataType: "json",
+						error: page.error,
+						success: page.candidates.load.supported.process,
+						type: "post",
+						url: CONFIG.get('AJAX_URL')
+					});
+			 	} else {
+			 		console.log("Não está logado.");
+			 	}
+
+		 	 }
+			
+		 	 page.candidates.load.supported.process = function(response) {
+
+		 	 	console.log(response);
+		 	 	var candidates	= response.candidates.reverse();
+		 	 	var post = response.post_id == 4 ? "mayor" : "alderman";
+		 	 	var post_name = response.post_id == 4 ? "prefeito" : "vereador";
+		 	 	var target = $('.' + post + ' .currentsupport, .discussion .support_' + post);
+
+		 	 	target.empty();
+		 	 	target.hide();
+
+		 	 	if(candidates.length > 0) { 
+			 	 	$(candidates).each(function(key, candidate) {
+			 	 		
+			 	 		var url 		= ('//' + window.location.hostname + '/' + candidate.state_sa + '/' + candidate.city_url + '/' + candidate.post_name + '/' + candidate.url).toLowerCase() ;
+						var id 			= candidate.id;
+
+						output  = '<img src="images/candidates/' + candidate.id_tse + '.jpg" alt="' + candidate.name + '" class="currentsupport__candidatephoto" />';
+						output += '<p class="currentsupport__label">Você apoia <a href="' + url + '" class="currentsupport__candidatename">' + candidate.name + '</a></p>';
+
+						target.append(output);
+
+			 	 	});
+		 	 	} else {
+						output = '<p class="currentsupport__label">Você ainda não apoiou nenhum </br>candidato para ' + post_name + ' esta cidade.</p>';
+
+						target.append(output);
+		 	 	}
+
+		 	 	target.fadeIn(500);
+
+		 	 }
 			
 	 		/**
 			 * page
@@ -284,7 +351,7 @@
 					unsupport      += '</a>';
 
 					isSupported = candidate.supported == 0 || candidate.supported == null ? support : unsupport;
-		
+					
 					output  = '<dd class="candidateslist__item ' + post_type + '">';
 					output += 	'<a href="' + url + '" class="candidatecard">';
 					output += 		'<img src="images/candidates/' + candidate.id_tse + '.jpg" alt="' + candidate.name + '" class="candidatecard__photo" />';
@@ -299,7 +366,6 @@
 					output += '</dd>';
 
 					context.after(output);
-
 
 				});
 				

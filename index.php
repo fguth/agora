@@ -51,9 +51,7 @@
 										<div class="breadcrumb">
 											<h2>Prefeito</h2>
 										</div>
-										<div class="currentsupport is-hidden">
-											<img src="#" alt="Candidate photo" class="currentsupport__candidatephoto" />
-											<p class="currentsupport__label">Você apoia <a href="#" class="currentsupport__candidatename">Candidate name</a></p>
+										<div class="currentsupport">
 										</div>
 										<form class="listfilter">
 											<input id="mayor__filter" type="text" name="filterfield" data-post="4" class="listfilter__filterfield" placeholder="Filtrar por candidato ou partido..." autocomplete="off" />
@@ -72,9 +70,7 @@
 										<div class="breadcrumb">
 											<h2>Vereador</h2>
 										</div>
-										<div class="currentsupport is-hidden">
-											<img src="#" alt="Candidate photo" class="currentsupport__candidatephoto" />
-											<p class="currentsupport__label">Você apoia <a href="#" class="currentsupport__candidatename">Candidate name</a></p>
+										<div class="currentsupport">
 										</div>
 										<form class="listfilter">
 											<input id="alderman__filter" type="text" name="filterfield" data-post="7" class="listfilter__filterfield" placeholder="Filtrar por candidato ou partido..." autocomplete="off" />

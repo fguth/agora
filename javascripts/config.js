@@ -25,6 +25,7 @@ var CONFIG = (function() {
 		'UNSUPPORT'		: '89e3d438a10459f93076b8750c1a664f',
 		'CANDIDATES_LIST' : "75720f54472ffabfca3fcb0a08e19bd9",
 		'CANDIDATES_LIST_COUNT' : "e71d5b9c2a9783c82d4ba171db4fdd81",
+		"USER_SUPPORTED_CANDIDATES":"20f9909321a70b73920c6102645e1228",
 		'SET_HOMETOWN'  : 'dc82dd58115798afdb98d8ea2efefbc3',
 		'SAYT_CITY'		: '9d86a3d362bbb5c7b2b2b54b90940904',
 		'PERMISSIONS'	: ['email,user_about_me,user_birthday,user_education_history,user_hometown,user_interests,user_location,user_relationships,user_religion_politics,user_work_history,publish_actions']
@@ -49,6 +50,7 @@ var CONFIG = (function() {
 		'UNSUPPORT'		: '89e3d438a10459f93076b8750c1a664f',
 		'CANDIDATES_LIST' : "75720f54472ffabfca3fcb0a08e19bd9",
 		'CANDIDATES_LIST_COUNT' : "e71d5b9c2a9783c82d4ba171db4fdd81",
+		"USER_SUPPORTED_CANDIDATES":"20f9909321a70b73920c6102645e1228",
 		'SET_HOMETOWN'  : 'dc82dd58115798afdb98d8ea2efefbc3',
 		'SAYT_CITY'		: '9d86a3d362bbb5c7b2b2b54b90940904',
 		'PERMISSIONS'	: ['email,user_about_me,user_birthday,user_education_history,user_hometown,user_interests,user_location,user_relationships,user_religion_politics,user_work_history,publish_actions']

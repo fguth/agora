@@ -306,11 +306,12 @@
     box-shadow: 0 1px 2px #A0A6AC;
     display: inline-block;
     height: 19px;
-    margin: 2px 9px 0 0;
+    margin: 2px 0px 0 0;
     width: 19px;
 }
 .currentsupport__label {
     display: inline-block;
+    margin: 0px 10px
 }
 .currentsupport__candidatename {
     color: #A0A6AC;

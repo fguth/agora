@@ -4,13 +4,9 @@
 		<div class="breadcrumb">
 			<h2>Discussão</h2>
 		</div>
-		<div class="currentsupport">
-			<img src="#" alt="Candidate photo" class="currentsupport__candidatephoto" />
-			<p class="currentsupport__label">Você apoia <a href="#" class="currentsupport__candidatename">Candidate name</a></p>
+		<div class="currentsupport support_mayor">
 		</div>
-		<div class="currentsupport">
-			<img src="#" alt="Candidate photo" class="currentsupport__candidatephoto" />
-			<p class="currentsupport__label">Você apoia <a href="#" class="currentsupport__candidatename">Candidate name</a></p>
+		<div class="currentsupport support_alderman">
 		</div>
 	</div>
 	

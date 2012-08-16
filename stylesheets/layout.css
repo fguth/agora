@@ -53,7 +53,7 @@ body {
 	overflow:auto;
 }
 	.main__nav {
-		border-color:#b6b3b3;
+	border-color:#b6b3b3;
     border-color:rgba(255, 255, 255, 0.4);
     border-radius:10px 0 0 10px;
     border-style:solid;
