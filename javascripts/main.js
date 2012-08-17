@@ -471,7 +471,6 @@
 				
 				// SUPPORT INITIALIZE
 				if(page.auth.token) {
-					/*
 					FB.api(
 						'/me/' + CONFIG.get('APP_NAME') + ':' + CONFIG.get('APP_ACTION') + '?' + CONFIG.get('APP_OBJECT') + '=' + candidate_url,
 						'post',
@@ -494,16 +493,17 @@
 									url: CONFIG.get('AJAX_URL')
 								}); 
 
-								//
-								page.candidates.support.process();
-								// console.log(response);
+								
+								//page.candidates.support.process();
+								console.log(response);
+
 							} else {
-								page.candidates.support.process(candidate_id);
-								// console.log(response);
+								//page.candidates.support.process(candidate_id);
+								console.log(response);
 								//page.error();
 							}
 						}
-					);*/
+					);
 				} else {
 					page.login();
 				}
