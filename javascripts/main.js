@@ -340,7 +340,7 @@
 
 				$(candidates).each(function(key, candidate) {
 
-					var url 		= ('//' + window.location.hostname + '/' + candidate.state_sa + '/' + candidate.city_url + '/' + candidate.post_name + '/' + candidate.url).toLowerCase() ;
+					var url 		= ('http://' + window.location.hostname + '/' + candidate.state_sa + '/' + candidate.city_url + '/' + candidate.post_name + '/' + candidate.url).toLowerCase() ;
 					var id 			= candidate.id;
 					var support     = '<a id="' + id + '" href="' + url + '" class="support__button">';
 					support        += 	'<img src="images/icon-support.png" alt="Apoiar candidato" class="support__button__icon" /><span class="support__button__text">Apoiar</span>';
@@ -430,17 +430,12 @@
 						switch (event.which) {
 							case 13:
 								// Enter
-
 								page.candidates.sayt.key(event, this);
-
 								break;
 							case 27:
 								// ESC
-
 								$(this).val("");
-								
 								page.candidates.sayt.key(event, this);
-
 								break;
 						}
 					}
@@ -458,9 +453,7 @@
 			 */
 
 			 page.candidates.support = function(e) {
-			 	if (e.preventDefault) {
-					e.preventDefault();
-			 	}
+				e.preventDefault();
 			 	
 			 	//LOAD
 			 	$(this).addClass("is-loading");
@@ -471,13 +464,10 @@
 				
 				// SUPPORT INITIALIZE
 				if(page.auth.token) {
-					FB.api(
-						'/me/' + CONFIG.get('APP_NAME') + ':' + CONFIG.get('APP_ACTION') + '?' + CONFIG.get('APP_OBJECT') + '=' + candidate_url,
-						'post',
+					FB.api('/me/' + CONFIG.get('APP_NAME') + ':' + CONFIG.get('APP_ACTION'), 'post', { candidato : '' + candidate_url + ''}, 
 						function(response) {
+							console.log(response);
 							if (response && !response.error && page.auth.token && page.auth.id) {
-								///*
-								console.log(response);
 								$.ajax({
 									data: {
 										action			: CONFIG.get('SUPPORT'),
@@ -491,15 +481,8 @@
 									success: page.candidates.support.process,
 									type: "post",
 									url: CONFIG.get('AJAX_URL')
-								}); 
-
-								
-								//page.candidates.support.process();
-								console.log(response);
-
+								});
 							} else {
-								//page.candidates.support.process(candidate_id);
-								console.log(response);
 								//page.error();
 							}
 						}
@@ -507,7 +490,6 @@
 				} else {
 					page.login();
 				}
-
 			 }
 
 	 		/**
@@ -517,9 +499,7 @@
 			 */
 
 			 page.candidates.support.process = function(response) {
-
 				var id = response;
-
 				if(response) {	
 					//LOAD
 					$('#' + response).unbind("click",page.candidates.support);
