@@ -39,7 +39,7 @@ class CurrentLocation {
 			$this->state = strval($this->config->data->geolocation_data->region_name);
 		} else {
 			//Default
-			$this->state = "Rio Grande do Sul";
+			$this->state = "rs";
 		}
 
 	}
@@ -47,10 +47,10 @@ class CurrentLocation {
 	private function city() {
 
 		if ($this->status) {
-			$this->city = strval($this->config->data->geolocation_data->city);
+			$this->city = sef(strval($this->config->data->geolocation_data->city));
 		} else {
 			//Default
-			$this->city = "Porto Alegre";
+			$this->city = "porto-alegre";
 		}
 
 	}

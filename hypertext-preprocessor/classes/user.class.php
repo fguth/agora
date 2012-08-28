@@ -64,7 +64,7 @@ class User {
 			$this->info->birthday 				= $data->birthday;
 			$this->info->created_date 			= $data->created_date;
 			$this->info->last_access 			= $data->last_access;
-			$this->info->json 					= $data->json;
+			$this->info->json 					= "";//$data->json;
 		}
 	}
 	
@@ -138,12 +138,6 @@ class User {
 		$this->info->inspirational_people	= $data['inspirational_people'];
 		$this->info->education				= $data['education'];
 		$this->info->languages				= $data['languages'];
-		$this->info->music 					= json_decode(file_get_contents("https://graph.facebook.com/me/music?access_token=" . $this->token));
-		$this->info->books 					= json_decode(file_get_contents("https://graph.facebook.com/me/books?access_token=" . $this->token));
-		$this->info->television 			= json_decode(file_get_contents("https://graph.facebook.com/me/television?access_token=" . $this->token));
-		$this->info->activities 			= json_decode(file_get_contents("https://graph.facebook.com/me/activities?access_token=" . $this->token));
-		$this->info->interests 				= json_decode(file_get_contents("https://graph.facebook.com/me/interests?access_token=" . $this->token));
-		$this->info->movies 				= json_decode(file_get_contents("https://graph.facebook.com/me/movies?access_token=" . $this->token));
 		$this->info->birthday 				= date('Y/m/d', strtotime($data['birthday']));
 		$this->info->created_date 			= date('Y/m/d h:i');
 		$this->info->last_access 			= date('Y/m/d h:i');

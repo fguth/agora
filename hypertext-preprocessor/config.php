@@ -9,6 +9,7 @@ define("DB_NAME", "db_agora");
 define("APP_ACTION", "apoiar");
 define("APP_CANDIDATE_OBJECT", "candidato");
 define("APP_PROJECT_OBJECT", "projeto");
+define("APP_PROJECT_IMAGE", "https://fbcdn-sphotos-a.akamaihd.net/hphotos-ak-ash3/523977_279169475490552_274490955958404_623177_1354285026_n.jpg");
 define("ELLECTION_YEAR", "2012");
 
 if (IS_LOCAL) {

@@ -110,9 +110,11 @@
 		 */
 
 		 page.url = function() {
-			
-			// set url 
-			window.history.pushState(document.title,document.title,$('meta[name=path]').attr("content"));
+			var path = window.location.pathname.split( '/' );
+			// set url
+			if(path.length > 2) {
+				window.history.pushState(document.title,document.title,$('meta[name=path]').attr("content"));	
+			}
 			
 		 }
 		
@@ -337,6 +339,7 @@
 				var output		= null;
 				var loader		= $('#' + post_type + '__loader');
 				var message		= '.' + post_type + '__message';
+				console.log(candidates);
 
 				$(candidates).each(function(key, candidate) {
 
