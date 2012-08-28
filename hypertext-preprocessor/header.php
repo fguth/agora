@@ -25,7 +25,7 @@ $header	= new Header($auth->user);
 	
 	<?php $header->meta(); ?>
 
-	<body>
+	<body data-path="<?php echo($header->path); ?>" data-city-id="<?php echo($header->city_id); ?>">
 		<div class="wrapper">
 			<div class="header">
 				<div class="header__logo">

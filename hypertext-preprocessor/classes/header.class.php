@@ -141,7 +141,6 @@ class Header {
 			$html .= '<link rel="stylesheet" href="stylesheets/layout.css" />';
 			$html .= '<link rel="shortcut icon" href="images/favicon.ico" />';
 			$html .= '<meta name="description" content="' . $this->desc . '" />';
-			$html .= '<meta name="path" content="' . $this->path . '" />';
 			$html .= '<meta property="og:title" content="' . $this->title . '" />';
 			$html .= '<meta property="og:type" content="' . $this->type . '" />';
 			$html .= '<meta property="og:url" content="' . $this->address . '" />';

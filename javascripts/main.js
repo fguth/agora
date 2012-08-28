@@ -43,7 +43,7 @@
 			
 		 }
 		
-			 page.vars.$city = $(".citynav__setmycity", ".header").attr("id");
+			 page.vars.$city = $("body").attr("data-city-id");
 		
 		/**
 		 * page
@@ -113,7 +113,7 @@
 			var path = window.location.pathname.split( '/' );
 			// set url
 			if(path.length > 2) {
-				window.history.pushState(document.title,document.title,$('meta[name=path]').attr("content"));	
+				window.history.pushState(document.title,document.title,$('body').attr("data-path"));	
 			}
 			
 		 }
@@ -689,7 +689,8 @@
 		page.location = function() {
 			page.location.original = page.location.elements.$cityname.val();
 			
-			page.location.elements.$cityname.bind("focus", page.location.focus).bind("blur", page.location.blur);
+			page.location.elements.$cityname.bind("click", page.location.focus).bind("blur", page.location.blur);
+
 			page.location.elements.$dropdown.on("mouseover", "li", page.location.hover).on("mouseout", "li", page.location.hover).on("click", "li", page.location.click);
 			
 			// Listen to the key up event but don't flood the hell out of it,
@@ -715,7 +716,6 @@
 		
 		page.location.click = function(event) {
 			var city = page.location.elements.$dropdown.children("li.citynav__searchdropdown__item__highlighted");
-
 			if (city.length) {
 				window.location.assign("http://" + CONFIG.get("HOST") + "/" + city.attr("data-state-sa").toLowerCase() + "/" + city.attr("data-city-url"));
 			}
