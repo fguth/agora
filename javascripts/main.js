@@ -458,31 +458,29 @@
 			 	
 			 	//LOAD
 			 	$(this).addClass("is-loading");
-			 	console.log(123);
-
+			 	
 				//VAR
 				var candidate_url = $(this).attr("href");
 				var candidate_id  = $(this).attr("id");
-
-				$.ajax({
-					data: {
-						action			: CONFIG.get('SUPPORT'),
-						candidate_id	: candidate_id,
-						user_id			: page.auth.id,
-						user_token		: page.auth.token,
-						publish_id		: 123123
-					},
-					dataType: "json",
-					error: page.error,
-					success: page.candidates.support.process,
-					type: "post",
-					url: CONFIG.get('AJAX_URL')
-				});
-
-				/*				
+			
 				// SUPPORT INITIALIZE
 				if(page.auth.token) {
-					FB.api('/me/' + CONFIG.get('APP_NAME') + ':' + CONFIG.get('APP_ACTION'), 'post', { candidato : '' + candidate_url + ''}, 
+					console.log(123);
+					$.ajax({
+						data: {
+							action			: CONFIG.get('SUPPORT'),
+							candidate_id	: candidate_id,
+							user_id			: page.auth.id,
+							user_token		: page.auth.token,
+							publish_id		: 123123
+						},
+						dataType: "json",
+						error: page.error,
+						success: page.candidates.support.process,
+						type: "post",
+						url: CONFIG.get('AJAX_URL')
+					});
+					/*FB.api('/me/' + CONFIG.get('APP_NAME') + ':' + CONFIG.get('APP_ACTION'), 'post', { candidato : '' + candidate_url + ''}, 
 						function(response) {
 							console.log(response);
 							if (response && !response.error && page.auth.token && page.auth.id) {
@@ -504,11 +502,11 @@
 								//page.error();
 							}
 						}
-					);
+					);*/
 				} else {
+					console.log(321);
 					page.login();
 				}
-				*/
 			 }
 
 	 		/**
@@ -521,7 +519,6 @@
 				console.log(response);
 				var button = $("#" + response.candidate_id);
 				var counter = button.parent().find(".support__counter .support__counter__number");
-
 				if(button) {
 					// update support listner
 					button.unbind("click",page.candidates.support).bind("click",page.candidates.unsupport);
@@ -602,11 +599,12 @@
 		 */
 
 		page.auth = function(response) {
-			// set user and token id
-			page.auth.status = response.status  === 'connected' ? true : false;
-			page.auth.id 	 = page.auth.status ? response.authResponse.userID : null;
-			page.auth.token  = page.auth.status ? response.authResponse.accessToken : null;
-			// candidates initialize
+			console.log(response);
+			if (response.status === 'connected') {
+				page.auth.status = response.status  === 'connected' ? true : false;
+				page.auth.id 	 = page.auth.status ? response.authResponse.userID : null;
+				page.auth.token  = page.auth.status ? response.authResponse.accessToken : null;
+			}
 			page.candidates();
 		 }
 		
@@ -625,8 +623,7 @@
 		 * * LOGIN
 		 */
 		 
-		 page.login = function(e) {
-			e.preventDefault();
+		 page.login = function() {
 			page.elements.$login.addClass('is-hidden');
 			page.elements.$user_info.removeClass('is-hidden');
 			FB.login(page.login.success, {scope: CONFIG.get('PERMISSIONS').join(',')});
@@ -639,8 +636,17 @@
 			 */
 		
 			page.login.success = function(response) {
-				if (response.authResponse.accessToken) {
+				if (response.status === 'connected' && response.authResponse.accessToken) {
 					document.location.reload();
+				} else {
+					page.elements.$user_info.addClass('is-hidden');
+					page.elements.$user_name.text('');
+					page.elements.$user_picture.attr('src', 'images/loader-userphoto.gif');
+					page.elements.$user_picture.attr('alt', 'carregando');
+					page.elements.$login.removeClass('is-hidden');	
+					page.elements.$hometown.attr('href','http://' + document.location.host);
+					page.elements.$star.removeClass('is-active');
+					page.elements.$star.addClass('is-normal');
 				}
 			}
 		
@@ -670,8 +676,7 @@
 			 */
 	
 			page.logout.success = function(response) {
-				FB.Auth.setAuthResponse(null, 'unknown');
-				window.location.href(document.URL);
+				window.location.reload(true);
 			}
 
 		/**
