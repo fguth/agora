@@ -269,7 +269,6 @@
 			 */
 			 
 			 page.candidates.load.supported = function(city,type) {
-
 			 	if(page.auth.id && page.auth.token) {
 			 		$.ajax({
 						data: {
@@ -286,12 +285,9 @@
 						url: CONFIG.get('AJAX_URL')
 					});
 			 	}
-
 		 	 }
 			
 		 	 page.candidates.load.supported.process = function(response) {
-
-		 	 	console.log(response);
 		 	 	var candidates	= response.candidates.reverse();
 		 	 	var post = response.post_id == 4 ? "mayor" : "alderman";
 		 	 	var post_name = response.post_id == 4 ? "prefeito" : "vereador";
@@ -337,7 +333,6 @@
 				var output		= null;
 				var loader		= $('#' + post_type + '__loader');
 				var message		= '.' + post_type + '__message';
-				console.log(candidates);
 
 				$(candidates).each(function(key, candidate) {
 
@@ -465,32 +460,17 @@
 				var post_id		  = $(this).attr("data-post");
 				// SUPPORT INITIALIZE
 				if(page.auth.token) {
-					$.ajax({
-						data: {
-							action			: CONFIG.get('SUPPORT'),
-							candidate_id	: candidate_id,
-							user_id			: page.auth.id,
-							user_token		: page.auth.token,
-							city_id			: page.vars.$city,
-							post_id			: post_id,
-							publish_id		: 123123
-						},
-						dataType: "json",
-						error: page.error,
-						success: page.candidates.support.process,
-						type: "post",
-						url: CONFIG.get('AJAX_URL')
-					});
-					/*FB.api('/me/' + CONFIG.get('APP_NAME') + ':' + CONFIG.get('APP_ACTION'), 'post', { candidato : '' + candidate_url + ''}, 
+					FB.api('/me/' + CONFIG.get('APP_NAME') + ':' + CONFIG.get('APP_ACTION'), 'post', { candidato : '' + candidate_url + ''}, 
 						function(response) {
-							console.log(response);
-							if (response && !response.error && page.auth.token && page.auth.id) {
+							if (response && !response.error ) {
 								$.ajax({
 									data: {
 										action			: CONFIG.get('SUPPORT'),
 										candidate_id	: candidate_id,
 										user_id			: page.auth.id,
 										user_token		: page.auth.token,
+										city_id			: page.vars.$city,
+										post_id			: post_id,
 										publish_id		: response.id
 									},
 									dataType: "json",
@@ -500,10 +480,9 @@
 									url: CONFIG.get('AJAX_URL')
 								});
 							} else {
-								//page.error();
+								page.error(response);
 							}
-						}
-					);*/
+					});
 				} else {
 					page.login();
 				}
@@ -556,10 +535,8 @@
 
 			 page.candidates.unsupport = function(e) {
 			 	e.preventDefault();
-
 				//VAR
 				var candidate_id  = $(this).attr("id");
-			 	console.log(candidate_id);
 
 				if(page.auth.id && page.auth.token && candidate_id) {
 					$.ajax({
@@ -588,23 +565,24 @@
 			 */
 
 			 page.candidates.unsupport.process = function(response) {
-				console.log(response);
-				var button = $("#" + response.candidate_id);
-				var counter = button.parent().find(".support__counter .support__counter__number");
-
-				if(button) {
-					button.unbind("click",page.candidates.unsupport).bind("click",page.candidates.support);
-					button.removeClass("unsupport__button").addClass("support__button");
-			 		button.find(".support__button__text").empty().append('Apoiar');
-			 		// update supports count
-			 		var count = parseInt(counter.html());
-			 		count--;
-			 		counter.empty().append(count);
-			 		// update candidates supported
-					page.candidates.load.supported(page.vars.$city,button.attr("data-post"));
-				} else {
-					page.error();	
-				}
+			 	var publish_id = response.publish_id;
+				var button 	   = $("#" + response.candidate_id);
+				var counter    = button.parent().find(".support__counter .support__counter__number");
+				FB.api(publish_id,'delete',function(response){
+					if(button) {
+						button.unbind("click",page.candidates.unsupport).bind("click",page.candidates.support);
+						button.removeClass("unsupport__button").addClass("support__button");
+				 		button.find(".support__button__text").empty().append('Apoiar');
+				 		// update supports count
+				 		var count = parseInt(counter.html());
+				 		count--;
+				 		counter.empty().append(count);
+				 		// update candidates supported
+						page.candidates.load.supported(page.vars.$city,button.attr("data-post"));
+					} else {
+						page.error();	
+					}
+				});
 			 }
 		 
 		/* *
@@ -613,7 +591,6 @@
 		 */
 
 		page.auth = function(response) {
-			console.log(response);
 			if (response.status === 'connected') {
 				page.auth.status = response.status  === 'connected' ? true : false;
 				page.auth.id 	 = page.auth.status ? response.authResponse.userID : null;
