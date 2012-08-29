@@ -462,16 +462,17 @@
 				//VAR
 				var candidate_url = $(this).attr("href");
 				var candidate_id  = $(this).attr("id");
-			
+				var post_id		  = $(this).attr("data-post");
 				// SUPPORT INITIALIZE
 				if(page.auth.token) {
-					console.log(123);
 					$.ajax({
 						data: {
 							action			: CONFIG.get('SUPPORT'),
 							candidate_id	: candidate_id,
 							user_id			: page.auth.id,
 							user_token		: page.auth.token,
+							city_id			: page.vars.$city,
+							post_id			: post_id,
 							publish_id		: 123123
 						},
 						dataType: "json",

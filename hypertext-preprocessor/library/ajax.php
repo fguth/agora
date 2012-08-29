@@ -136,8 +136,10 @@ switch ($system->action) {
 			
 			if ($candidate->exist($system->candidate_id)) {
 				
-				$candidate->support($system->user_id,$system->candidate_id,$system->publish_id);
+				$candidate->support($system->user_id,$system->candidate_id,$system->publish_id,$system->post_id,$system->city_id);
 				$system->return->candidate_id = $system->candidate_id;
+				$system->return->post_id = $system->post_id;
+				$system->return->city_id = $system->city_id;
 				$system->return->publish_id = $system->publish_id;
 				$system->return->sucess  = true;
 				$system->return->mensage = "Candidate supported.";

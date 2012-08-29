@@ -31,9 +31,9 @@ class Candidate {
 	}
 	
 	
-	public function support($user = false, $candidate = false, $publish_id = false) {
-		if ($user && $candidate && $publish_id) {
-			db("INSERT INTO supports (user,candidate,publish_id) VALUES (" . $user . "," . $candidate . "," . $publish_id . ")");
+	public function support($user = false, $candidate = false, $publish_id = false, $post = false, $city = false) {
+		if ($user && $candidate && $publish_id && $post && $city) {
+			db("CALL user_support_candidate(" . $user . "," .  $publish_id . "," .  $candidate . "," . $post . "," .  $city . ")");
 		}	
 	}
 	
