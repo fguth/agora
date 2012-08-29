@@ -47,7 +47,7 @@ class Header {
 		$this->user		= $user;
 
 		// verify url to set the correct tags
-		if ($this->config->parameters.lenght > 1) {
+		if (count($this->config->parameters) > 1) {
 			//set the tags values
 			$this->state_sa		= $this->config->parameters[0];
 			$this->city_url		= $this->config->parameters[1];

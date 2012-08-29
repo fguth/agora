@@ -39,11 +39,11 @@ class Candidate {
 	
 	public function unsupport($user = false, $candidate = false) {
 		if ($user && $candidate) {
-			$db 		= db("SELECT publish_id FROM supports WHERE user=" . $user . " AND candidate=" . $candidate);
+			$result 	= db("SELECT publish_id FROM supports WHERE user=" . $user . " AND candidate=" . $candidate);
 			$publish_id = (int) $result[0]->publish_id;
 			
 			if($publish_id) {
-				$db = db("DELETE FROM supports WHERE publish_id=" . $publish_id);
+				$db = db("DELETE FROM supports WHERE user=" . $user . " AND candidate=" . $candidate);
 				return $publish_id;
 			}
 		}	

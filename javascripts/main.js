@@ -285,8 +285,6 @@
 						type: "post",
 						url: CONFIG.get('AJAX_URL')
 					});
-			 	} else {
-			 		console.log("Não está logado.");
 			 	}
 
 		 	 }
@@ -345,11 +343,11 @@
 
 					var url 		= ('http://' + window.location.hostname + '/' + candidate.state_sa + '/' + candidate.city_url + '/' + candidate.post_name + '/' + candidate.url).toLowerCase() ;
 					var id 			= candidate.id;
-					var support     = '<a id="' + id + '" href="' + url + '" class="support__button">';
+					var support     = '<a id="' + id + '" href="' + url + '" data-post="' + post_id + '" class="support__button">';
 					support        += 	'<img src="images/icon-support.png" alt="Apoiar candidato" class="support__button__icon" /><span class="support__button__text">Apoiar</span>';
 					support        += '</a>';
 
-					var unsupport   = '<a id="' + id + '" href="' + url + '" class="unsupport__button">';
+					var unsupport   = '<a id="' + id + '" href="' + url + '" data-post="' + post_id + '" class="unsupport__button">';
 					unsupport  	   +=   '<span class="unsupport__button__text">Desfazer</span>';
 					unsupport      += '</a>';
 
@@ -460,11 +458,28 @@
 			 	
 			 	//LOAD
 			 	$(this).addClass("is-loading");
+			 	console.log(123);
 
 				//VAR
 				var candidate_url = $(this).attr("href");
 				var candidate_id  = $(this).attr("id");
-				
+
+				$.ajax({
+					data: {
+						action			: CONFIG.get('SUPPORT'),
+						candidate_id	: candidate_id,
+						user_id			: page.auth.id,
+						user_token		: page.auth.token,
+						publish_id		: 123123
+					},
+					dataType: "json",
+					error: page.error,
+					success: page.candidates.support.process,
+					type: "post",
+					url: CONFIG.get('AJAX_URL')
+				});
+
+				/*				
 				// SUPPORT INITIALIZE
 				if(page.auth.token) {
 					FB.api('/me/' + CONFIG.get('APP_NAME') + ':' + CONFIG.get('APP_ACTION'), 'post', { candidato : '' + candidate_url + ''}, 
@@ -493,6 +508,7 @@
 				} else {
 					page.login();
 				}
+				*/
 			 }
 
 	 		/**
@@ -502,17 +518,24 @@
 			 */
 
 			 page.candidates.support.process = function(response) {
-				var id = response;
-				if(response) {	
-					//LOAD
-					$('#' + response).unbind("click",page.candidates.support);
-					$('#' + response).bind("click",page.candidates.unsupport);
-			 		$(this).removeClass("is-loading support__button");
-			 		$(this).addClass("unsupport__button");
+				console.log(response);
+				var button = $("#" + response.candidate_id);
+				var counter = button.parent().find(".support__counter .support__counter__number");
+
+				if(button) {
+					// update support listner
+					button.unbind("click",page.candidates.support).bind("click",page.candidates.unsupport);
+					button.removeClass("is-loading support__button").addClass("unsupport__button");
+			 		button.find(".support__button__text").empty().append('Apoiado');
+			 		// update supports count
+			 		var count = parseInt(counter.html());
+			 		count++;
+			 		counter.empty().append(count);
+			 		// update candidates supported
+					page.candidates.load.supported(page.vars.$city,button.attr("data-post"));
 				} else {
 					page.error();	
 				}
-
 			 }
 
 			/**
@@ -523,16 +546,12 @@
 			 page.candidates.unsupport = function(e) {
 			 	e.preventDefault();
 
-			 	//LOAD
-			 	$(this).addClass("is-loading");
-
 				//VAR
 				var candidate_id  = $(this).attr("id");
-				
+			 	console.log(candidate_id);
+
 				if(page.auth.id && page.auth.token && candidate_id) {
-					
-					//SERVER-SIDE UNSUPPORT PROCESS
-					/*$.ajax({
+					$.ajax({
 						data: {
 							action			: CONFIG.get('UNSUPPORT'),
 							candidate_id	: candidate_id,
@@ -541,15 +560,40 @@
 						},
 						dataType: "json",
 						error: page.error,
-						success: page.unsupport.process,
+						success: page.candidates.unsupport.process,
 						type: "post",
 						url: CONFIG.get('AJAX_URL')
 					});
-					*/
 				} else {
 					page.login();
 				}
 
+			 }
+
+			 /**
+			 * page
+			 * * UNSUPPORT
+			 * * * PROCESS
+			 */
+
+			 page.candidates.unsupport.process = function(response) {
+				console.log(response);
+				var button = $("#" + response.candidate_id);
+				var counter = button.parent().find(".support__counter .support__counter__number");
+
+				if(button) {
+					button.unbind("click",page.candidates.unsupport).bind("click",page.candidates.support);
+					button.removeClass("unsupport__button").addClass("support__button");
+			 		button.find(".support__button__text").empty().append('Apoiar');
+			 		// update supports count
+			 		var count = parseInt(counter.html());
+			 		count--;
+			 		counter.empty().append(count);
+			 		// update candidates supported
+					page.candidates.load.supported(page.vars.$city,button.attr("data-post"));
+				} else {
+					page.error();	
+				}
 			 }
 		 
 		/* *
@@ -558,16 +602,12 @@
 		 */
 
 		page.auth = function(response) {
-			
-
 			// set user and token id
 			page.auth.status = response.status  === 'connected' ? true : false;
 			page.auth.id 	 = page.auth.status ? response.authResponse.userID : null;
 			page.auth.token  = page.auth.status ? response.authResponse.accessToken : null;
-
 			// candidates initialize
 			page.candidates();
-
 		 }
 		
 		/**
@@ -678,7 +718,7 @@
 		 */
 		
 		page.error = function(response) {
-			// console.log(response);
+			console.log(response);
 			// window.location.assign("http://" + window.location.hostname + "/oooops/")
 		}
 		

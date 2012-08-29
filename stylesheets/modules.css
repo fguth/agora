@@ -399,6 +399,17 @@
 .support {
     position: relative;
 }
+.support a {
+    -o-transition: background-color 1s;
+    -webkit-transition: background-color 1s;
+    -moz-transition: background-color 1s;
+    -ms-transition: background-color 1s;
+    transition: background-color 1s;
+    -webkit-transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    -o-transition: opacity 1s ease-in-out;
+    transition: opacity 1s ease-in-out; 
+}
 .support__counter {
     display: inline-block;
     height: 37px;
@@ -429,7 +440,7 @@
     width: 0;
 }
 .support__button {
-		background:#14AD1B;
+	background:#14AD1B;
     background-image:linear-gradient(bottom, #0C9E13 0%, #1BBB23 100%);
     border-radius: 3px 3px 3px 3px;
     box-shadow: 0 0 5px #D4D4D4, 0 1px 2px #7FC883;
@@ -439,14 +450,19 @@
     position: absolute;
     right: 0;
     width: 82px;
+    -moz-opacity: 1.0; 
+    -webkit-opacity: 1.0; 
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"; 
+    filter: alpha(opacity=100); 
+    opacity: 1.0;
 }
 .support__button:hover {
-		background:#15B61D;
+	background:#15B61D;
     background-image: linear-gradient(bottom, #0DA114 0%, #1BC223 100%);
     box-shadow: 0 0 5px #75BA79, 0 1px 2px #75BA79;
 }
 .support__button:active {
-		background:#119918;
+	background:#119918;
     background-image: linear-gradient(bottom, #0B9612 0%, #18AD20 100%);
     box-shadow: 0 2px 4px #06730B inset;
 }
@@ -460,10 +476,18 @@
     text-shadow: 0 0 1px #045608;
 }
 .support__button.is-loading {
-
+    -moz-opacity: 0.50; 
+    -webkit-opacity: 0.50; 
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)"; 
+    filter: alpha(opacity=50); 
+    opacity: 0.50;
+    background:#15B61D;
+    background-image: linear-gradient(bottom, #0DA114 0%, #1BC223 100%);
+    box-shadow: 0 0 5px #75BA79, 0 1px 2px #75BA79;
 }
 .unsupport__button {
-		background:#353A3C;
+    display: inline;
+	background-color:#353A3C;
     background-image: linear-gradient(bottom , #2E3234 0%, #3C4144 100%);
     border-radius: 3px 3px 3px 3px;
     box-shadow: 0 1px 1px #B5BCC0;
@@ -475,8 +499,11 @@
     text-align: center;
     width: 82px;
 }
+.unsupport__button img {
+    display: none;
+}
 .unsupport__button:hover {
-		background:#414648;
+	background:#414648;
     background-image: linear-gradient(bottom , #313638 0%, #464C4F 100%);
     box-shadow: 0 1px 3px #787C80;
 }
