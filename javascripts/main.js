@@ -504,7 +504,6 @@
 						}
 					);*/
 				} else {
-					console.log(321);
 					page.login();
 				}
 			 }
@@ -516,9 +515,21 @@
 			 */
 
 			 page.candidates.support.process = function(response) {
-				console.log(response);
-				var button = $("#" + response.candidate_id);
-				var counter = button.parent().find(".support__counter .support__counter__number");
+				var button    = $("#" + response.candidate_id);
+				var counter	  = button.parent().find(".support__counter .support__counter__number");
+				var post_id   = button.attr("data-post");
+				var post_name = post_id == 4 ? 'mayor' : 'alderman';
+				var unsupport = $('.' + post_name + ' .unsupport__button');
+
+				var uncounter = unsupport.parent().find(".support__counter .support__counter__number");
+				unsupport.unbind("click",page.candidates.unsupport).bind("click",page.candidates.support);
+				unsupport.removeClass("unsupport__button").addClass("support__button");
+		 		unsupport.find(".support__button__text").empty().append('Apoiar');
+		 		// update supports count
+		 		var uncount = parseInt(uncounter.html());
+		 		uncount--;
+		 		uncounter.empty().append(uncount);
+
 				if(button) {
 					// update support listner
 					button.unbind("click",page.candidates.support).bind("click",page.candidates.unsupport);
@@ -528,8 +539,10 @@
 			 		var count = parseInt(counter.html());
 			 		count++;
 			 		counter.empty().append(count);
+			 		// update candidates list
+
 			 		// update candidates supported
-					page.candidates.load.supported(page.vars.$city,button.attr("data-post"));
+					page.candidates.load.supported(page.vars.$city,post_id);
 				} else {
 					page.error();	
 				}
