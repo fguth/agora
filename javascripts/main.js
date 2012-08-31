@@ -477,7 +477,7 @@
 							} else {
 								page.error(response);
 							}
-					});*/
+					});
 				} else {
 					page.login();
 				}
