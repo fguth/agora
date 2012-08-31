@@ -23,6 +23,7 @@ class Header {
 	public $city_url;
 	public $post;
 	public $candidate;
+	public $content_type;
 
 	/**
 	 *  Constructor
@@ -73,11 +74,11 @@ class Header {
 		$this->address 	 = "http://" . $this->config->host . "/" . $this->path;
 		$this->location  = $this->city . ', ' . $this->state_sa;
 		$this->candidate = $this->candidate ? $this->validate('candidate', $this->candidate) : null;
-		$this->title = $this->candidate ? ucwords(strtolower($this->candidate->name)) . " - Ágora Eleições 2012" : $this->city . " - Ágora Eleições 2012";
+		$this->title = $this->candidate ? ucwords(strtolower($this->candidate->name)) : $this->city . " - Ágora Eleições 2012";
 		$this->type  = $this->candidate ? APP_NAME . ":" . APP_CANDIDATE_OBJECT : APP_NAME . ":" . APP_PROJECT_OBJECT;
 		$this->image = $this->candidate ? "http://" . $this->config->host . "/images/candidates/" . $this->candidate->id_tse . ".jpg" : $this->image;
 		$this->desc  = $this->candidate ? ucwords(strtolower($this->candidate->name)) . " está concorrendo para o cargo de " . $this->candidate->post_name . " da cidade de " . $this->candidate->city_name . "." : $this->desc;
-
+		$this->content_type = $this->candidate ? 'candidate' : 'city';
 	}
 	
 	/**
@@ -128,7 +129,16 @@ class Header {
 		echo $html;
 		
 	}
-	
+
+	public function hasSupport($candidate) {
+		if($candidate && $this->user) {
+			$data = db("SELECT id FROM supports WHERE user = '" . $this->user->id ."' AND candidate = '" . $this->candidate->id ."'");
+			return count($data) ? true : false;
+		} else {
+			return false;
+		}
+	}
+
 	public function meta() {
 
 		$html = '<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#' . $this->config->appName . ': http://ogp.me/ns/fb/' . $this->config->appName . '#">';
@@ -170,7 +180,7 @@ class Header {
 				$this->state_sa 	= $data[0]->state_sa;
 			break;
 			case "candidate" : 
-				$data = db("SELECT LOWER(name) AS name,number,party_name,party_acronym,birth_si,supports,id_tse,post_name,city_name,state_sa FROM candidates_data WHERE state_sa = '" . $this->state_sa ."' AND city_url = '" . $this->city_url ."' AND post_name = '" . $this->post ."' AND url = '" . $candidate ."'");
+				$data = db("SELECT LOWER(name) AS name,id,number,party_name,party_acronym,birth_si,supports,id_tse,post_id,post_name,city_name,state_sa FROM candidates_data WHERE state_sa = '" . $this->state_sa ."' AND city_url = '" . $this->city_url ."' AND post_name = '" . $this->post ."' AND url = '" . $candidate ."'");
 				return count($data) ? $data[0] : header("Location:/ooooops/"); 
 			break;
 			case "location" :

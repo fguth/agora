@@ -336,17 +336,10 @@
 
 				$(candidates).each(function(key, candidate) {
 
-					var url 		= ('http://' + window.location.hostname + '/' + candidate.state_sa + '/' + candidate.city_url + '/' + candidate.post_name + '/' + candidate.url).toLowerCase() ;
-					var id 			= candidate.id;
-					var support     = '<a id="' + id + '" href="' + url + '" data-post="' + post_id + '" class="support__button">';
-					support        += 	'<img src="images/icon-support.png" alt="Apoiar candidato" class="support__button__icon" /><span class="support__button__text">Apoiar</span>';
-					support        += '</a>';
+					var url 	= ('http://' + window.location.hostname + '/' + candidate.state_sa + '/' + candidate.city_url + '/' + candidate.post_name + '/' + candidate.url).toLowerCase() ;
+					var id 		= candidate.id;
 
-					var unsupport   = '<a id="' + id + '" href="' + url + '" data-post="' + post_id + '" class="unsupport__button">';
-					unsupport  	   +=   '<span class="unsupport__button__text">Desfazer</span>';
-					unsupport      += '</a>';
-
-					isSupported = candidate.supported == 0 || candidate.supported == null ? support : unsupport;
+					isSupported = candidate.supported == 0 || candidate.supported == null ? "support__button" : "unsupport__button";
 					
 					output  = '<dd class="candidateslist__item ' + post_type + '">';
 					output += 	'<a href="' + url + '" class="candidatecard">';
@@ -357,7 +350,9 @@
 					output += 		'<div class="support__counter">';
 					output += 			'<span class="support__counter__number">' + candidate.supports + '</span>';
 					output += 		'</div>';
-					output += 		isSupported;
+					output += 		'<a id="' + id + '" href="' + url + '" data-post="' + post_id + '" class="' + isSupported +'">';
+					output += 			'<img src="images/icon-support.png" alt="Apoiar candidato" class="support__button__icon" /><span class="support__button__text">Apoiar</span>';
+					output += 		'</a>';
 					output += 	'</div>';
 					output += '</dd>';
 
@@ -460,9 +455,9 @@
 				var post_id		  = $(this).attr("data-post");
 				// SUPPORT INITIALIZE
 				if(page.auth.token) {
-					FB.api('/me/' + CONFIG.get('APP_NAME') + ':' + CONFIG.get('APP_ACTION'), 'post', { candidato : '' + candidate_url + ''}, 
+					/*FB.api('/me/' + CONFIG.get('APP_NAME') + ':' + CONFIG.get('APP_ACTION'), 'post', { candidato : '' + candidate_url + ''}, 
 						function(response) {
-							if (response && !response.error ) {
+							if (response && !response.error ) {*/
 								$.ajax({
 									data: {
 										action			: CONFIG.get('SUPPORT'),
@@ -471,7 +466,7 @@
 										user_token		: page.auth.token,
 										city_id			: page.vars.$city,
 										post_id			: post_id,
-										publish_id		: response.id
+										publish_id		: 123123123//response.id
 									},
 									dataType: "json",
 									error: page.error,
@@ -479,10 +474,10 @@
 									type: "post",
 									url: CONFIG.get('AJAX_URL')
 								});
-							} else {
+							/*} else {
 								page.error(response);
 							}
-					});
+					});*/
 				} else {
 					page.login();
 				}
@@ -514,7 +509,7 @@
 					// update support listner
 					button.unbind("click",page.candidates.support).bind("click",page.candidates.unsupport);
 					button.removeClass("is-loading support__button").addClass("unsupport__button");
-			 		button.find(".support__button__text").empty().append('Apoiado');
+			 		button.find(".support__button__text").empty().append('Desfazer');
 			 		// update supports count
 			 		var count = parseInt(counter.html());
 			 		count++;
@@ -568,7 +563,7 @@
 			 	var publish_id = response.publish_id;
 				var button 	   = $("#" + response.candidate_id);
 				var counter    = button.parent().find(".support__counter .support__counter__number");
-				FB.api(publish_id,'delete',function(response){
+				//FB.api(publish_id,'delete',function(response){
 					if(button) {
 						button.unbind("click",page.candidates.unsupport).bind("click",page.candidates.support);
 						button.removeClass("unsupport__button").addClass("support__button");
@@ -582,8 +577,135 @@
 					} else {
 						page.error();	
 					}
-				});
+				//});
 			 }
+
+		/**
+		 * page
+		 * * CANDIDATE
+		 */
+		 
+		 page.candidate = function() {
+			$('.support__button').bind("click",page.candidate.support);
+			$('.unsupport__button').bind("click",page.candidate.unsupport);
+		 }
+
+			/**
+			 * page
+			 * * CANDIDATE
+			 */
+			 
+			 page.candidate.support = function(e) {
+			 	e.preventDefault();			 	
+			 	$(this).addClass("is-loading");	 	
+				var candidate_url = $(this).attr("href");
+				var candidate_id  = $(this).attr("id");
+				var post_id		  = $(this).attr("data-post");
+				// SUPPORT INITIALIZE
+				if(page.auth.token) {
+					/*FB.api('/me/' + CONFIG.get('APP_NAME') + ':' + CONFIG.get('APP_ACTION'), 'post', { candidato : '' + candidate_url + ''}, 
+						function(response) {
+							if (response && !response.error ) {*/
+								$.ajax({
+									data: {
+										action			: CONFIG.get('SUPPORT'),
+										candidate_id	: candidate_id,
+										user_id			: page.auth.id,
+										user_token		: page.auth.token,
+										city_id			: page.vars.$city,
+										post_id			: post_id,
+										publish_id		: 123123123//response.id
+									},
+									dataType: "json",
+									error: page.error,
+									success: page.candidate.support.process,
+									type: "post",
+									url: CONFIG.get('AJAX_URL')
+								});
+							/*} else {
+								page.error(response);
+							}
+					});*/
+				} else {
+					page.login();
+				}
+			 }
+
+			 	/**
+				 * page
+				 * * CANDIDATE
+				 * * * SUPPORT - PROCESS
+				 */
+				 
+				 page.candidate.support.process = function(response) {
+					var button    = $("#" + response.candidate_id);
+					var counter	  = button.parent().find(".support__counter .support__counter__number");
+
+					if(button) {
+						// update support listner
+						button.unbind("click",page.candidate.support).bind("click",page.candidate.unsupport);
+						button.removeClass("is-loading support__button").addClass("unsupport__button");
+				 		button.find(".support__button__text").empty().append('Desfazer');
+				 		// update supports count
+				 		var count = parseInt(counter.html());
+				 		count++;
+				 		counter.empty().append(count);
+					} else {
+						page.error();	
+					}
+				 }
+
+			/**
+			 * page
+			 * * CANDIDATE
+			 */
+			 
+			 page.candidate.unsupport = function(e) {
+			 	e.preventDefault();
+			 	var candidate_id  = $(this).attr("id");
+				if(page.auth.id && page.auth.token && candidate_id) {
+					$.ajax({
+						data: {
+							action			: CONFIG.get('UNSUPPORT'),
+							candidate_id	: candidate_id,
+							user_id			: page.auth.id,
+							user_token		: page.auth.token
+						},
+						dataType: "json",
+						error: page.error,
+						success: page.candidate.unsupport.process,
+						type: "post",
+						url: CONFIG.get('AJAX_URL')
+					});
+				} else {
+					page.login();
+				}
+			 }
+
+			 	/**
+				 * page
+				 * * CANDIDATE
+				 * * * UNSUPPORT - PROCESS
+				 */
+				 
+				 page.candidate.unsupport.process = function(response) {
+					var publish_id = response.publish_id;
+					var button 	   = $("#" + response.candidate_id);
+					var counter    = button.parent().find(".support__counter .support__counter__number");
+					//FB.api(publish_id,'delete',function(response){
+						if(button) {
+							button.unbind("click",page.candidate.unsupport).bind("click",page.candidate.support);
+							button.removeClass("unsupport__button").addClass("support__button");
+					 		button.find(".support__button__text").empty().append('Apoiar');
+					 		// update supports count
+					 		var count = parseInt(counter.html());
+					 		count--;
+					 		counter.empty().append(count);
+						} else {
+							page.error();	
+						}
+					//});
+				 }
 		 
 		/* *
 		 * page
@@ -591,12 +713,20 @@
 		 */
 
 		page.auth = function(response) {
-			if (response.status === 'connected') {
+			var _id = $('body').attr('data-id');
+			console.log(_id);
+			console.log(response);
+			if (response.status === 'connected' && response.authResponse.userID == parseInt(_id)) {
 				page.auth.status = response.status  === 'connected' ? true : false;
 				page.auth.id 	 = page.auth.status ? response.authResponse.userID : null;
 				page.auth.token  = page.auth.status ? response.authResponse.accessToken : null;
 			}
-			page.candidates();
+
+			if ($('body').attr('data-content-type') == "city") {
+				page.candidates();
+			} else {
+				page.candidate();
+			}
 		 }
 		
 		/**

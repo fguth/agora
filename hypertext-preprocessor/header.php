@@ -25,11 +25,11 @@ $header	= new Header($auth->user);
 	
 	<?php $header->meta(); ?>
 
-	<body data-path="<?php echo($header->path); ?>" data-city-id="<?php echo($header->city_id); ?>">
+	<body data-token="<?php echo ($auth->token); ?>" data-id="<?php echo ($auth->id); ?>" data-content-type="<?php echo($header->content_type); ?>" data-path="<?php echo($header->path); ?>" data-city-id="<?php echo($header->city_id); ?>">
 		<div class="wrapper">
 			<div class="header">
 				<div class="header__logo">
-					<h1><a href="#">
+					<h1><a href="http://<?php echo (HOST); ?>">
 						<img src="images/logo-agora.png" alt="Ágora" title="Ágora" />
 					</a></h1>
 				</div>

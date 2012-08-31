@@ -25,7 +25,7 @@
 							<div class="candidateinfo__header">
 								<div class="candidateinfo__header__wrapper">
 									<div class="candidateinfo__header__content">
-										<a href="javascript:history.back()" class="candidateinfo__backbutton">Voltar</a>
+										<a href="http://<?php echo (HOST); ?>/<?php echo ($header->state_sa); ?>/<?php echo ($header->city_url); ?>" class="candidateinfo__backbutton">Voltar</a>
 										<div class="breadcrumb">
 											<h2>
 												<?php echo ($header->candidate->post_name); ?> para <?php echo ($header->candidate->city_name); ?>
@@ -54,17 +54,22 @@
 												<?php echo ($header->candidate->supports); ?>
 											</span>
 										</div>
-										<a href="javascript:void(0);" class="support__button">
-											<img src="images/icon-support.png" alt="Apoiar candidato" class="support__button__icon" /><span class="support__button__text">Apoiar</span>
-										</a>
-										<a href="javascript:void(0);" class="unsupport__button is-hidden">
-											<span class="unsupport__button__text">Desfazer</span>
-										</a>
+										<?php if ($header->hasSupport($header->candidate->id)) { ?>
+											<a id="<?php echo ($header->candidate->id); ?>" data-post="<?php echo ($header->candidate->post_id); ?>" href="#" class="unsupport__button">
+												<img src="images/icon-support.png" alt="Apoiar candidato" class="support__button__icon" /><span class="support__button__text">Desfazer</span>
+											</a>
+										<?php } else { ?>
+											<a id="<?php echo ($header->candidate->id); ?>" data-post="<?php echo ($header->candidate->post_id); ?>" href="#" class="support__button">
+												<img src="images/icon-support.png" alt="Apoiar candidato" class="support__button__icon" /><span class="support__button__text">Apoiar</span>
+											</a>
+										<?php } ?>
 									</div>
 								</div>
+
+
 								
 								<div class="candidateinfo__main__content">
-									<h2 class="candidateinfo__candidatename">
+									<h2 class="candidateinfo__candidatename">	
 										<?php echo ($header->candidate->name); ?>
 									</h2>
 									<table class="candidateinfo__details">
@@ -99,8 +104,33 @@
 							
 						</div>
 
-						<?php require('hypertext-preprocessor/discussion.php'); ?>
-						
+						<div class="discussion">	
+							<div class="discussion__header">
+								<div class="breadcrumb">
+									<h2>Discussão</h2>
+								</div>
+								<?php if ($header->candidate->post_id == 4) { ?>
+								<div class="currentsupport support_mayor">
+									<img src="images/candidates/<?php echo ($header->candidate->id_tse); ?>.jpg" alt="<?php echo ($header->candidate->name); ?>" class="currentsupport__candidatephoto" />
+									<p class="currentsupport__label">Prefeito(a)<a href="<?php echo ($header->address); ?>" class="currentsupport__candidatename"><?php echo ($header->candidate->name); ?></a></p>
+								</div>
+								<?php } else { ?>
+								<div class="currentsupport support_alderman">
+									<img src="images/candidates/<?php echo ($header->candidate->id_tse); ?>.jpg" alt="<?php echo ($header->candidate->name); ?>" class="currentsupport__candidatephoto" />
+									<p class="currentsupport__label">Vereador(a)<a href="<?php echo ($header->address); ?>" class="currentsupport__candidatename"><?php echo ($header->candidate->name); ?></a></p>
+								</div>
+								<?php } ?>
+							</div>
+							
+							<div class="row-division">
+								<hr />
+							</div>
+							
+							<div class="fbcomments">
+								<fb:comments href="<?php echo($header->address); ?>" num_posts="5" width="737"></fb:comments>
+							</div>
+
+						</div>					
 					</div>
 			
 <?php require('hypertext-preprocessor/footer.php'); ?>

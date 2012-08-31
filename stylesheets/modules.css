@@ -317,6 +317,7 @@
     color: #A0A6AC;
     display: block;
     font-weight: bold;
+    text-transform: uppercase;
 }
 .currentsupport__candidatename:hover {
     text-decoration: underline;
