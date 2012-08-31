@@ -924,15 +924,15 @@
 				});
 				
 				page.location.elements.$dropdown.html(html).removeClass("is-hidden");
+				page.elements.$star.removeClass("is-loading");
 			}
 		}
 		
 		page.location.key = function(event) {
 			var query = $.trim(page.location.elements.$cityname.val());
-			
 			if (page.location.memory != query && query.length > 2) {
 				page.location.memory = query;
-				
+				page.elements.$star.addClass("is-loading");
 				$.ajax({
 					data: {
 						action: CONFIG.get("SAYT_CITY"),
