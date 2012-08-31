@@ -55,11 +55,11 @@
 											</span>
 										</div>
 										<?php if ($header->hasSupport($header->candidate->id)) { ?>
-											<a id="<?php echo ($header->candidate->id); ?>" data-post="<?php echo ($header->candidate->post_id); ?>" href="#" class="unsupport__button">
+											<a id="<?php echo ($header->candidate->id); ?>" data-post="<?php echo ($header->candidate->post_id); ?>" href="<?php echo ($header->candidate->id); ?>" class="unsupport__button">
 												<img src="images/icon-support.png" alt="Apoiar candidato" class="support__button__icon" /><span class="support__button__text">Desfazer</span>
 											</a>
 										<?php } else { ?>
-											<a id="<?php echo ($header->candidate->id); ?>" data-post="<?php echo ($header->candidate->post_id); ?>" href="#" class="support__button">
+											<a id="<?php echo ($header->candidate->id); ?>" data-post="<?php echo ($header->candidate->post_id); ?>" href="<?php echo ($header->candidate->id); ?>" class="support__button">
 												<img src="images/icon-support.png" alt="Apoiar candidato" class="support__button__icon" /><span class="support__button__text">Apoiar</span>
 											</a>
 										<?php } ?>
