@@ -560,7 +560,7 @@
 			 */
 
 			 page.candidates.unsupport.process = function(response) {
-			 	var publish_id = response.publish_id;
+			 	var publish_id = (response.publish_id).toString();
 				var button 	   = $("#" + response.candidate_id);
 				var counter    = button.parent().find(".support__counter .support__counter__number");
 				FB.api(publish_id,'delete',function(response){
@@ -689,7 +689,7 @@
 				 */
 				 
 				 page.candidate.unsupport.process = function(response) {
-					var publish_id = response.publish_id;
+					var publish_id = (response.publish_id).toString();
 					var button 	   = $("#" + response.candidate_id);
 					var counter    = button.parent().find(".support__counter .support__counter__number");
 					FB.api(publish_id,'delete',function(response){

@@ -29,7 +29,7 @@ $header	= new Header($auth->user);
 		<div class="wrapper">
 			<div class="header">
 				<div class="header__logo">
-					<h1><a href="http://<?php echo (HOST); ?>">
+					<h1><a href="http://<?php echo ($header->address); ?>">
 						<img src="images/logo-agora.png" alt="Ágora" title="Ágora" />
 					</a></h1>
 				</div>
