@@ -922,10 +922,9 @@
 					html += this.name + ", " + this.state_sa;
 					html += "</li>";
 				});
-				
 				page.location.elements.$dropdown.html(html).removeClass("is-hidden");
-				page.elements.$star.removeClass("is-loading");
 			}
+			page.elements.$star.removeClass("is-loading");
 		}
 		
 		page.location.key = function(event) {
