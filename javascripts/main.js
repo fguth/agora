@@ -455,7 +455,7 @@
 				var post_id		  = $(this).attr("data-post");
 				// SUPPORT INITIALIZE
 				if(page.auth.token) {
-					/*FB.api('/me/' + CONFIG.get('APP_NAME') + ':' + CONFIG.get('APP_ACTION'), 'post', { candidato : '' + candidate_url + ''}, 
+					FB.api('/me/' + CONFIG.get('APP_NAME') + ':' + CONFIG.get('APP_ACTION'), 'post', { candidato : '' + candidate_url + ''}, 
 						function(response) {
 							if (response && !response.error ) {*/
 								$.ajax({
@@ -474,7 +474,7 @@
 									type: "post",
 									url: CONFIG.get('AJAX_URL')
 								});
-							/*} else {
+							} else {
 								page.error(response);
 							}
 					});*/
@@ -563,7 +563,7 @@
 			 	var publish_id = response.publish_id;
 				var button 	   = $("#" + response.candidate_id);
 				var counter    = button.parent().find(".support__counter .support__counter__number");
-				//FB.api(publish_id,'delete',function(response){
+				FB.api(publish_id,'delete',function(response){
 					if(button) {
 						button.unbind("click",page.candidates.unsupport).bind("click",page.candidates.support);
 						button.removeClass("unsupport__button").addClass("support__button");
@@ -577,7 +577,7 @@
 					} else {
 						page.error();	
 					}
-				//});
+				});
 			 }
 
 		/**
@@ -603,9 +603,9 @@
 				var post_id		  = $(this).attr("data-post");
 				// SUPPORT INITIALIZE
 				if(page.auth.token) {
-					/*FB.api('/me/' + CONFIG.get('APP_NAME') + ':' + CONFIG.get('APP_ACTION'), 'post', { candidato : '' + candidate_url + ''}, 
+					FB.api('/me/' + CONFIG.get('APP_NAME') + ':' + CONFIG.get('APP_ACTION'), 'post', { candidato : '' + candidate_url + ''}, 
 						function(response) {
-							if (response && !response.error ) {*/
+							if (response && !response.error ) {
 								$.ajax({
 									data: {
 										action			: CONFIG.get('SUPPORT'),
@@ -614,7 +614,7 @@
 										user_token		: page.auth.token,
 										city_id			: page.vars.$city,
 										post_id			: post_id,
-										publish_id		: 123123123//response.id
+										publish_id		: response.id
 									},
 									dataType: "json",
 									error: page.error,
@@ -622,10 +622,10 @@
 									type: "post",
 									url: CONFIG.get('AJAX_URL')
 								});
-							/*} else {
+							} else {
 								page.error(response);
 							}
-					});*/
+					});
 				} else {
 					page.login();
 				}
@@ -692,7 +692,7 @@
 					var publish_id = response.publish_id;
 					var button 	   = $("#" + response.candidate_id);
 					var counter    = button.parent().find(".support__counter .support__counter__number");
-					//FB.api(publish_id,'delete',function(response){
+					FB.api(publish_id,'delete',function(response){
 						if(button) {
 							button.unbind("click",page.candidate.unsupport).bind("click",page.candidate.support);
 							button.removeClass("unsupport__button").addClass("support__button");
@@ -704,7 +704,7 @@
 						} else {
 							page.error();	
 						}
-					//});
+					});
 				 }
 		 
 		/* *
