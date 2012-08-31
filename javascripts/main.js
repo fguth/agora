@@ -457,7 +457,7 @@
 				if(page.auth.token) {
 					FB.api('/me/' + CONFIG.get('APP_NAME') + ':' + CONFIG.get('APP_ACTION'), 'post', { candidato : '' + candidate_url + ''}, 
 						function(response) {
-							if (response && !response.error ) {*/
+							if (response && !response.error ) {
 								$.ajax({
 									data: {
 										action			: CONFIG.get('SUPPORT'),
@@ -714,8 +714,6 @@
 
 		page.auth = function(response) {
 			var _id = $('body').attr('data-id');
-			console.log(_id);
-			console.log(response);
 			if (response.status === 'connected' && response.authResponse.userID == parseInt(_id)) {
 				page.auth.status = response.status  === 'connected' ? true : false;
 				page.auth.id 	 = page.auth.status ? response.authResponse.userID : null;
