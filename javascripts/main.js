@@ -532,7 +532,8 @@
 			 	e.preventDefault();
 				//VAR
 				var candidate_id  = $(this).attr("id");
-
+				//LOAD
+			 	$(this).addClass("is-loading");
 				if(page.auth.id && page.auth.token && candidate_id) {
 					$.ajax({
 						data: {
@@ -566,7 +567,7 @@
 				FB.api(publish_id,'delete',function(response){
 					if(button) {
 						button.unbind("click",page.candidates.unsupport).bind("click",page.candidates.support);
-						button.removeClass("unsupport__button").addClass("support__button");
+						button.removeClass("is-loading unsupport__button").addClass("support__button");
 				 		button.find(".support__button__text").empty().append('Apoiar');
 				 		// update supports count
 				 		var count = parseInt(counter.html());
@@ -663,6 +664,7 @@
 			 page.candidate.unsupport = function(e) {
 			 	e.preventDefault();
 			 	var candidate_id  = $(this).attr("id");
+			 	$(this).addClass("is-loading");
 				if(page.auth.id && page.auth.token && candidate_id) {
 					$.ajax({
 						data: {
@@ -695,7 +697,7 @@
 					FB.api(publish_id,'delete',function(response){
 						if(button) {
 							button.unbind("click",page.candidate.unsupport).bind("click",page.candidate.support);
-							button.removeClass("unsupport__button").addClass("support__button");
+							button.removeClass("is-loading unsupport__button").addClass("support__button");
 					 		button.find(".support__button__text").empty().append('Apoiar');
 					 		// update supports count
 					 		var count = parseInt(counter.html());
