@@ -466,7 +466,7 @@
 										user_token		: page.auth.token,
 										city_id			: page.vars.$city,
 										post_id			: post_id,
-										publish_id		: 123123123//response.id
+										publish_id		: response.id
 									},
 									dataType: "json",
 									error: page.error,
