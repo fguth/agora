@@ -570,6 +570,12 @@
     position: relative;
     width: 200px;
 }
+.introduction__tip__facebook {
+    position: absolute !important;
+    top: 143px !important;
+    left: 165px !important;
+    z-index: 1000 !important;
+}
 .row-division {
     background: none repeat scroll 0 0 #FFFFFF;
     clear: both;

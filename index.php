@@ -13,6 +13,7 @@
 						<span class="introduction__tip__number">2</span>
 						<p class="introduction__tip__title">Conecte</p>
 						<p class="introduction__tip__description">Entre no Ágora utilizando sua conta no Facebook.</p>
+					<div class="fb-like introduction__tip__facebook" data-href="https://www.facebook.com/agora.vc" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false"></div>
 					</div><div class="introduction__tip">
 						<img src="images/info-interaja.png" alt="Compartilhe sua intenção de voto com os amigos" class="introduction__tip__image" />
 						<span class="introduction__tip__number">3</span>
