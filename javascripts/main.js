@@ -343,7 +343,7 @@
 					
 					output  = '<dd class="candidateslist__item ' + post_type + '">';
 					output += 	'<a href="' + url + '" class="candidatecard">';
-					output += 		'<img src="images/candidates/' + candidate.id_tse + '.jpg" alt="' + candidate.name + '" class="candidatecard__photo" />';
+					output += 		'<img src="http://candidatos.agora.vc/F' + candidate.state_sa + candidate.id_tse +'.jpg" alt="' + candidate.name + '" class="candidatecard__photo" />';
 					output += 		'<p class="candidatecard__name">' + candidate.name + '</p>';
 					output += 	'</a>';
 					output += 	'<div class="support">';
@@ -351,7 +351,7 @@
 					output += 			'<span class="support__counter__number">' + candidate.supports + '</span>';
 					output += 		'</div>';
 					output += 		'<a id="' + id + '" href="' + url + '" data-post="' + post_id + '" class="' + isSupported +'">';
-					output += 			'<img src="http://candidatos.agora.vc/F' + candidate.state_sa + candidate.id_tse +'.jpg" alt="Apoiar candidato" class="support__button__icon" /><span class="support__button__text">Apoiar</span>';
+					output += 			'<img src="images/icon-support.png" alt="Apoiar candidato" class="support__button__icon" /><span class="support__button__text">Apoiar</span>';
 					output += 		'</a>';
 					output += 	'</div>';
 					output += '</dd>';
