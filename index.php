@@ -18,7 +18,7 @@
 						<img src="images/info-interaja.png" alt="Compartilhe sua intenção de voto com os amigos" class="introduction__tip__image" />
 						<span class="introduction__tip__number">3</span>
 						<p class="introduction__tip__title">Interaja</p>
-						<p class="introduction__tip__description">Compartilhe sua intenção de voto com os amigos.</p>
+						<p class="introduction__tip__description">Compartilhe o seu apoio com os amigos.</p>
 					</div>
 				</div>
 				
