@@ -53,7 +53,7 @@
 									O projeto está sendo gratuitamente disponibilizado à sociedade por 
 									<a href="http://facebook.com/brunohstein">Bruno Stein</a>, 
 									<a href="http://facebook.com/evandroeisinger">Evandro Eisinger</a>, 
-									<a href="http://facebook.com/fguth">Filipe Guth</a> 
+									<a href="http://fguth.com">Filipe Guth</a> 
 									e <a href="http://facebook.com/gibatronic">Gibran Malheiros</a>.
 								</p>
 							
