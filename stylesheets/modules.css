@@ -255,6 +255,7 @@
 .candidateslist__header__content > .listfilter {
     position: absolute;
     right: 0px;
+    top: 50px;
 }
 .candidateslist__header__content + .row-division {
     padding-bottom: 35px;
