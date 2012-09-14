@@ -13,7 +13,7 @@ body {
 
 .header {
 	height:80px;
-	margin:30px 0 0;
+	margin:60px 0 0;
 	background:#2C5567;
 	background-image: linear-gradient(bottom, #1b4253 0%, #224D60 50%, #2C5567 51%, #224D60 100%);
 	border-radius:7px;
@@ -22,6 +22,16 @@ body {
 	border-color:#1f4b5e #193e4f #12313e;
 	box-shadow:0 1px 2px #306c86 inset, 0 1px 3px #a4aec0;
 }
+	.header__warning {
+		position: absolute;
+		top: 16px;
+		text-align: center;
+		color: #8a9da5;
+		font-size: 11px;
+		width: 770px;
+		left: 50%;
+		margin-left: -385px;
+	}
 	.header__logo {
 		width:200px;
 		height:100%;
