@@ -379,6 +379,8 @@
     box-shadow: 0 0 6px #B8C5CB, 0 1px 2px #A4A4A4;
     display: block;
     position: relative;
+    color: #fff;
+    background: url('../images/loader-candidates.gif') center 85px no-repeat;
 }
 .candidatecard__photo {
     display: block;
