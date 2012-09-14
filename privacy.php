@@ -8,15 +8,50 @@
 						
 						<div class="main__general__bg">
 
-							<h2 class="main__general__title">Política de privacidade para Ágora - Eleições 2012</h2>
+							<h2 class="main__general__title">Termos de uso para Ágora - Eleições 2012</h2>
 
 							<div class="main__general__content">
-							
+
+								<h3 class="main__general__subtitle">Natureza do site</h3>
+
+								<p class="main__general__paragraph">
+									O Ágora permite que o eleitor manifeste seu apoio a 
+									candidatos nas redes sociais, não se tratando de 
+									pesquisa eleitoral prevista no artigo 33 da Lei nº 
+									9504/97. O Ágora está de acordo com a Resolução TSE 
+									23.364.
+								</p>
+
+								<h3 class="main__general__subtitle">Resolução TSE 23.364:</h3>
+
+								<p class="main__general__paragraph">
+									Art. 2o Não estão sujeitas a registro as enquetes ou sondagens.
+								</p>
+
+								<p class="main__general__paragraph">
+									§ 1o Na divulgação dos resultados de enquetes ou sondagens, 
+									deverá ser informado que não se trata de pesquisa eleitoral, 
+									prevista no art. 33 da Lei no 9.504/97, e sim de mero 
+									levantamento de opiniões, sem controle de amostra, o qual não 
+									utiliza método científico para a sua realização, dependendo, 
+									apenas, da participação espontânea do interessado.
+								</p>
+
+								<p class="main__general__paragraph">
+									§ 2o A divulgação de resultados de enquetes ou sondagens sem 
+									os esclarecimentos previstos no parágrafo anterior constitui 
+									divulgação de pesquisa eleitoral sem registro e autoriza a 
+									aplicação das sanções previstas nesta resolução.
+								</p>
+
+								<h3 class="main__general__subtitle">Confidencialidade dos dados</h3>
+
 								<p class="main__general__paragraph">
 									A garantia da confidencialidade dos dados pessoais dos 
 									utilizadores do nosso site é importante para o Ágora - 
 									Eleições 2012.
 								</p>
+
 								<p class="main__general__paragraph">
 									Todas as informações pessoais relativas a membros, 
 									assinantes, clientes ou visitantes que usem o Ágora - 

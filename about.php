@@ -15,9 +15,10 @@
 								<h3 class="main__general__subtitle">O que é</h3>
 								
 								<p class="main__general__paragraph">
-									Desenvolvido por quatro estudantes do Curso de 
+									Desenvolvido por quatro estudantes do 
+									<a href="http://comdig.info">Curso de 
 									Comunicação Digital da Universidade do Vale do 
-									Rio do Sinos, o Ágora é um projeto destinado a 
+									Rio do Sinos</a>, o Ágora é um projeto destinado a 
 									dar voz aos eleitores durante todo o processo 
 									eleitoral anterior ao dia da votação.
 								</p>
@@ -44,6 +45,16 @@
 									após a popularização da comunicação em rede. 
 									Esperamos colaborar, com esta plataforma de discussão
 									política, para o avanço da cidadania brasileira.
+								</p>
+
+								<h3 class="main__general__subtitle">Quem somos</h3>
+
+								<p class="main__general__paragraph">
+									O projeto está sendo gratuitamente disponibilizado à sociedade por 
+									<a href="http://facebook.com/brunohstein">Bruno Stein</a>, 
+									<a href="http://facebook.com/evandroeisinger">Evandro Eisinger</a>, 
+									<a href="http://facebook.com/fguth">Filipe Guth</a> 
+									e <a href="http://facebook.com/gibatronic">Gibran Malheiros</a>.
 								</p>
 							
 							</div>

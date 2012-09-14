@@ -3,7 +3,7 @@
 					<div class="footer__column">
 						<ul class="footer__links">
 							<li class="footer__links__item"><a href="/sobre" class="footer__links__item__link">Sobre</a></li>•
-							<li class="footer__links__item"><a href="/privacidade" class="footer__links__item__link">Política de Privacidade</a></li>•
+							<li class="footer__links__item"><a href="/privacidade" class="footer__links__item__link">Termos de uso</a></li>•
 							<li class="footer__links__item"><a href="/imprensa" class="footer__links__item__link">Imprensa</a></li>•
 							<li class="footer__links__item"><a href="mailto:cope@agora.vc" class="footer__links__item__link">Contato</a></li>
 						</ul>

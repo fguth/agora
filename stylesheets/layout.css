@@ -131,6 +131,13 @@ body {
 				font-weight:200;
 				text-align:justify;
 			}
+				.main__general__paragraph a {
+					color: #000;
+				}
+				.main__general__paragraph a:hover {
+					color: #000;
+					text-decoration: underline;
+				}
 .footer {
 	width:100%;
 	float:right;
