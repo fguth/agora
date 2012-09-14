@@ -579,6 +579,11 @@
     left: 165px !important;
     z-index: 1000 !important;
 }
+@-moz-document url-prefix() { 
+  .introduction__tip__facebook {
+     top: 140px !important;
+  }
+}
 .row-division {
     background: none repeat scroll 0 0 #FFFFFF;
     clear: both;
