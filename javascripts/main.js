@@ -242,7 +242,7 @@
 			 	more.unbind("click",page.candidates.more.click);
 				more.bind("click",page.candidates.more.click);
 
-				total > count ? more.fadeIn() : more.fadeOut();
+				total > count ? more.fadeTo("slow", 1) : more.fadeOut();
 
 		 	 }
 
@@ -254,7 +254,7 @@
 				var count 		= $(this).attr("data-count");
 				var loader		= $('#' + postName + '__loader');
 
-				$(this).fadeOut()
+				$(this).fadeTo("slow", 0.50);
 				loader.show();
 				
 				page.candidates.load(page.vars.$city, post, postName, count, '');
