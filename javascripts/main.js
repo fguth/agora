@@ -257,7 +257,7 @@
 				$(this).fadeOut()
 				loader.show();
 				
-				page.candidates.load(page.vars.$city, post, postName, 8, '');
+				page.candidates.load(page.vars.$city, post, postName, count, '');
 
 		 	 }
 
