@@ -180,7 +180,7 @@ class Header {
 				$this->state_sa 	= $data[0]->state_sa;
 			break;
 			case "candidate" : 
-				$data = db("SELECT LOWER(name) AS name,id,number,party_name,party_acronym,birth_si,supports,id_tse,post_id,post_name,city_name,state_sa FROM candidates_data WHERE state_sa = '" . $this->state_sa ."' AND city_url = '" . $this->city_url ."' AND post_name = '" . $this->post ."' AND url = '" . $candidate ."'");
+				$data = db("SELECT LOWER(name) AS name,id,number,party_name,party_acronym,birth_si,supports,id_tse,post_id,post_name,city_id_tse,city_name,state_sa FROM candidates_data WHERE state_sa = '" . $this->state_sa ."' AND city_url = '" . $this->city_url ."' AND post_name = '" . $this->post ."' AND url = '" . $candidate ."'");
 				return count($data) ? $data[0] : header("Location:/ooooops/"); 
 			break;
 			case "location" :

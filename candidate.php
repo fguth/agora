@@ -25,7 +25,7 @@
 							<div class="candidateinfo__header">
 								<div class="candidateinfo__header__wrapper">
 									<div class="candidateinfo__header__content">
-										<a href="http://<?php echo (HOST); ?>/<?php echo ($header->state_sa); ?>/<?php echo ($header->city_url); ?>" class="candidateinfo__backbutton">Voltar</a>
+										<a href="http://<?php echo (HOST . "/" . $header->state_sa . "/" . $header->city_url); ?>" class="candidateinfo__backbutton">Voltar</a>
 										<div class="breadcrumb">
 											<h2>
 												<?php echo ($header->candidate->post_name); ?> para <?php echo ($header->candidate->city_name); ?>
@@ -38,16 +38,12 @@
 							<div class="candidateinfo__main">
 								
 								<div class="candidateslist__item">
-									<a href="http://development.agora.vc/candidate.php" class="candidatecard">
-										<img
-											src="images/candidates/<?php echo ($header->candidate->id_tse); ?>.jpg"
-											alt="<?php echo ($header->candidate->name); ?>"
-											class="candidatecard__photo"
-										/>
+									<div class="candidatecard">
+										<img src="//candidatos.agora.vc/F<?php echo ($header->candidate->state_sa . $header->candidate->id_tse); ?>.jpg" alt="<?php echo ($header->candidate->name); ?>" class="candidatecard__photo" />
 										<p class="candidatecard__name">
 											<?php echo ($header->candidate->name); ?>
 										</p>
-									</a>
+									</div>
 									<div class="support" id="123123123">
 										<div class="support__counter">
 											<span class="support__counter__number">
@@ -92,11 +88,8 @@
 											</td>
 										</tr>
 									</table>
-									<a
-										href="http://divulgacand2010.tse.jus.br/divulgacand2010/jsp/abrirTelaDetalheCandidato.action?sqCand=<?php echo ($header->candidate->id_tse); ?>&sgUe=BR"
-										target="_blank"
-										class="candidateinfo__externallink">
-											Ficha do candidato no TSE
+									<a href="http://divulgacand2012.tse.jus.br/divulgacand2012/mostrarFichaCandidato.action?sqCandidato=<?php echo ($header->candidate->id_tse); ?>&amp;codigoMunicipio=<?php echo ($header->candidate->city_id_tse); ?>" target="_blank" class="candidateinfo__externallink">
+										Ficha do candidato no TSE
 									</a>
 								</div>
 								

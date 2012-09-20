@@ -13,6 +13,8 @@ define("APP_PROJECT_IMAGE", "https://fbcdn-sphotos-a.akamaihd.net/hphotos-ak-ash
 define("ELLECTION_YEAR", "2012");
 
 if (IS_LOCAL) {
+	error_reporting(E_ALL ^ E_NOTICE);
+
 	define("DB_HOST", HOST);
 	define("DB_USER", "root");
 	define("DB_PASS", "root");	
@@ -20,6 +22,8 @@ if (IS_LOCAL) {
 	define("APP_ID", "196526257128071");
 	define("APP_SECRET", "a126bbc85bb7dd4c3b8a452c0cbe902d");
 } else {
+	error_reporting(0);
+
 	define("DB_HOST", "db.agora.vc");
 	define("DB_USER", "agora_dml");
 	define("DB_PASS", "1b6170977bf023b488");
